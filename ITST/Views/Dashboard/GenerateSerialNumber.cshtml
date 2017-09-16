@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewBag.Title = "GenerateSerialNumber";
+}
+
+<h2>Generate SerialNumber</h2>
+
+<hr />
+
+<h4>Templated</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "SerialNumberTemplate", null, new { @class = "btn btn-success btn-sm" })
+</p>
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>TemplateName</th>
+            <th>DeviceType</th>
+            <th>CreateBy</th>
+            <th>UpdateBy</th>
+            <th>DateCreate</th>
+            <th>DateUpdate</th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+
+<hr />
+
+<h4>Generated</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "SerialNumberGenerate", null, new { @class = "btn btn-success btn-sm" })
+</p>
+
+<table class="table table-bordered" id="myTable2">
+    <thead>
+        <tr class="active">
+            <th>InSys</th>
+            <th>SerialNumber</th>
+            <th>DeviceType</th>
+            <th>CreateBy</th>
+            <th>UpdateBy</th>
+            <th>DateCreate</th>
+            <th>DateUpdate</th>
+            <th></th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $.fn.dataTable.moment('HH:mm MMM D, YY');
+            $.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+            $.fn.dataTable.moment('DD/MM/YYYY, h:mm:ss a');
+            $('#myTable').DataTable({
+                responsive: {
+                    details: {
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return col.hidden ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                        '<td>' + col.title + ':' + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+                "ajax": {
+                    "url": '@Url.Action("getSerialNumberTemplated")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ],
+                "columns": [
+                        { "data": "TemplateName", "autoWidth": true },
+                        { "data": "DeviceType", "autoWidth": true },
+                        { "data": "CreateBy", "autoWidth": true },
+                        { "data": "UpdateBy", "autoWidth": true },
+                            {
+                                "data": "DateCreate",
+                                "render": function (data, type, row) {
+                                    var rowvalueallday = row.DateCreate;
+                                    if (rowvalueallday == '0000-00-00') {
+                                        var gdat = '1900-01-01';
+                                        return (moment(gdat).format("DD/MM/YYYY, h:mm:ss a"));
+                                    } else {
+                                        return (moment(data).format("DD/MM/YYYY, h:mm:ss a"));
+                                    }
+                                },
+                                "autoWidth": true
+                            },
+                            {
+                                "data": "DateUpdate",
+                                "render": function (data, type, row) {
+                                    var rowvalueallday = row.DateCreate;
+                                    if (rowvalueallday == '0000-00-00') {
+                                        var gdat = '1900-01-01';
+                                        return (moment(gdat).format("DD/MM/YYYY, h:mm:ss a"));
+                                    } else {
+                                        return (moment(data).format("DD/MM/YYYY, h:mm:ss a"));
+                                    }
+                                },
+                                "autoWidth": true
+                            }, {
+                            "data": "TemplateID",
+                            "render": function (data, type, full, meta) {
+                                return '<a href="@Url.Action("Delete/", "SerialNumberTemplate")' + data + '">Delete</a>' + '&nbsp;';
+                            },
+                            "autoWidth": true
+                        },
+                ]
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $.fn.dataTable.moment('HH:mm MMM D, YY');
+            $.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+            $.fn.dataTable.moment('DD/MM/YYYY, h:mm:ss a');
+            $('#myTable2').DataTable({
+                responsive: {
+                    details: {
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return col.hidden ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                        '<td>' + col.title + ':' + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+                "ajax": {
+                    "url": '@Url.Action("getSerialNumberGenerated")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ],
+                "columns": [
+                        {
+                            "data": "IsUse",
+                            "render": function (data, type, row) {
+                                if (data == "") return 'No'+' | '+'<a href="@Url.Action("CreateNewDevice/", "SerialNumberGenerate")' + row.GenerateID + '">Create</a>' + '&nbsp;';
+                                if (data == "$") return "Yes";
+                            },
+                            "autoWidth": true
+                        },
+                        { "data": "SerialNumber", "autoWidth": true },
+                        { "data": "DeviceType", "autoWidth": true },
+                        { "data": "CreateBy", "autoWidth": true },
+                        { "data": "UpdateBy", "autoWidth": true },
+                                                    {
+                                                        "data": "DateCreate",
+                                                        "render": function (data, type, row) {
+                                                            var rowvalueallday = row.DateCreate;
+                                                            if (rowvalueallday == '0000-00-00') {
+                                                                var gdat = '1900-01-01';
+                                                                return (moment(gdat).format("DD/MM/YYYY, h:mm:ss a"));
+                                                            } else {
+                                                                return (moment(data).format("DD/MM/YYYY, h:mm:ss a"));
+                                                            }
+                                                        },
+                                                        "autoWidth": true
+                                                    },
+                            {
+                                "data": "DateUpdate",
+                                "render": function (data, type, row) {
+                                    var rowvalueallday = row.DateCreate;
+                                    if (rowvalueallday == '0000-00-00') {
+                                        var gdat = '1900-01-01';
+                                        return (moment(gdat).format("DD/MM/YYYY, h:mm:ss a"));
+                                    } else {
+                                        return (moment(data).format("DD/MM/YYYY, h:mm:ss a"));
+                                    }
+                                },
+                                "autoWidth": true
+                            }, {
+                                                    "data": "GenerateID",
+                                                    "render": function (data, type, full, meta) {
+                                                        return '<a href="@Url.Action("Delete/", "SerialNumberGenerate")' + data + '">Delete</a>' + '&nbsp;';
+                                                    },
+                                                    "autoWidth": true
+                                                },
+                ]
+            });
+        });
+    </script>
+}

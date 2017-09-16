@@ -1,0 +1,148 @@
+﻿@model List<ITST.Models.BillReceiptList>
+
+@{
+    ViewBag.Title = "SetPrice";
+}
+
+<h2>SetPrice</h2>
+<h3>BillReceiptNo. @ViewBag.ReceiptNo </h3>
+
+<h4>Device</h4>
+<hr />
+
+@using (Html.BeginForm("SetPriceSale", "BillReceipt", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table table-bordered">
+        <tr class="active">
+            <th>
+                @Html.DisplayName("BillReceiptNo")
+            </th>
+            <th>
+                @Html.DisplayName("Type")
+            </th>
+            <th>
+                @Html.DisplayName("SerialNumber")
+            </th>
+            <th>
+                @Html.DisplayName("Type")
+            </th>
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+            <th>
+                @Html.DisplayName("Plant")
+            </th>
+            <th>
+                @Html.DisplayName("Department")
+            </th>
+            <th>
+                @Html.DisplayName("Location")
+            </th>
+        </tr>
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            @Html.HiddenFor(model => model[i].ListID)
+            @Html.ValidationMessageFor(model => model[i].ListID)
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model[i].BillReceiptNo, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].BillReceiptNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model[i].BillReceiptType, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].BillReceiptType)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model[i].SerialNumber, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].SerialNumber)
+                </td>
+
+                <td class="hidden">
+                    @Html.TextBoxFor(model => model[i].SerialNumber, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].SerialNumber)
+                </td>
+                <td class="hidden">
+                    @Html.TextBoxFor(model => model[i].BillReceiptType, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].BillReceiptType)
+                </td>
+
+                <td class="hidden">
+                    @Html.TextBoxFor(model => model[i].DeviceID, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].DeviceID)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model[i].Type, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model[i].Model, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model[i].Brand, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model[i].Plant, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].Plant)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model[i].Department, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model[i].Location, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].Location)
+                </td>
+            </tr>
+        }
+
+    </table>
+    
+    <table class="table table-bordered">
+        <tr class="active">
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+        </tr>
+
+        @for (int i = 0; i < 1; i++)
+        {
+            @Html.HiddenFor(model => model[i].ListID)
+            @Html.ValidationMessageFor(model => model[i].ListID)
+            <tr>
+                <td class="hidden">
+                    @Html.TextBoxFor(model => model[i].SerialNumber, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].SerialNumber)
+                </td>
+                <td class="hidden">
+                    @Html.TextBoxFor(model => model[i].BillReceiptType, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].BillReceiptType)
+                </td>
+
+                <td class="hidden">
+                    @Html.TextBoxFor(model => model[i].DeviceID, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model[i].DeviceID)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model[i].Price, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model[i].Price)
+                </td>
+            </tr>
+        }
+
+    </table>
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </div>
+
+}

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ITST.Models.User>
+
+@{
+    ViewBag.Title = "UserByDepartment";
+}
+
+<h2>User</h2>
+<h4>By Department</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("ListUser", "User", new { pid = item.PlantID, did = item.DepartmentID })">@Html.DisplayFor(modelItem => item.Department.DepartmentName)</a>
+            @{
+    var db = new ITST.Models.ITStockEntities1();
+    var TotalDevicePerType = db.Users.Where(d => d.PlantID == item.PlantID && d.DepartmentID == item.DepartmentID).Count();
+            }
+            <span class="badge badge-info">@TotalDevicePerType</span>
+        </td>
+    </tr>
+}
+
+</table>

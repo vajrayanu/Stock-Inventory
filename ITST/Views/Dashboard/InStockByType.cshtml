@@ -1,0 +1,127 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "InStockByType";
+}
+
+<h2>InStock</h2>
+
+<h4>Type</h4>
+<hr />
+
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.DateUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationStockName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specification)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceType.Type)
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Machine.MachineName)
+        </th>
+        <th>
+            @Html.DisplayName("User")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStockName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant.PlantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhaseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine.MachineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Status1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DeviceID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DeviceID })
+            </td>
+        </tr>
+    }
+
+</table>
+

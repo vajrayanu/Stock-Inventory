@@ -1,0 +1,133 @@
+﻿@model ITST.Models.Model
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Model", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Model</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ModelID)
+        <div class="panel panel-primary">
+            <div class="panel-heading">Edit Model</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ModelName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.ModelName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ModelName)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DeviceTypeID, "DeviceTypeID", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("DeviceTypeID", null, String.Empty, new { @class = "form-control", @placeholder = "Device Type - Required" })
+                                @Html.ValidationMessageFor(model => model.DeviceTypeID)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.BrandID, "BrandID", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("BrandID", null, String.Empty, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.BrandID)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Specification, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Specification, new { @class = "form-control", @cols = 80, @rows = 5 })
+                                @Html.ValidationMessageFor(model => model.Specification)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IsAccess, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.CheckBox("IsAccess", Model.IsAccess ?? false)
+                                @Html.ValidationMessageFor(model => model.IsAccess)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input id="ImagePath" title="Upload a product image" type="file" name="file" class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="hidden">
+                            @Html.LabelFor(model => model.DateCreate, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.DateCreate, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.DateCreate)
+                            </div>
+                        </div>
+
+                        <div class="hidden">
+                            @Html.LabelFor(model => model.DateUpdate, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.DateUpdate, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.DateUpdate)
+                            </div>
+                        </div>
+
+                        <div class="hidden">
+                            @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.ImagePath, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.ImagePath)
+                            </div>
+                        </div>
+
+                        <div class="hidden">
+                            @Html.LabelFor(model => model.CreateBy, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.CreateBy, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.CreateBy)
+                            </div>
+                        </div>
+
+                        <div class="hidden">
+                            @Html.LabelFor(model => model.UpdateBy, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.UpdateBy, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.UpdateBy)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <img src="@Url.Content("~/Content/Images/" + @Model.ImagePath)" style="width:auto;height:auto;" class="img-responsive" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                </div>
+                }
+
+                <div>
+                    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @class = "btn btn-primary" })
+                </div>

@@ -1,0 +1,371 @@
+﻿@model ITST.ViewModels.IndexSearch
+
+@{
+    ViewBag.Title = "Find Device";
+}
+
+<h2>Find Device</h2>
+<h4>Device</h4>
+<hr />
+
+@if(@ViewBag.MachineName != null)
+{
+    <div class="form-horizontal">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Machine Information</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="panel panel-primary">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                @Html.Label("Machine:", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <p class="form-control-static">@ViewBag.MachineName</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("IPAddress:", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <p class="form-control-static">@ViewBag.IPAddress</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("MACAddress:", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <p class="form-control-static">@ViewBag.MACAddress</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("PLCAddress:", new { @class = "control-label col-md-3" })
+                                <div class="col-md-8">
+                                    <p class="form-control-static">@ViewBag.PLCAddress</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.Label("Plant:", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <p class="form-control-static">@ViewBag.Plant</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Department:", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <p class="form-control-static">@ViewBag.Department</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Location:", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <p class="form-control-static">@ViewBag.Location</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Phase:", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <p class="form-control-static">@ViewBag.Phase</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@if (@ViewBag.UserName != null)
+{
+    <div class="form-horizontal">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Machine Information</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.Label("User:", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <p class="form-control-static">@ViewBag.UserName</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("Computer:", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <p class="form-control-static">@ViewBag.ComputerName</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.Label("IPAddress:", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <p class="form-control-static">@ViewBag.IPAddress</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        @Html.Label("Plant:", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            <p class="form-control-static">@ViewBag.Plant</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Department:", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            <p class="form-control-static">@ViewBag.Department</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Location:", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            <p class="form-control-static">@ViewBag.Location</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Phase:", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            <p class="form-control-static">@ViewBag.Phase</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+    <table class="table table-bordered" id="myTable">
+        <thead>
+            <tr class="active">
+                <th></th>
+                <th>Action</th>
+                <th>DeviceName</th>
+                <th>SerialNumber</th>
+                <th>IPAddress</th>
+                <th>Type</th>
+                <th>Model</th>
+                <th>Brand</th>
+                <th>Status</th>
+                <th>Reason</th>
+                <th>CreateBy</th>
+                <th>UpdateBy</th>
+                <th>DateCreate</th>
+                <th>DateUpdate</th>
+                <th>User</th>
+                <th>Machine</th>
+                <th>Specification</th>
+                <th>Plant</th>
+                <th>Department</th>
+                <th>Location</th>
+                <th>Phase</th>
+                <th>LocationStock</th>
+                <th>MacAddress</th>
+                <th>IsAsset</th>
+                <th>FixAccess</th>
+                <th>PRNumber</th>
+                <th>SerialID</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+    </table>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/jqueryval")
+
+
+        <script>
+            $(document).ready(function () {
+                $.fn.dataTable.moment('HH:mm MMM D, YY');
+                $.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+                $.fn.dataTable.moment('DD/MM/YYYY, h:mm:ss a');
+                $('#myTable').DataTable({
+                    responsive: {
+                        details: {
+                            renderer: function (api, rowIdx, columns) {
+                                var data = $.map(columns, function (col, i) {
+                                    return col.hidden ?
+                                        '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                            '<td>' + col.title + ':' + '</td> ' +
+                                            '<td>' + col.data + '</td>' +
+                                        '</tr>' :
+                                        '';
+                                }).join('');
+
+                                return data ?
+                                    $('<table/>').append(data) :
+                                    false;
+                            }
+                        }
+                    },
+                    "ajax": {
+                        "url": '@Url.Action("getFindAllDevice", new { sr = ViewBag.SR })',
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf'
+                    ],
+                    "columns": [
+                        {
+                            "className": 'details-control',
+                            "orderable": false,
+                            "data": null,
+                            "defaultContent": ''
+                        },
+                                            {
+                                                "data": "DeviceID",
+                                                "render": function (data, type, full, meta) {
+                                                    return '<a href="@Url.Action("Edit/")' + data + '">Edit</a>' + '&nbsp;' + '|' + '&nbsp;' + '<a href="@Url.Action("Delete/")' + data + '">Delete</a>' + '&nbsp;' + '|' + '&nbsp;' + '<a href="@Url.Action("SetDevice/")' + data + '">Set</a>';
+                                                },
+                                                "autoWidth": true
+                                            },
+                            { "data": "DeviceName", "autoWidth": true },
+                            { "data": "SerialNumber", "autoWidth": true },
+                            { "data": "IPAddress", "autoWidth": true },
+                            { "data": "Type", "autoWidth": true },
+                            { "data": "Model", "autoWidth": true },
+                            { "data": "Brand", "autoWidth": true },
+                            { "data": "Status", "autoWidth": true },
+                            {
+                                "data": "Reason",
+                                "render": function (data, type, row) {
+                                    if (row.SerialNumber == "No SerialNumber") return '';
+                                    else return row.Reason
+                                },
+                                "autoWidth": true
+                            },
+                            { "data": "CreateBy", "autoWidth": true },
+                            { "data": "UpdateBy", "autoWidth": true },
+                            {
+                                "data": "DateCreate",
+                                "render": function (data, type, row) {
+                                    var rowvalueallday = row.DateCreate;
+                                    if (rowvalueallday == '0000-00-00') {
+                                        var gdat = '1900-01-01';
+                                        return (moment(gdat).format("DD/MM/YYYY, h:mm:ss a"));
+                                    } else {
+                                        return (moment(data).format("DD/MM/YYYY, h:mm:ss a"));
+                                    }
+                                },
+                                "autoWidth": true
+                            },
+                            {
+                                "data": "DateUpdate",
+                                "render": function (data, type, row) {
+                                    var rowvalueallday = row.DateCreate;
+                                    if (rowvalueallday == '0000-00-00') {
+                                        var gdat = '1900-01-01';
+                                        return (moment(gdat).format("DD/MM/YYYY, h:mm:ss a"));
+                                    } else {
+                                        return (moment(data).format("DD/MM/YYYY, h:mm:ss a"));
+                                    }
+                                },
+                                "autoWidth": true
+                            },
+                            { "data": "UserName", "autoWidth": true },
+                            { "data": "MachineName", "autoWidth": true },
+                            { "data": "Specification", "autoWidth": true },
+                            { "data": "Plant", "autoWidth": true },
+                            { "data": "Department", "autoWidth": true },
+                            { "data": "Location", "autoWidth": true },
+                            { "data": "Phase", "autoWidth": true },
+                            { "data": "LocationStockName", "autoWidth": true },
+                            { "data": "MacAddress", "autoWidth": true },
+                            {
+                                "data": "Asset",
+                                "render": function (value) {
+                                    if (value === null) return "No";
+                                    if (value == "5k") return "Yes";
+                                },
+                                "autoWidth": true
+                            },
+                            { "data": "FixAccess", "autoWidth": true },
+                            { "data": "PRNumber", "autoWidth": true },
+                            { "data": "SerialID", "autoWidth": true },
+                            {
+                                "data": "Image",
+                                "render": function (data, type, row) {
+                                    if (data != null) {
+                                        return '<img src="@Url.Content("~/Content/Images/")' + data + '" style="height:auto; width:auto" class="img-responsive">';
+                                    } else if (data == null) {
+                                        return "";
+                                    }
+                                },
+                                "autoWidth": true
+                            },
+
+                    ]
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#SearchString").autocomplete({
+                    autoFocus: true,
+                    source: function (request, response) {
+                        $.ajax({
+                            url: '@Url.Action("FindDevice","Device")',
+                            data: "{ 'prefixText': '" + request.term + "' }",
+                            dataType: "json",
+                            dataFilter: function (data) { return data; },
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                response($.map(data, function (item) {
+                                    return {
+                                        label: item.value,
+                                        value: item.name,
+                                    }
+                                }))
+                            },
+                            messages: {
+                                noResults: "", results: ""
+                            },
+                            error: function (response) {
+                                alert(response.responseText);
+                            },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            }
+                        });
+                    },
+                    minLength: 1,
+                });
+            });
+        </script>
+    }

@@ -1,0 +1,62 @@
+﻿@model ITST.ViewModels.ConfirmReceived
+
+@{
+    ViewBag.Title = "ReceivedDevice";
+}
+
+<h2>ยืนยันการรับของ</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.DeviceID)
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">ใบยืนยันการรับของ</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">ข้อมูลของอุปกรณ์</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.IsReceived, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.CheckBox("IsReceived", Model.IsReceived ?? false)
+                                        @Html.ValidationMessageFor(model => model.IsReceived)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SerialNumber, "SerialNumber", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control",@readonly = "readonly"})
+                                        @Html.ValidationMessageFor(model => model.SerialNumber)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LocationStock, "LocationStock", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.LocationStock, ViewBag.LocationStockID as IEnumerable<SelectListItem>, " ", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.LocationStock)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="submit" class="btn btn-primary" />
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

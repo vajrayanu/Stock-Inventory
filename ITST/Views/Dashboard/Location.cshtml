@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ITST.Models.Machine>
+
+@{
+    ViewBag.Title = "Location";
+}
+
+<h2>Machine</h2>
+
+<h4>@ViewBag.Department Department</h4>
+<hr />
+
+<table class="table table-bordered" id="LMachine">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayName("Plant")
+            </th>
+            <th>
+                @Html.DisplayName("Department")
+            </th>
+            <th>
+                @Html.DisplayName("Location")
+            </th>
+            <th>
+                @Html.DisplayName("Phase")
+            </th>
+            <th>
+                @Html.DisplayName("Machine")
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phase.PhaseName)
+                </td>
+                <td>
+                    <a href="@Url.Action("Machine", "Dashboard", new { id = item.MachineID })">@Html.DisplayFor(modelItem => item.MachineName)</a>
+                    @{
+            var db = new ITST.Models.ITStockEntities1();
+            var TotalDevicePerMachine = db.Devices.Where(d => d.MachineID == item.MachineID && d.StatusID != 2).Count();
+                    }
+                    <span class="badge badge-info">@TotalDevicePerMachine</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#LMachine").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

@@ -1,0 +1,1084 @@
+﻿@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="col-lg-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Device Information</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-lg-12">
+                <div class="col-lg-6">
+                    <div class="form-horizontal well">
+                        <div class="form-group">
+                            @Html.Label("Plant", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Department", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Location", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Phase", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("User", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("DeviceName", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-horizontal well">
+                            <div class="form-group">
+                                @Html.Label("FixAccess", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("CreateBy", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("UpdateBy", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("DateCreate", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("DateCreate", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBox(null, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Hardware</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr class="active">
+                <th>
+                    @Html.DisplayName("Item")
+                </th>
+                <th>
+                    @Html.DisplayName("Brand")
+                </th>
+                <th>
+                    @Html.DisplayName("Model")
+                </th>
+                <th>
+                    @Html.DisplayName("Serial No")
+                </th>
+                <th>
+                    @Html.DisplayName("Remark")
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Preset PC")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PCBoardBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PCBoardModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PCBoardSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PCBoardRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Processor")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ProcessorBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ProcessorModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ProcessorSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ProcessorRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Memory")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MemoryBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MemoryModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MemorySerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MemoryRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Video Card")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("VideoCardBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("VideoCardModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("VideoCardSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("VideoCardRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("LAN Card")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("LANCardBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("LANCardModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("LANCardSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("LANCardRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Mouse")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MouseBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MouseModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MouseSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MouseRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Monitor")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MonitorBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MonitorModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MonitorSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MonitorRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Monitor 2")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("Monitor2Brand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("Monitor2Model")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("Monitor2Serial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("Monitor2Remark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Keyboard")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("KeyboardBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("KeyboardModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("KeyboardSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("KeyboardRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Scanner")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ScannerBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ScannerModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ScannerSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ScannerRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("DVD/CD ROM")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("DVDBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("DVDModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("DVDSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("DVDRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("HDD1")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HDD1Brand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HDD1Model")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HDD1Serial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HDD1Remark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("HDD2")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HDD2Brand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HDD2Model")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HDD2Serial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HDD2Remark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Printer")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PrinterBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PrinterModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PrinterSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PrinterRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("UPS")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("UPSBrand")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("UPSModel")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("UPSSerial")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("UPSRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Software</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr class="active">
+                <th>
+                    @Html.DisplayName("Programs")
+                </th>
+                <th>
+                    @Html.DisplayName("Version")
+                </th>
+                <th>
+                    @Html.DisplayName("Remark")
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("7Zip")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("Zip7Ver")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("Zip7Remark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Acrobat")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("AcrobatVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("AcrobatRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("AutoCAD")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("AutoCADVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("AutoCADRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("CureGraph")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("CureGraphVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("CureGraphRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("CutePDF")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("CutePDFVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("CutePDFRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("HealthBook")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HealthBookVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HealthBookRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("HRM System")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HRMSystemVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("HRMSystemRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Illustrator")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("IllustratorVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("IllustratorRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("JP1")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("JP1Ver")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("JP1Remark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Lexitron Dict")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("LexitronDictVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("LexitronDictRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Mini Tab")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MiniTabVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MiniTabRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Microsoft Office")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MSOfficeVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("MSOfficeRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("PhotoShop")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PhotoShopVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("PhotoShopRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("SAP")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("SAPVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("SAPRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Save to PDF")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("SaveToPDFVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("SaveToPDFRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Seed / Wincs")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("SeedWincsVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("SeedWincsRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Solid Edge")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("SolidEdgeVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("SolidEdgeRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Trend Micro")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("TrendMicroVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("TrendMicroRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Windows")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("WindowsVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("WindowsRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayName("Zimbra")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ZimbraVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("ZimbraRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.Display("OtherProgram")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("OtherProgramVer")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("OtherProgramRemark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.Display("OtherProgram1")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("OtherProgram1Ver")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("OtherProgram1Remark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.Display("OtherProgram2")
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("OtherProgram2Ver")
+                        </div>
+                    </div>
+                </th>
+                <th>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.Display("OtherProgram2Remark")
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,196 @@
+﻿@model IEnumerable<ITST.Models.Device>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "ByModel";
+}
+
+<h2>By Model</h2>
+<h4>@ViewBag.Type</h4>
+<hr />
+
+<table class="table table-bordered" id="totalByModel">
+    <thead>
+        <tr class="active">
+            <th></th>
+            <th>
+                @Html.DisplayName("Actions")
+            </th>
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MacAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IPAddress)
+            </th>
+            <th>
+                @Html.DisplayName("Plant")
+            </th>
+            <th>
+                @Html.DisplayName("Department")
+            </th>
+            <th>
+                @Html.DisplayName("Location")
+            </th>
+            <th>
+                @Html.DisplayName("Phase")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayName("User")
+            </th>
+            <th>
+                @Html.DisplayName("Machine")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAsset)
+            </th>
+            <th>
+                @Html.DisplayName("LocationStock")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateUpdate)
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="details-control"></td>
+                <td>
+                    @Html.ActionLink("Set", "setDevice", "Device", new { id = item.DeviceID }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Device", new { id = item.DeviceID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Device", new { id = item.DeviceID }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.ModelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MacAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Machine.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FixAccess)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRNumber)
+                </td>
+                <td>
+                    @if(item.Description == "5k")
+                    {
+                        @Html.DisplayName("Yes")
+                    }else
+                    {
+                        @Html.DisplayName("No")
+                    }
+                    @Html.DisplayFor(modelItem => item.PRNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationStockName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUpdate)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#totalByModel").dataTable({
+                responsive: {
+                    details: {
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return col.hidden ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                        '<td>' + col.title + ':' + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

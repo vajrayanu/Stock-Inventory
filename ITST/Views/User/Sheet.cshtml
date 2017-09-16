@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ITST.Models.User>
+
+@{
+    ViewBag.Title = "Sheet";
+}
+
+<h2>User Sheet</h2>
+<h4>Plant</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.Plant.PlantName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("UserSheetByDepartment", "User", new { id = item.PlantID })">@Html.DisplayFor(modelItem => item.Plant.PlantName)</a>
+        </td>
+    </tr>
+}
+
+</table>

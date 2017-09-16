@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "InStockByModel";
+}
+
+<h2>InStock</h2>
+
+<h4>Model</h4>
+<hr />
+
+
+<table class="table table-bordered" id="instockbymodel">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("InStockListItem", "Dashboard", new { id = item.DeviceTypeID, sid = item.StatusID, bid = item.BrandID, mid = item.ModelID })">@Html.DisplayFor(modelItem => item.ModelName)</a>
+                    @{
+            var db = new ITST.Models.ITStockEntities1();
+            var TotalDevicePerType = db.Devices.Where(d => d.DeviceTypeID == item.DeviceTypeID && d.StatusID == 3 && d.BrandID == item.BrandID && d.ModelID == item.ModelID).Count();
+                    }
+                    <span class="badge badge-info">@TotalDevicePerType</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#instockbymodel").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "_search";
+}
+
+@using (Html.BeginForm("FindingDevice", "Device", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <form class="navbar-form" role="search">
+        <div class="form-group">
+                @Html.TextBox("SerialNumber", "", new { id = "SearchString", @class = "input-sm form-control", @data_val = "true", @data_val_required = "Keyword is required", @placeholder = "ค้นหาอุปกรณ์..." })
+                @Html.ValidationMessage("SerialNumber")
+         </div>
+        @*<button type="submit" class="btn btn-default" id="btnSubmit">Submit</button>*@
+    </form>
+}
+
+@section Scripts {
+    @*@Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")*@
+
+    @*<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SearchString").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindDevice","Device")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+    </script>*@
+
+}

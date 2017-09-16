@@ -1,0 +1,96 @@
+﻿@model ITST.ViewModels.ChangeViewModels
+
+@{
+    ViewBag.Title = "moveDevice";
+}
+
+<h2>Move Device</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Move device</div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.Label("Move for", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.keyword, String.Empty, new { id = "SearchString", @class = "form-control", @placeholder = "Find by MachineName, UserName" })
+                    @Html.ValidationMessageFor(model => model.keyword)
+                </div>
+            </div>
+            <div class="hidden">
+                @Html.Label(" ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.deviceID, String.Empty, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.deviceID)
+                </div>
+            </div>
+
+            <div class="hidden">
+                @Html.Label(" ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Uri, String.Empty, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Uri)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="submit" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#SearchString").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("findMachine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+    </script>
+
+}

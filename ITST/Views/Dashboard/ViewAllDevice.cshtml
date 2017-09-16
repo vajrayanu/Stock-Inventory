@@ -1,0 +1,422 @@
+﻿@model ITST.ViewModels.DashboardViewModels
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- Left column -->
+            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+
+            <hr>
+
+            <ul class="nav nav-stacked">
+                <li class="nav-header">
+                    <a href="#" data-toggle="collapse" data-target="#userMenu">Settings <i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <li class="active"> <a href="@Url.Action("Index", "Dashboard")"><i class="glyphicon glyphicon-dashboard"></i> แดชบอร์ด </a></li>
+                        <li class="active"> <a href="@Url.Action("FindingDevice", "Dashboard")"><i class="glyphicon glyphicon-refresh"></i> เปลี่ยนสถานที่จัดเก็บอุปกรณ์ </a></li>
+                        <li class="active"> <a href="@Url.Action("ViewAllDevice", "Dashboard")"><i class="glyphicon glyphicon-map-marker"></i> รายการอุปกรณ์ทั้งหมดตามสถานที่ </a></li>
+                        <li class="active"> <a href="@Url.Action("TotalDevice", "Dashboard")"><i class="glyphicon glyphicon-phone"></i> รายการอุปกรณ์ทั้งหมดตามประเภท </a></li>
+                        <li class="active"> <a href="@Url.Action("ListIPScanner", "Dashboard")"><i class="glyphicon glyphicon-barcode"></i> รายการไอพีของเครื่องสแกนเนอร์ </a></li>
+                        <li class="active"> <a href="@Url.Action("Index", "BillReceipt")"><i class="glyphicon glyphicon-shopping-cart"></i> รายการบิลส่งซ่อมและส่งขาย </a></li>
+                        <li class="active"> <a href="@Url.Action("TotalStaff", "Dashboard")"><i class="glyphicon glyphicon-user"></i> รายชื่อผู้ใช้งาน</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-header">
+                    @*<a href="#" data-toggle="collapse" data-target="#menu2"> Reports <i class="glyphicon glyphicon-chevron-right"></i></a>*@
+
+                    <ul class="nav nav-stacked collapse" id="menu2"></ul>
+                </li>
+                <li class="nav-header">
+                    <a href="#" data-toggle="collapse" data-target="#menu3"> View Log <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+                    <ul class="nav nav-stacked collapse" id="menu3">
+                        <li>
+                            <a href="@Url.Action("Index", "InstockLog")"> ดูบันทึกข้อมูลการเพิ่มอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "RequistionLog")">ดูบันทึกข้อมูลการเบิกอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "RepairLog")">ดูบันทึกข้อมูลการแจ้งซ่อมอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "SaleLog")">ดูบันทึกข้อมูลการขายอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "SpareLog")">ดูบันทึกข้อมูลการสำรองอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "ReInstockLog")">ดูบันทึกข้อมูลซ่อมเสร็จนำเข้าอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("RecordDevice", "Dashboard")">ดูบันทึกข้อมูลการแก้ไขของอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("FHistoryDevice", "Dashboard")">ดูประวัติข้อมูลของอุปกรณ์</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <hr>
+
+            <a href="#"><strong><i class="glyphicon glyphicon-list"></i> More Links</strong></a>
+
+            <hr>
+
+            <ul class="nav nav-stacked">
+                <li class="active"><a rel="nofollow" href="http://intra.ytmt.co.th/" target="ext">YTMT Main page</a></li>
+                <li><a rel="nofollow" href="http://portal.ytmt.co.th/fphonelist/" target="_blank">YTMT Extension Phone List</a></li>
+            </ul>
+        </div>
+
+        <!-- /col-3 -->
+
+        <div class="col-sm-9">
+
+            <!-- column 2 -->
+            <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+            <hr>
+
+            <div class="row">
+                <!-- center left-->
+                <div class="col-md-6">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Center</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Department</th>
+                                            <th>Machine</th>
+                                            <th>User</th>
+                                            <th>Device</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 25, plantid = 3})">BOI</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 25, plantid = 3})">@Html.DisplayFor(model => model.TotalMachineBOI)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 25, plantid = 3})">@Html.DisplayFor(model => model.TotalUserBOI)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 25, plantid = 3})">@Html.DisplayFor(model => model.TotalDeviceBOICenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 27, plantid = 3})">FA</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 27, plantid = 3})">@Html.DisplayFor(model => model.TotalMachineFA)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 27, plantid = 3})">@Html.DisplayFor(model => model.TotalUserFA)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 27, plantid = 3})">@Html.DisplayFor(model => model.TotalDeviceFACenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 14, plantid = 3})">HR</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 14, plantid = 3})">@Html.DisplayFor(model => model.TotalMachineHR)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 14, plantid = 3})">@Html.DisplayFor(model => model.TotalUserHR)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 14, plantid = 3})">@Html.DisplayFor(model => model.TotalDeviceHRCenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 15, plantid = 3})">IT</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 15, plantid = 3})">@Html.DisplayFor(model => model.TotalMachineIT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 15, plantid = 3})">@Html.DisplayFor(model => model.TotalUserIT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 15, plantid = 3})">@Html.DisplayFor(model => model.TotalDeviceITCenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 21, plantid = 3})">QA</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 21, plantid = 3})">@Html.DisplayFor(model => model.TotalMachineQA)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 21, plantid = 3})">@Html.DisplayFor(model => model.TotalUserQA)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 21, plantid = 3})">@Html.DisplayFor(model => model.TotalDeviceQACenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 20, plantid = 3})">Plant Control</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 20, plantid = 3})">@Html.DisplayFor(model => model.TotalMachinePlantControl)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 20, plantid = 3})">@Html.DisplayFor(model => model.TotalUserPlantControl)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 20, plantid = 3})">@Html.DisplayFor(model => model.TotalDevicePlantControlCenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 28, plantid = 3})">Purchasing</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 28, plantid = 3})">@Html.DisplayFor(model => model.TotalMachinePurchasing)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 28, plantid = 3})">@Html.DisplayFor(model => model.TotalUserPurchasing)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 28, plantid = 3})">@Html.DisplayFor(model => model.TotalDevicePurchasingCenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 24, plantid = 3})">Safety Envirovment</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 24, plantid = 3})">@Html.DisplayFor(model => model.TotalMachineSE)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 24, plantid = 3})">@Html.DisplayFor(model => model.TotalUserSE)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 24, plantid = 3})">@Html.DisplayFor(model => model.TotalDeviceSECenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 23, plantid = 3})">Technology</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 23, plantid = 3})">@Html.DisplayFor(model => model.TotalMachineTechnology)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 23, plantid = 3})">@Html.DisplayFor(model => model.TotalUserTechnology)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 23, plantid = 3})">@Html.DisplayFor(model => model.TotalDeviceTechnologyCenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 29, plantid = 3})">TPM & TPS</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 29, plantid = 3})">@Html.DisplayFor(model => model.TotalMachineTPMTPS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 29, plantid = 3})">@Html.DisplayFor(model => model.TotalUserTPMTPS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 29, plantid = 3})">@Html.DisplayFor(model => model.TotalDeviceTPMTPSCenter)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>SUM</td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumMachineCenter)</a></td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumUserCenter)</a></td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumDeviceCenter)</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>PCLT</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Department</th>
+                                            <th>Machine</th>
+                                            <th>User</th>
+                                            <th>Device</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 9, plantid = 2})">Building</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 9, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineBuildingPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 9, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserBuildingPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 9, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceBuildingPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 10, plantid = 2})">Curing</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 10, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineCuringPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 10, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserCuringPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 10, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceCuringPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 11, plantid = 2})">Distribution</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 11, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineDistributePCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 11, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserDistributePCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 11, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceDistributePCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 12, plantid = 2})">Electrical</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 12, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineElectricalPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 12, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserElectricalPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 12, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceElectricalPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 13, plantid = 2})">Finishing</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 13, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineFinishingPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 13, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserFinishingPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 13, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceFinishingPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 14, plantid = 2})">HR</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 14, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineHRPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 14, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserHRPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 14, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceHRPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 15, plantid = 2})">IT(System)</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 15, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineITPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 15, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserITPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 15, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceITPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 17, plantid = 2})">Maintenance</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 17, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineMaintenancePCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 17, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserMaintenancePCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 17, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceMaintenancePCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 18, plantid = 2})">Material Preparation</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 18, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineMatPreparePCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 18, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserMatPreparePCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 18, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceMatPreparePCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 19, plantid = 2})">Mixing</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 19, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineMixingPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 19, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserMixingPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 19, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceMixingPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 20, plantid = 2})">Plant Control</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 20, plantid = 2})">@Html.DisplayFor(model => model.TotalMachinePlantControlPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 20, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserPlantControlPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 20, plantid = 2})">@Html.DisplayFor(model => model.TotalDevicePlantControlPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 26, plantid = 1})">Production</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 26, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineProductionPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 26, plantid = 1})">@Html.DisplayFor(model => model.TotalUserProductionPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 26, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceProductionPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 21, plantid = 2})">QA</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 21, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineQAPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 21, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserQAPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 21, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceQAPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 22, plantid = 2})">Raw Material</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 22, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineRawMaterialPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 22, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserRawMaterialPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 22, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceRawMaterialPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 23, plantid = 2})">Technology</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 23, plantid = 2})">@Html.DisplayFor(model => model.TotalMachineTechnologyPCLT)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 23, plantid = 2 })">@Html.DisplayFor(model => model.TotalUserTechnologyPCLT)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 23, plantid = 2})">@Html.DisplayFor(model => model.TotalDeviceTechnologyPCLT)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>SUM</td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumMachinePCLT)</a></td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumUserPCLT)</a></td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumDevicePCLT)</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>TBS</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Department</th>
+                                            <th>Machine</th>
+                                            <th>User</th>
+                                            <th>Device</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 9, plantid = 1})">Building</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 9, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineBuildingTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 9, plantid = 1 })">@Html.DisplayFor(model => model.TotalUserBuildingTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 9, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceBuildingTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 10, plantid = 1})">Curing</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 10, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineCuringTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 10, plantid = 1 })">@Html.DisplayFor(model => model.TotalUserCuringTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 10, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceCuringTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 11, plantid = 1})">Distribution</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 11, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineDistributeTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 11, plantid = 1 })">@Html.DisplayFor(model => model.TotalUserDistributeTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 11, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceDistributeTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 12, plantid = 1})">Electrical</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 12, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineElectricalTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 12, plantid = 1 })">@Html.DisplayFor(model => model.TotalUserElectricalTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 12, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceElectricalTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 13, plantid = 1})">Finishing</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 13, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineFinishingTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 13, plantid = 1 })">@Html.DisplayFor(model => model.TotalUserFinishingTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 13, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceFinishingTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 14, plantid = 1})">HR</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 14, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineHRTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 14, plantid = 1})">@Html.DisplayFor(model => model.TotalUserHRTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 14, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceHRTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 15, plantid = 1})">IT(System)</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 15, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineITTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 15, plantid = 1})">@Html.DisplayFor(model => model.TotalUserITTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 15, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceITTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 17, plantid = 1})">Maintenance</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 17, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineMaintenanceTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 17, plantid = 1})">@Html.DisplayFor(model => model.TotalUserMaintenanceTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 17, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceMaintenanceTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 18, plantid = 1})">Material Preparation</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 18, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineMatPrepareTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 18, plantid = 1})">@Html.DisplayFor(model => model.TotalUserMatPrepareTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 18, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceMatPrepareTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 19, plantid = 1})">Mixing</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 19, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineMixingTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 19, plantid = 1})">@Html.DisplayFor(model => model.TotalUserMixingTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 19, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceMixingTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 20, plantid = 1})">Plant Control</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 20, plantid = 1})">@Html.DisplayFor(model => model.TotalMachinePlantControlTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 20, plantid = 1})">@Html.DisplayFor(model => model.TotalUserPlantControlTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 20, plantid = 1})">@Html.DisplayFor(model => model.TotalDevicePlantControlTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 26, plantid = 1})">Production</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 26, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineProductionTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 26, plantid = 1})">@Html.DisplayFor(model => model.TotalUserProductionTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 26, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceProductionTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 21, plantid = 1})">QA</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 21, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineQATBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 21, plantid = 1})">@Html.DisplayFor(model => model.TotalUserQATBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 21, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceQATBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 22, plantid = 1})">Raw Material</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 22, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineRawMaterialTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 22, plantid = 1})">@Html.DisplayFor(model => model.TotalUserRawMaterialTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 22, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceRawMaterialTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 23, plantid = 1})">Technology</a></td>
+                                            <td><a href="@Url.Action("Location", "Dashboard", new { id = 23, plantid = 1})">@Html.DisplayFor(model => model.TotalMachineTechnologyTBS)</a></td>
+                                            <td><a href="@Url.Action("LocationUser", "Dashboard", new { id = 23, plantid = 1})">@Html.DisplayFor(model => model.TotalUserTechnologyTBS)</a></td>
+                                            <td><a href="@Url.Action("Device", "Dashboard", new { id = 23, plantid = 1})">@Html.DisplayFor(model => model.TotalDeviceTechnologyTBS)</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>SUM</td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumMachineTBS)</a></td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumUserTBS)</a></td>
+                                            <td><a href="#">@Html.DisplayFor(model => model.SumDeviceTBS)</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/panel-->
+                </div>
+                <!--/col-span-6-->
+            </div>
+            <!--/row-->
+        </div>
+        <!--/col-span-9-->
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "AssetRequisitionReport";
+}
+
+<h2>Asset Device Requisition Report</h2>
+<h4>Device</h4>
+<hr />
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>DateUpdate</th>
+            <th>UpdateBy</th>
+            <th>SerialNumber</th>
+            <th>Type</th>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Status</th>
+            <th>Plant</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Phase</th>
+            <th>Machine</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "ajax": {
+                "url": '@Url.Action("getAssetRequisition")',
+                "type": "GET",
+                "datatype": "json"
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'csv'
+            ],
+            "columns": [
+                    {
+                        "data": "DateUpdate",
+                        "render": function (value) {
+                            if (value === null) return "";
+
+                            var pattern = /Date\(([^)]+)\)/;
+                            var results = pattern.exec(value);
+                            var dt = new Date(parseFloat(results[1]));
+
+                            return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+                        },
+                        "autoWidth": true
+                    },
+                    { "data": "UpdateBy", "autoWidth": true },
+                    { "data": "SerialNumber", "autoWidth": true },
+                    { "data": "Type", "autoWidth": true },
+                    { "data": "ModelName", "autoWidth": true },
+                    { "data": "BrandName", "autoWidth": true },
+                    { "data": "StatusName", "autoWidth": true },
+                    { "data": "PlantName", "autoWidth": true },
+                    { "data": "DepartmentName", "autoWidth": true },
+                    { "data": "LocationName", "autoWidth": true },
+                    { "data": "PhaseName", "autoWidth": true },
+                    { "data": "MachineName", "autoWidth": true },
+            ],
+        });
+    });
+    </script>
+}

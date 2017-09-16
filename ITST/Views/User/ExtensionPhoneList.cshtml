@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "ExtensionPhoneList";
+}
+
+<h2><i class="glyphicon glyphicon-phone-alt"></i> YTMT Ext. PhoneList</h2>
+<h4>Employee</h4>
+
+<div class="row" style="margin:2px; padding:2px">
+    <a class="btn btn-primary pull-right btn-sm RbtnMargin" href="@Url.Action("IntExtPhone", "Phone")">Internal and Emergency Phone List</a>
+    <a class="btn btn-primary pull-right btn-sm RbtnMargin" style="margin-right:2px" rel="nofollow" href="http://intra.ytmt.co.th/" target="_blank">YTMT Main Page</a>
+</div>
+
+<hr />
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>NickName</th>
+            <th>Phone</th>
+            <th>Plant</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "order": [[ 3, "asc" ]],
+            responsive: {
+                details: {
+                    renderer: function (api, rowIdx, columns) {
+                        var data = $.map(columns, function (col, i) {
+                            return col.hidden ?
+                                '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                    '<td>' + col.title + ':' + '</td> ' +
+                                    '<td>' + col.data + '</td>' +
+                                '</tr>' :
+                                '';
+                        }).join('');
+
+                        return data ?
+                            $('<table/>').append(data) :
+                            false;
+                    }
+                }
+            },
+            "ajax": {
+                "url": '@Url.Action("getPhoneList")',
+                "type": "GET",
+                "datatype": "json"
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            "columns": [
+                    { "data": "FirstName", "autoWidth": true },
+                    { "data": "LastName", "autoWidth": true },
+                    { "data": "NickName", "autoWidth": true },
+                    { "data": "Phone", "autoWidth": true },
+                    { "data": "Plant", "autoWidth": true },
+                    { "data": "Department", "autoWidth": true },
+                    { "data": "Location", "autoWidth": true },
+                    {
+                      "data": "UserID",
+                      "render": function (data, type, full, meta) {
+                          return '<a href="@Url.Action("setNickName/")' + data + '">NickName</a>' + '&nbsp;' + '|' + '&nbsp;' + '<a href="@Url.Action("setPhoneNumber/")' + data + '">Phone</a>' + '&nbsp;' ;
+                       },
+                       "autoWidth": true
+                       },
+            ]
+        });
+    });
+    </script>
+}

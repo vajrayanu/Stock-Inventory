@@ -1,0 +1,196 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "In Repaired";
+}
+
+<h2>In Repaired</h2>
+<h4>Device</h4>
+<hr />
+
+@using (Html.BeginForm("WaitSentRepairSelected", "Device", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <table class="table table-bordered" id="lists">
+    <thead>
+        <tr class="active">
+            <th></th>
+            <th>
+                @Html.DisplayName("DateUpdate")
+            </th>
+            <th>
+                @Html.DisplayName("UpdateBy")
+            </th>
+            <th>
+                @Html.DisplayName("SerialNumber")
+            </th>
+            <th>
+                @Html.DisplayName("Cause")
+            </th>
+            <th>
+                @Html.DisplayName("Type")
+            </th>
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+            <th>
+                @Html.DisplayName("Plant")
+            </th>
+            <th>
+                @Html.DisplayName("Department")
+            </th>
+            <th>
+                @Html.DisplayName("Location")
+            </th>
+            <th>
+                @Html.DisplayName("Phase")
+            </th>
+            <th>
+                @Html.DisplayName("Machine")
+            </th>
+            <th>
+                @Html.DisplayName("User")
+            </th>
+            <th>
+                @Html.DisplayName("DeviceName")
+            </th>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var db = new ITST.Models.ITStockEntities1();
+            var inrepair = db.RecordInRepairs.OrderByDescending(i => i.DateRequest).ToList();
+            var totalcause = db.RecordInRepairs.Where(r => r.SerialNumber == item.SerialNumber).Count();
+            var cause = db.RecordInRepairs.Where(r => r.SerialNumber == item.SerialNumber).OrderBy(r => r.DateRequest).Skip(totalcause - (totalcause - 1)).Select(r => r.Cause).DefaultIfEmpty().First();
+            var cause1 = db.RecordInRepairs.Where(r => r.SerialNumber == item.SerialNumber).Select(r => r.Cause).DefaultIfEmpty().FirstOrDefault();
+            var res = inrepair.Where(r => r.SerialNumber == item.SerialNumber).Select(r => r.Cause).DefaultIfEmpty().FirstOrDefault();
+            var DateRepair = inrepair.Where(r => r.SerialNumber == item.SerialNumber).Select(r => r.DateRequest).DefaultIfEmpty().FirstOrDefault();
+            <tr>
+                <td>
+                    <input type="checkbox" name="ids" value=@item.DeviceID />
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.DateUpdate)*@
+                    @DateRepair
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @*@if (@cause == null)
+                    {
+                        @cause1
+                    }
+                    else
+                    {
+                        @cause
+                    }*@
+                    @res
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceType.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.ModelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Machine.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Status1)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.DeviceID })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+    
+    <table class="table table-bordered">
+        <tr class="active">
+            <th>
+                @Html.DisplayName("Set to BillReceiptNo")
+            </th>
+        </tr>
+        @foreach (var item in Model.Take(1))
+        {
+            <tr>
+                <td>
+                    @Html.DropDownList("BillReceiptID", null, String.Empty, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(modelItem => item.BillReceiptID)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+@section scripts {
+<script>
+    $(function () {
+        $("table#lists").dataTable({
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength'
+            ],
+            extend: 'collection',
+            text: 'Export',
+            buttons: [
+                'pageLength',
+                'copy',
+                'excel',
+                'csv'
+            ],
+            "sPaginationType": "full_numbers"
+        });
+    })
+</script>
+
+}

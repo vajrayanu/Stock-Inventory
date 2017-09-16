@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="862a16661fd3447db6a3bf2fdd618919" Name="Diagram1">
+        <EntityTypeShape EntityType="ITStockModel.Brand" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.Department" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.Device" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.DeviceType" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.Location" Width="1.5" PointX="3.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.LocationStock" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.Machine" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.Model" Width="1.5" PointX="0.75" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.Phase" Width="1.5" PointX="3.75" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.Plant" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.PMSheet" Width="1.75" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.RecordInRepair" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.RecordRequisition" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.RecordSale" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.RecordSpare" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.Status" Width="1.5" PointX="0.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.User" Width="1.5" PointX="7.125" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ITStockModel.UserMachine" Width="1.5" PointX="9.375" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="ITStockModel.FK_Device_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Model_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Device_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Machine_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_User_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_UserMachine_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Device_DeviceType" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Device_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Device_Machine" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Device_Model" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Device_Plant" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Device_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Device_UserMachine" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Model_DeviceType" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Machine_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_User_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_UserMachine_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Machine_Phase" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_Machine_Plant" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_User_Plant" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_UserMachine_Plant" ManuallyRouted="false" />
+        <AssociationConnector Association="ITStockModel.FK_UserMachine_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ITStockModel.RecordReinstock" Width="1.5" PointX="6.375" PointY="14.75" />
+        <EntityTypeShape EntityType="ITStockModel.RecordDevice" Width="1.5" PointX="15.375" PointY="5.75" />
+        <EntityTypeShape EntityType="ITStockModel.RecordInstock" Width="1.5" PointX="15.375" PointY="10.75" />
+        <AssociationConnector Association="ITStockModel.FK_Device_User" />
+        <EntityTypeShape EntityType="ITStockModel.C__MigrationHistory" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ITStockModel.AspNetRole" Width="1.5" PointX="15.375" PointY="17.5" />
+        <EntityTypeShape EntityType="ITStockModel.AspNetUserClaim" Width="1.5" PointX="19.875" PointY="18.625" />
+        <EntityTypeShape EntityType="ITStockModel.AspNetUserLogin" Width="1.5" PointX="19.875" PointY="16" />
+        <EntityTypeShape EntityType="ITStockModel.AspNetUser" Width="1.5" PointX="17.625" PointY="17" />
+        <AssociationConnector Association="ITStockModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" />
+        <AssociationConnector Association="ITStockModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ITStockModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ITStockModel.BillReceipt" Width="1.5" PointX="17.375" PointY="11.75" />
+        <EntityTypeShape EntityType="ITStockModel.BillReceiptList" Width="1.5" PointX="19.375" PointY="5.75" />
+        <EntityTypeShape EntityType="ITStockModel.UserSheet" Width="1.5" PointX="6.375" PointY="20.75" />
+        <EntityTypeShape EntityType="ITStockModel.IntExtPhone" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="ITStockModel.SerialNumberGenerate" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ITStockModel.SerialNumberTemplate" Width="1.5" PointX="19.375" PointY="12.75" />
+        <EntityTypeShape EntityType="ITStockModel.LimitDeviceQuantity" Width="1.5" PointX="13.375" PointY="20.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

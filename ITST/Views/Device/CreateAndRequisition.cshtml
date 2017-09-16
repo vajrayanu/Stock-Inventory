@@ -1,0 +1,241 @@
+﻿@*@model ITST.ViewModels.DeviceViewModel*@
+
+@model ITST.ViewModels.CreateRequistionViewModels
+@{
+    ViewBag.Title = "CreateAndRequisition";
+}
+
+<h2>CreateAndRequisition</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Device</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Create Device</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Set Device Information</div>
+                            <div class="panel-body">
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.DeviceName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.DeviceName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.DeviceName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ModelName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.ModelName, String.Empty, new { id = "SearchString", @class = "form-control", @placeholder = "Model - Required" })
+                                        @Html.ValidationMessageFor(model => model.ModelName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SerialNumber, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control", @placeholder = "Serial Number - Required" })
+                                        @Html.ValidationMessageFor(model => model.SerialNumber)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.IPAddress, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.IPAddress, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.IPAddress)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FixAccess, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.FixAccess, new { @class = "form-control", @placeholder = " " })
+                                        @Html.ValidationMessageFor(model => model.FixAccess)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PRNumber, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.PRNumber, new { @class = "form-control", @placeholder = " " })
+                                        @Html.ValidationMessageFor(model => model.PRNumber)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.IsAsset, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.CheckBoxFor(model => model.IsAsset)
+                                        @Html.ValidationMessageFor(model => model.IsAsset)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Requisition for Machine</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MachineName, "MachineName", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.MachineName, new { @class = "form-control", @placeholder = "MachineName - Required", id = "SearchString1" })
+                                        @Html.ValidationMessageFor(model => model.MachineName)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Requisition for User</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.UserName, "UserName", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "UserName - Required", id = "UserName" })
+                                            @Html.ValidationMessageFor(model => model.UserName)
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-success" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#SearchString").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindModelName")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#SearchString1").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindMachineName")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#UserName").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindUserName")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+}

@@ -1,0 +1,335 @@
+﻿@model ITST.ViewModels.DeviceRatioViewModels
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- Left column -->
+            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+
+            <hr>
+
+            <ul class="nav nav-stacked">
+                <li class="nav-header">
+                    <a href="#" data-toggle="collapse" data-target="#userMenu">Settings <i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                        <li class="active"> <a href="@Url.Action("Index", "Dashboard")"><i class="glyphicon glyphicon-dashboard"></i> แดชบอร์ด </a></li>
+                        <li class="active"> <a href="@Url.Action("FindingDevice", "Dashboard")"><i class="glyphicon glyphicon-refresh"></i> เปลี่ยนสถานที่จัดเก็บอุปกรณ์ </a></li>
+                        <li class="active"> <a href="@Url.Action("ViewAllDevice", "Dashboard")"><i class="glyphicon glyphicon-map-marker"></i> รายการอุปกรณ์ทั้งหมดตามสถานที่ </a></li>
+                        <li class="active"> <a href="@Url.Action("TotalDevice", "Dashboard")"><i class="glyphicon glyphicon-phone"></i> รายการอุปกรณ์ทั้งหมดตามประเภท </a></li>
+                        <li class="active"> <a href="@Url.Action("ListIPScanner", "Dashboard")"><i class="glyphicon glyphicon-barcode"></i> รายการไอพีของเครื่องสแกนเนอร์ </a></li>
+                        <li class="active"> <a href="@Url.Action("Index", "BillReceipt")"><i class="glyphicon glyphicon-shopping-cart"></i> รายการบิลส่งซ่อมและส่งขาย </a></li>
+                        <li class="active"> <a href="@Url.Action("TotalStaff", "Dashboard")"><i class="glyphicon glyphicon-user"></i> รายชื่อผู้ใช้งาน</a></li>
+                    </ul>
+                </li>
+                <li class="nav-header">
+                    @*<a href="#" data-toggle="collapse" data-target="#menu2"> Reports <i class="glyphicon glyphicon-chevron-right"></i></a>*@
+                    <ul class="nav nav-stacked collapse" id="menu2">
+
+                    </ul>
+                </li>
+                <li class="nav-header">
+                    <a href="#" data-toggle="collapse" data-target="#menu3"> View Log <i class="glyphicon glyphicon-chevron-right"></i></a>
+
+                    <ul class="nav nav-stacked collapse" id="menu3">
+                        <li>
+                            <a href="@Url.Action("Index", "InstockLog")"> ดูบันทึกข้อมูลการเพิ่มอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "RequistionLog")">ดูบันทึกข้อมูลการเบิกอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "RepairLog")">ดูบันทึกข้อมูลการแจ้งซ่อมอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "SaleLog")">ดูบันทึกข้อมูลการขายอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "SpareLog")">ดูบันทึกข้อมูลการสำรองอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index", "ReInstockLog")">ดูบันทึกข้อมูลซ่อมเสร็จนำเข้าอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("RecordDevice", "Dashboard")">ดูบันทึกข้อมูลการแก้ไขของอุปกรณ์</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("FHistoryDevice", "Dashboard")">ดูประวัติข้อมูลของอุปกรณ์</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <hr>
+
+            <a href="#"><strong><i class="glyphicon glyphicon-list"></i> More Links</strong></a>
+
+            <hr>
+
+            <ul class="nav nav-stacked">
+                <li class="active"><a rel="nofollow" href="http://intra.ytmt.co.th/" target="ext">YTMT Main page</a></li>
+                <li><a rel="nofollow" href="http://portal.ytmt.co.th/fphonelist/" target="_blank">YTMT Extension Phone List</a></li>
+            </ul>
+        </div>
+
+        <!-- /col-3 -->
+
+        <div class="col-sm-9">
+
+            <!-- column 2 -->
+            <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> My Dashboard</strong></a>
+            <hr>
+
+            @*<div class="row">
+                <!-- center left-->
+                <div class="col-md-6">
+                    <div class="btn-group btn-group-justified">
+                        <a href="@Url.Action("InStock", "Dashboard")" class="btn btn-success col-sm-3" >
+                            InStock
+                            <br><span class="badge badge-info">@ViewBag.InStock</span>
+                        </a>
+                        <a href="@Url.Action("InUse", "Dashboard")" class="btn btn-primary col-sm-3" >
+                            Use
+                            <br><span class="badge badge-info">@ViewBag.Use</span>
+                        </a>
+                        <a href="@Url.Action("SparePart", "Device")" class="btn btn-info col-sm-3" >
+                            Spare
+                            <br><span class="badge badge-info">@ViewBag.Spare</span>
+                        </a>
+                    </div>
+                    <div class="btn-group btn-group-justified">
+                        <a href="@Url.Action("InRepaired", "Device")" class="btn btn-warning col-sm-3" >
+                            InRepair
+                            <br><span class="badge badge-info">@ViewBag.InRepair</span>
+                        </a>
+                        <a href="@Url.Action("WaitSentRepair", "Dashboard")" class="btn btn-default col-sm-3" >
+                            Wait Sent Repair
+                            <br><span class="badge badge-info">@ViewBag.WSentRepair</span>
+                        </a>
+                        <a href="@Url.Action("SendRepair", "Device")" class="btn btn-danger col-sm-3" >
+                            Sent Repair
+                            <br><span class="badge badge-info">@ViewBag.SentRepair</span>
+                        </a>
+                        </div>
+                    <div class="btn-group btn-group-justified">
+                        <a href="@Url.Action("InSale", "Device")" class="btn btn-warning col-sm-3" >
+                            InSale
+                            <br><span class="badge badge-info">@ViewBag.InSale</span>
+                        </a>
+                        <a href="@Url.Action("WaitSentSale", "Dashboard")" class="btn btn-default col-sm-3" >
+                            Wait Sent Sale
+                            <br><span class="badge badge-info">@ViewBag.WSentSale</span>
+                        </a>
+                        <a href="@Url.Action("SentSale", "Device")" class="btn btn-danger col-sm-3" >
+                            Sent Sale
+                            <br><span class="badge badge-info">@ViewBag.SentSale</span>
+                        </a>
+                    </div>
+
+                        <hr>
+
+                    </div>
+
+                <div class="col-md-6">
+                    <div class="btn-group btn-group-justified">
+                        <a href="#" class="btn btn-primary col-sm-3">
+                            Total Device
+                            <br><span class="badge badge-info">@ViewBag.TotalDevice</span>
+                        </a>
+                        <a href="@Url.Action("TotalMachine", "Dashboard")" class="btn btn-primary col-sm-3">
+                            Total Machine
+                            <br><span class="badge badge-info">@ViewBag.TotalMachine</span>
+                        </a>
+                        <a href="@Url.Action("TotalUser", "Dashboard")" class="btn btn-primary col-sm-3">
+                            Total User
+                            <br><span class="badge badge-info">@ViewBag.TotalUser</span>
+                        </a>
+                    </div>
+
+                    <hr>
+
+                    <!--/panel-->
+                </div>
+                <!--/col-span-6-->
+            </div>*@
+            <!--/row-->
+            <div class="row well-lg">
+                @foreach (var item in Model.Devicest.OrderBy(d=>d.Type))
+                {
+                    <a href='@Url.Action("Index", "Dashboard", new { id = item.DeviceType.DeviceTypeID })'>
+                        <div class="btn btn-primary" style="margin:2px;">
+                            @Html.DisplayFor(modelItem => item.DeviceType.Type)
+                        </div>
+                    </a>
+                }
+            </div>
+            @if (Model.Devicend != null)
+            {
+                <table class="table table-bordered" id="inv">
+                    <thead>
+                        <tr class="active">
+                            <th></th>
+                            @*<th>
+                                @Html.DisplayName("Type")
+                            </th>*@
+                            <th>
+                                @Html.DisplayName("Brand")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Model")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Instock")
+                            </th>
+                            <th>
+                                @Html.DisplayName("MinStock")
+                            </th>
+                            <th>
+                                @Html.DisplayName("PBX Room")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Server Room")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Main 120LT")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Main CPU")
+                            </th>
+                            <th>
+                                @Html.DisplayName("270 LT")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Use")
+                            </th>
+                            <th>
+                                @Html.DisplayName("Total")
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Devicend)
+                        {
+                            var db = new ITST.Models.ITStockEntities1();
+                            var req = db.RecordRequisitions.Where(d => d.Model == item.ModelName).Count();
+                            var instock = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.ModelID == item.ModelID).Count();
+                            var minstock = (req / @ViewBag.TotalMonth);
+                            <tr>
+                                <td class="details-control"></td>
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.DeviceType.Type)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Model.ModelName)
+                                </td>
+                                @if (@instock < @minstock && @instock != 0)
+                                {
+                                    <td class="label-warning">
+                                        <span class="badge badge-info">ใกล้หมด</span>
+                                        <span class="badge alert-warning">@instock</span>
+                                    </td>
+                                }
+                                else if (@instock == 0)
+                                {
+                                    <td class="label-danger">
+                                        <span class="badge badge-info">หมดแล้ว</span>
+                                        <span class="badge alert-danger">@instock</span>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <span class="badge alert-info">@instock</span>
+                                    </td>
+                                }
+                                <td>
+                                    <span class="badge alert-warning">@minstock</span>
+                                </td>
+                                <td>
+                                    @{
+                            var instockpbxroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 1 && d.ModelID == item.ModelID).Count();
+                                    }
+                                    <span class="badge badge-info">@instockpbxroom</span>
+                                </td>
+                                <td>
+                                    @{
+                            var instockserverroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 2 && d.ModelID == item.ModelID).Count();
+                                    }
+                                    <span class="badge badge-info">@instockserverroom</span>
+                                </td>
+                                <td>
+                                    @{
+                            var instockm120lt = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 3 && d.ModelID == item.ModelID).Count();
+                                    }
+                                    <span class="badge badge-info">@instockm120lt</span>
+                                </td>
+                                <td>
+                                    @{
+                            var instockmcpuroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 4 && d.ModelID == item.ModelID).Count();
+                                    }
+                                    <span class="badge badge-info">@instockmcpuroom</span>
+                                </td>
+                                <td>
+                                    @{
+                            var instock270lt = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 6 && d.ModelID == item.ModelID).Count();
+                                    }
+                                    <span class="badge badge-info">@instock270lt</span>
+                                </td>
+                                <td>
+                                    @{
+                            var inuse = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 1 && d.ModelID == item.ModelID).Count();
+                                    }
+                                    <span class="badge badge-info">@inuse</span>
+                                </td>
+                                <td>
+                                    @{
+                            var total = db.Devices.Where(d => d.Type == item.Type && d.ModelID == item.ModelID).Count();
+                                    }
+                                    <span class="badge badge-info">@total</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#inv").dataTable({
+                responsive: {
+                    details: {
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return col.hidden ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                        '<td>' + col.title + ':' + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "sPaginationType": "full_numbers",
+            });
+        })
+    </script>
+}

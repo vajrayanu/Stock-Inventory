@@ -1,0 +1,135 @@
+﻿@model IEnumerable<ITST.Models.Device>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "SentSale";
+}
+
+<h2>SentSale</h2>
+
+<h4>Device</h4>
+<hr />
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+@Html.Grid(Model).Columns(columns =>
+                    {
+                        columns.Add(c => c.DateUpdate).Format("{0:dd/MM/yyyy hh:mm:ss tt}").Titled("Date Update");
+                        columns.Add(c => c.UpdateBy).Titled("Update By").Filterable(true);
+                        columns.Add(c => c.DeviceType.Type).Titled("DeviceType").Filterable(true);
+                        columns.Add(c => c.Model.ModelName).Titled("Model").Filterable(true);
+                        columns.Add(c => c.Brand.BrandName).Titled("Brand").Filterable(true);
+                        columns.Add(c => c.SerialNumber).Titled("SerialNumber").Filterable(true);
+                        columns.Add(c => c.Status.Status1).Titled("Status").Filterable(true);
+                    }).WithPaging(20).Sortable(true)
+
+@*<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.DateUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specification)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceType.Type)
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Machine.MachineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceName)
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant.PlantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhaseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine.MachineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Status1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DeviceID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DeviceID })
+            </td>
+        </tr>
+    }
+
+</table>*@

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "User";
+}
+
+<h2>Device</h2>
+<h4>@ViewBag.UserName</h4>
+<hr />
+
+<table class="table table-bordered" id="DUser">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayName("DeviceName")
+            </th>
+            <th>
+                @Html.DisplayName("Type")
+            </th>
+
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IPAddress)
+            </th>
+            <th>
+                @Html.DisplayName("Plant")
+            </th>
+
+            <th>
+                @Html.DisplayName("Department")
+            </th>
+
+            <th>
+                @Html.DisplayName("Location")
+            </th>
+            <th>
+                @Html.DisplayName("Phase")
+            </th>
+            <th>
+                @Html.DisplayName("Machine")
+            </th>
+
+            <th>
+                @Html.DisplayName("User")
+            </th>
+
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.DeviceName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceType.Type)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.ModelName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Machine.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Status1)
+                </td>
+                <td>
+                    @Html.ActionLink("Set", "setDevice", "Device", new { id = item.DeviceID }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Device", new { id = item.DeviceID }, null) |
+                    @Html.ActionLink("Details", "Details", "Device", new { id = item.DeviceID }, null) 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#DUser").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

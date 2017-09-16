@@ -1,0 +1,174 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "Machine";
+}
+
+<h2>Device</h2>
+
+<h4>@ViewBag.MachineName</h4>
+<hr />
+
+
+
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            @*<th>
+                @Html.DisplayNameFor(model => model.DeviceName)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.DeviceType.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+            <th>
+                @Html.DisplayName("IPAddress")
+            </th>
+            <th>
+                @Html.DisplayName("Plant")
+            </th>
+            <th>
+                @Html.DisplayName("Department")
+            </th>
+            <th>
+                @Html.DisplayName("Location")
+            </th>
+            <th>
+                @Html.DisplayName("Phase")
+            </th>
+            <th>
+                @Html.DisplayName("Machine")
+            </th>
+
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th>
+                @Html.DisplayName("CreateBy")
+            </th>
+            <th>
+                @Html.DisplayName("UpdateBy")
+            </th>
+            <th>
+                @Html.DisplayName("DateCreate")
+            </th>
+            <th>
+                @Html.DisplayName("DateUpdate")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specification)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.DeviceName)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceType.Type)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model.ModelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Machine.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Status1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUpdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specification)
+                </td>
+                <td>
+                    @Html.ActionLink("Set", "setDevice", "Device", new { id = item.DeviceID }, null) |
+                    @Html.ActionLink("Edit", "Edit", "Device", new { id = item.DeviceID }, null) |
+                    @Html.ActionLink("Details", "Details", "Device", new { id = item.DeviceID }, null) 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    @*<script>
+        $(function () {
+            $("table#list").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>*@
+<script>
+    $(function () {
+        $("table#list").dataTable({
+            responsive: {
+                details: {
+                    renderer: function (api, rowIdx, columns) {
+                        var data = $.map(columns, function (col, i) {
+                            return col.hidden ?
+                                '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                    '<td>' + col.title + ':' + '</td> ' +
+                                    '<td>' + col.data + '</td>' +
+                                '</tr>' :
+                                '';
+                        }).join('');
+
+                        return data ?
+                            $('<table/>').append(data) :
+                            false;
+                    }
+                }
+            },
+            "sPaginationType": "full_numbers"
+        });
+    })
+</script>
+
+}

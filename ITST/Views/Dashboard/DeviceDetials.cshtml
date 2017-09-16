@@ -1,0 +1,95 @@
+﻿@model ITST.ViewModels.DeviceDetialsViewModels
+
+@{
+    ViewBag.Title = "Inventory Ratio";
+}
+
+<h2>IT Stock Inventory TurnOver Ratio</h2>
+
+<h4>DeviceType</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("Type")
+        </th>
+        <th>
+            @Html.DisplayName("Instock")
+        </th>
+        <th>
+            @Html.DisplayName("PBX Room")
+        </th>
+        <th>
+            @Html.DisplayName("Server Room")
+        </th>
+        <th>
+            @Html.DisplayName("Main 120LT")
+        </th>
+        <th>
+            @Html.DisplayName("Main CPU Room")
+        </th>
+        <th>
+            @Html.DisplayName("Use")
+        </th>
+        <th>
+            @Html.DisplayName("Total")
+        </th>
+    </tr>
+
+@foreach (var item in Model.DeviceType) {
+    <tr>
+        <td>
+            <a href="@Url.Action("RatioByType", "Dashboard", new { id = item.DeviceTypeID })">@Html.DisplayFor(modelItem => item.Type)</a>
+        </td>
+        <td>
+            @{
+                var db = new ITST.Models.ITStockEntities1();
+                var instock = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3).Count();
+            }
+            <span class="badge badge-info">@instock</span>
+        </td>
+
+        <td>
+            @{
+                var instockpbxroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 1).Count();
+            }
+            <span class="badge badge-info">@instockpbxroom</span>
+        </td>
+
+        <td>
+            @{
+                var instockserverroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 2).Count();
+            }
+            <span class="badge badge-info">@instockserverroom</span>
+        </td>
+        <td>
+            @{
+                var instockm120lt = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 3).Count();
+            }
+            <span class="badge badge-info">@instockm120lt</span>
+        </td>
+        <td>
+            @{
+                var instockmcpuroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 4).Count();
+            }
+            <span class="badge badge-info">@instockmcpuroom</span>
+        </td>
+
+        <td>
+            @{
+                var inuse = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 1).Count();
+            }
+            <span class="badge badge-info">@inuse</span>
+        </td>
+
+        <td>
+            @{
+                var total = db.Devices.Where(d => d.Type == item.Type).Count();
+            }
+            <span class="badge badge-info">@total</span>
+        </td>
+    </tr>
+}
+
+</table>

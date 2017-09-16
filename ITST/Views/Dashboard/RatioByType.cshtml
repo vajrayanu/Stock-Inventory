@@ -1,0 +1,130 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "RatioByType";
+}
+
+<h2>RatioByType</h2>
+
+<h4>Device</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </th>
+        <th>
+            @Html.DisplayName("Instock")
+        </th>
+        <th>
+            @Html.DisplayName("MinStock")
+        </th>
+        <th>
+            @Html.DisplayName("PBX Room")
+        </th>
+        <th>
+            @Html.DisplayName("Server Room")
+        </th>
+        <th>
+            @Html.DisplayName("Main 120LT")
+        </th>
+        <th>
+            @Html.DisplayName("Main CPU Room")
+        </th>
+        <th>
+            @Html.DisplayName("Use")
+        </th>
+        <th>
+            @Html.DisplayName("Total")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    
+    var db = new ITST.Models.ITStockEntities1();
+    var req = db.RecordRequisitions.Where(d => d.Model == item.ModelName).Count();
+    var instock = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.ModelID == item.ModelID).Count();
+    var minstock = (req / @ViewBag.Month);
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrandName)
+        </td>
+        @if(@instock < @minstock && @instock != 0)
+        {
+         <td class="warning">
+             <span class="badge badge-info">ใกล้หมด</span>
+            <span class="badge alert-warning">@instock</span>
+        </td>
+        }
+        else if (@instock == 0)
+        {
+         <td class="danger">
+             <span class="badge badge-info">หมดแล้ว</span>
+             <span class="badge alert-danger">@instock</span>
+        </td>
+        }else
+        {
+         <td>
+             <span class="badge alert-info">@instock</span>
+        </td>
+        }
+        <td>
+            <span class="badge alert-warning">@minstock</span>
+        </td>
+        <td>
+            @{
+    var instockpbxroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 1 && d.ModelID == item.ModelID).Count();
+            }
+            <span class="badge badge-info">@instockpbxroom</span>
+        </td>
+
+        <td>
+            @{
+    var instockserverroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 2 && d.ModelID == item.ModelID).Count();
+            }
+            <span class="badge badge-info">@instockserverroom</span>
+        </td>
+        <td>
+            @{
+    var instockm120lt = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 3 && d.ModelID == item.ModelID).Count();
+            }
+            <span class="badge badge-info">@instockm120lt</span>
+        </td>
+        <td>
+            @{
+    var instockmcpuroom = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 3 && d.LocationStockID == 4 && d.ModelID == item.ModelID).Count();
+            }
+            <span class="badge badge-info">@instockmcpuroom</span>
+        </td>
+
+        <td>
+            @{
+    var inuse = db.Devices.Where(d => d.Type == item.Type && d.StatusID == 1 && d.ModelID == item.ModelID).Count();
+            }
+            <span class="badge badge-info">@inuse</span>
+        </td>
+
+        <td>
+            @{
+    var total = db.Devices.Where(d => d.Type == item.Type && d.ModelID == item.ModelID).Count();
+            }
+            <span class="badge badge-info">@total</span>
+        </td>
+
+    </tr>
+}
+
+</table>

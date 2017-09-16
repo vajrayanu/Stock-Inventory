@@ -1,0 +1,177 @@
+﻿@model ITST.ViewModels.CreateDeviceViewModels
+
+@{
+    ViewBag.Title = "CreateNewDevice";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Device</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Create Device</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Set Device Information</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ModelName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.ModelName, String.Empty, new { id = "SearchString", @class = "form-control", @placeholder = "Model - Required" })
+                                        @Html.ValidationMessageFor(model => model.ModelName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SerialNumber, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control", @placeholder = "Serial Number - Required" })
+                                        @Html.ValidationMessageFor(model => model.SerialNumber)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.IPAddress, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.IPAddress, new { @class = "form-control", @placeholder = " " })
+                                        @Html.ValidationMessageFor(model => model.IPAddress)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MacAddress, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.MacAddress, new { @class = "form-control", @placeholder = " " })
+                                        @Html.ValidationMessageFor(model => model.MacAddress)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FixAccess, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.FixAccess, new { @class = "form-control", @placeholder = " " })
+                                        @Html.ValidationMessageFor(model => model.FixAccess)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PRNumber, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.PRNumber, new { @class = "form-control", @placeholder = " " })
+                                        @Html.ValidationMessageFor(model => model.PRNumber)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.IsAsset, "IsAsset", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.CheckBoxFor(model => model.IsAsset)
+                                        @Html.ValidationMessageFor(model => model.IsAsset)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LocationStock, "LocationStock", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.LocationStock, ViewBag.LocationStockID as IEnumerable<SelectListItem>, " ", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.LocationStock)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="hidden" name="uri" value="@ViewBag.Uri" />
+                            <input type="submit" value="Create" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#SearchString").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindModelName")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+    </script>
+
+    <script>
+        $(document).ready(function ()
+        {
+            //Dropdownlist Selectedchange event
+            $("#SearchString").change(function ()
+            {
+                $("#Specification").empty();
+                $.ajax({
+                    type:'POST',
+                    url: '@Url.Action("SelectUsers")',
+                    dataType: 'json',
+                    data: { id: $("#SearchString").val() },
+                    success: function (Models)
+                    {
+                        return {
+                            label: item.value,
+                            //value: item.id,
+                            value: item.name,
+                        }
+                    },
+                    error: function (ex)
+                    {
+                        alert('Failed to retrieve states.' + ex.responseText);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>
+
+}

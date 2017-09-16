@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ITST.Models.RecordInRepair>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>RepairLog</h2>
+
+<h4>Device</h4>
+<hr />
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+@Html.Grid(Model).Columns(columns =>
+                    {
+                        columns.Add(c => c.DateRequest).Format("{0:dd/MM/yyyy hh:mm:ss tt}").Titled("Date InRepair");
+                        columns.Add(c => c.RequestBy).Titled("Request By").Filterable(true);
+                        columns.Add(c => c.Cause).Titled("Cause");
+                        columns.Add(c => c.DeviceType).Titled("DeviceType").Filterable(true);
+                        columns.Add(c => c.Model).Titled("Model").Filterable(true);
+                        columns.Add(c => c.Brand).Titled("Brand").Filterable(true);
+                        columns.Add(c => c.SerialNumber).Titled("SerialNumber").Filterable(true);
+                        columns.Add(c => c.Plant).Titled("Plant").Filterable(true);
+                        columns.Add(c => c.Department).Titled("Department").Filterable(true);
+                        columns.Add(c => c.Location).Titled("Location").Filterable(true);
+                        columns.Add(c => c.Phase).Titled("Phase").Filterable(true);
+                        columns.Add(c => c.Machine).Titled("Machine").Filterable(true);
+                        columns.Add(c => c.UserName).Titled("User").Filterable(true);
+                        columns.Add(c => c.IsFixAsset).Titled("IsFixAsset").Filterable(true);
+                        columns.Add(c => c.Status).Titled("Status").Filterable(true);
+                        columns.Add(c => c.LocationStock).Titled("Current Location").Filterable(true);
+                    }).WithPaging(20).Sortable(true)
+

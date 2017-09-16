@@ -1,0 +1,192 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "IPScanner";
+}
+
+<h2>IPScanner</h2>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationStockID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationStockName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstockDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhaseID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhaseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FixAccess)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IPAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceType.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.LocationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Machine.MachineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model.ModelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plant.PlantName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.Status1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserMachine.ComputerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specification)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateUpdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationStockID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationStockName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrandName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InstockDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhaseID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhaseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FixAccess)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IPAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brand.BrandName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeviceType.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.LocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Machine.MachineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model.ModelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plant.PlantName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.Status1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserMachine.ComputerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DeviceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DeviceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DeviceID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<ITST.Models.Machine>
+
+@{
+    ViewBag.Title = "CreateMachineSheet";
+}
+
+<h2>PM Sheet</h2>
+
+<h4>Machine</h4>
+<hr />
+
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.MachineName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IPAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PLCAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MACAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant.PlantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department.DepartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phase.PhaseName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PLCAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MACAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phase.PhaseName)
+                </td>
+                <td>
+                    @Html.ActionLink("Create Sheet", "CreateSheet", new { id = item.MachineID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#list").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

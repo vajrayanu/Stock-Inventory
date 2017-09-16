@@ -1,0 +1,186 @@
+﻿@model IEnumerable<ITST.Models.BillReceiptList>
+
+@{
+    ViewBag.Title = "BillReceiptNo";
+}
+
+<h2>BillReceiptNo. @ViewBag.ReceiptNo </h2>
+
+<h4>Device</h4>
+<hr />
+
+@using (Html.BeginForm("setSentRepairSelected", "BillReceipt", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cause)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phase)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MachineName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.InRepairDate)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.BillReceiptType)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.Unit)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var unit = "Baht";
+            <tr>
+                <td>
+                    <input type="checkbox" name="ids" value=@item.DeviceID />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cause)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phase)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InRepairDate)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.BillReceiptType)
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Unit)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price) @unit
+                </td>
+                @if(item.Price == null && item.Cause != "Destroyed")
+                {
+                 <td>
+                    @Html.ActionLink("Remove", "RemoveRepairList", new { id = item.ListID, did = item.DeviceID })
+                </td>
+                } else if(item.Price != null)
+                {
+                <td>
+                    <div class="hidden">
+                        @Html.ActionLink("Remove", "RemoveRepairList", new { id = item.ListID, did = item.DeviceID })
+                    </div>
+                </td>
+                }
+                else if (item.Cause == "Destroyed" && item.Price == null)
+                {
+                    <td>
+                        <div class="hidden">
+                            @Html.ActionLink("Remove", "RemoveRepairList", new { id = item.ListID, did = item.DeviceID })
+                        </div>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+@{
+    string vb = @ViewBag.ReceiptNo;
+    var db = new ITST.Models.ITStockEntities1();
+    double total = db.BillReceiptLists.Where(d => d.BillReceiptNo == vb).Sum(d =>d.Price) ?? 0;
+    var units = "Baht";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-primary col-sm-3">
+                Total Price
+                <br><span class="badge badge-info">@total.ToString("#,##0.00#") @units</span>
+            </a>
+         </div>
+     </div>
+</div>
+
+<div class="well-lg">
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#list").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

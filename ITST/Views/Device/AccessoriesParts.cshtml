@@ -1,0 +1,307 @@
+﻿@model ITST.ViewModels.DeviceRatioViewModels
+
+@{
+    ViewBag.Title = "AccessoriesParts";
+}
+
+<h2>Accessories Parts</h2>
+
+<a href="@Url.Action("listAccessories", "Device")" class="btn btn-default">
+    Total Accessories
+    <br><span class="badge badge-info">@ViewBag.TotalCartridge</span>
+</a>
+
+<div class="row">
+    <a href="@Url.Action("AccessoriesRequisitionReport", "PrintLog")" class="btn btn-default pull-right btn-sm RbtnMargin" style="margin:2px"><span class="glyphicon glyphicon-list-alt"></span> Report Requisition</a>
+    <a href="@Url.Action("CreateAccessories", "Device")" class="btn btn-default pull-right btn-sm RbtnMargin" style="margin:2px"><span class="glyphicon glyphicon-plus-sign"></span> Create Accessories</a>
+    <a href="@Url.Action("setMultipleAccessoriesRequisition", "Device")" class="btn btn-default pull-right btn-sm RbtnMargin" style="margin:2px"><span class="glyphicon glyphicon-share-alt"></span> Requisition</a>
+    <a href="@Url.Action("setChangeLocationStockAccessoriesParts", "Device")" class="btn btn-default pull-right btn-sm RbtnMargin" style="margin:2px"><span class="glyphicon glyphicon-share-alt"></span> Change LocationStock</a>
+</div>
+
+<hr />
+
+<h4>Accessories Types</h4>
+
+
+<div class="row well-lg">
+    @foreach (var item in Model.AccessType)
+    {
+        <a href='@Url.Action("AccessoriesParts", "Device", new { id = item.DeviceType.DeviceTypeID })'>
+            <div class="btn btn-primary" style="margin:2px;">
+                @Html.DisplayFor(modelItem => item.DeviceType.Type)
+            </div>
+        </a>
+    }
+    <a href='@Url.Action("AccessoriesParts", "Device", new { id = 0 })'>
+        <div class="btn btn-primary" style="margin:2px;">
+            @Html.DisplayName("All")
+        </div>
+    </a>
+</div>
+
+<h4>Accessories Models</h4>
+
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            <th></th>
+            <th>
+                @Html.DisplayName("Type")
+            </th>
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+            <th>
+                @Html.DisplayName("Instock")
+            </th>
+            <th>
+                @Html.DisplayName("MinStock")
+            </th>
+            <th>
+                @Html.DisplayName("PBX Room")
+            </th>
+            @*<th>
+                    @Html.DisplayName("Use")
+                </th>*@
+            <th>
+                @Html.DisplayName("MainCPU Room")
+            </th>
+            <th>
+                @Html.DisplayName("Server Room")
+            </th>
+            <th>
+                @Html.DisplayName("Total")
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayName("Type")
+            </th>
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+            <th>
+                @Html.DisplayName("Instock")
+            </th>
+            <th>
+                @Html.DisplayName("MinStock")
+            </th>
+            <th>
+                @Html.DisplayName("PBX Room")
+            </th>
+            @*<th>
+                    @Html.DisplayName("Use")
+                </th>*@
+            <th>
+                @Html.DisplayName("MainCPU Room")
+            </th>
+            <th>
+                @Html.DisplayName("Server Room")
+            </th>
+            <th>
+                @Html.DisplayName("Total")
+            </th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach (var item in Model.Accessories)
+        {
+            var db = new ITST.Models.ITStockEntities1();
+            var req = db.RecordRequisitions.Where(d => d.Model == item.ModelName).Count();
+            var start = 5 + @ViewBag.Month;
+            var instock = db.Devices.Where(d => d.Type == item.DeviceType.Type && d.StatusID == 3 && d.ModelID == item.ModelID).Count();
+            var minstock = (req / start);
+            <tr>
+                <td class="details-control"></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceType.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelName)
+                </td>
+                @if (@instock < @minstock && @instock != 0)
+                {
+                    <td class="warning">
+                        <span class="badge badge-info">ใกล้หมด</span>
+                        <span class="badge alert-warning">@instock</span>
+                    </td>
+                }
+                else if (@instock == 0)
+                {
+                    <td class="danger">
+                        <span class="badge badge-info">หมดแล้ว</span>
+                        <span class="badge alert-danger">@instock</span>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <span class="badge alert-info">@instock</span>
+                    </td>
+                }
+                <td>
+                    <span class="badge alert-warning">@minstock</span>
+                </td>
+                <td>
+                    @{
+            var instockpbxroom = db.Devices.Where(d => d.Type == item.DeviceType.Type && d.StatusID == 3 && d.LocationStockID == 1 && d.ModelID == item.ModelID).Count();
+                    }
+                    <span class="badge badge-info">@instockpbxroom</span>
+                </td>
+                <td>
+                    @{
+            var totalmcpu = db.Devices.Where(d => d.Type == item.DeviceType.Type && d.ModelID == item.ModelID && d.LocationStockID == 4).Count();
+                    }
+                    <span class="badge badge-info">@totalmcpu</span>
+                </td>
+                <td>
+                    @{
+            var totalsver = db.Devices.Where(d => d.Type == item.DeviceType.Type && d.ModelID == item.ModelID && d.LocationStockID == 2).Count();
+                    }
+                    <span class="badge badge-info">@totalmcpu</span>
+                </td>
+                @*<td>
+                            @{
+                    var inuse = db.Devices.Where(d => d.Type == item.DeviceType.Type && d.StatusID == 1 && d.ModelID == item.ModelID).Count();
+                            }
+                            <span class="badge badge-info">@inuse</span>
+                        </td>*@
+                <td>
+                    @{
+            var total = db.Devices.Where(d => d.Type == item.DeviceType.Type && d.ModelID == item.ModelID).Count();
+                    }
+                    <span class="badge badge-info">@total</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    @Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-primary" })
+</div>
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            var table = $("table#list").dataTable({
+                responsive: {
+                    details: {
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return col.hidden ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                        '<td>' + col.title + ':' + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                "sPaginationType": "full_numbers"
+            });
+            // Add event listener for opening and closing details
+            $('#list tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        })
+    </script>
+
+    <script>
+        /* Formatting function for row details - modify as you need */
+        function format(d) {
+            // `d` is the original data object for the row
+            return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                '<tr>' +
+                    '<td>Full name:</td>' +
+                    '<td>' + d.name + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td>Extension number:</td>' +
+                    '<td>' + d.extn + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td>Extra info:</td>' +
+                    '<td>And any further details here (images etc)...</td>' +
+                '</tr>' +
+            '</table>';
+        }
+
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "ajax": "../ajax/data/objects.txt",
+                "columns": [
+                    {
+                        "className": 'details-control',
+                        "orderable": false,
+                        "data": null,
+                        "defaultContent": ''
+                    },
+                    { "data": "name" },
+                    { "data": "position" },
+                    { "data": "office" },
+                    { "data": "salary" }
+                ],
+                "order": [[1, 'asc']]
+            });
+
+            // Add event listener for opening and closing details
+            $('#example tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr');
+                var row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child(format(row.data())).show();
+                    tr.addClass('shown');
+                }
+            });
+        });
+    </script>
+
+}

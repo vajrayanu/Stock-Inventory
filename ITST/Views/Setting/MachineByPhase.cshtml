@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ITST.Models.Machine>
+
+@{
+    ViewBag.Title = "MachineByPhase";
+}
+
+<h2>Machine</h2>
+<h4>By Phase</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Phase.PhaseName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("MachineList", "Setting", new { did = item.DepartmentID, pid = item.PlantID , lid = item.LocationID, phid = item.PhaseID})">@Html.DisplayFor(modelItem => item.Phase.PhaseName)</a>
+            @{
+    var db = new ITST.Models.ITStockEntities1();
+    var TotalDevicePerType = db.Machines.Where(d => d.PlantID == item.PlantID && d.DepartmentID == item.DepartmentID && d.LocationID == item.LocationID && d.PhaseID == item.PhaseID).Count();
+            }
+            <span class="badge badge-info">@TotalDevicePerType</span>
+        </td>
+    </tr>
+}
+
+</table>

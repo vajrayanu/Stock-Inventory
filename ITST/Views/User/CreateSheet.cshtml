@@ -1,0 +1,2505 @@
+﻿@model ITST.Models.UserSheet
+
+@{
+    ViewBag.Title = "Sheet";
+}
+
+<h2>Sheet</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h4>User Sheet</h4>
+    <hr />
+    @Html.ValidationSummary(true)
+    
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">User Information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <div class="form-horizontal well">
+                        <div class="form-group">
+                            @Html.Label("Plant", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Plant, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.Plant)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Department", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Department, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.Department)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Location", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Location, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.Location)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Phase", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Phase, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.Phase)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("User", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.UserName)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("DeviceName", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.DeviceName, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.DeviceName)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-horizontal well">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FixAccess, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.FixAccess, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.FixAccess)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CreateBy, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.CreateBy, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.CreateBy)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UpdateBy, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.UpdateBy, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.UpdateBy)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DateCreate, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.DateCreate, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.DateCreate)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DateUpdate, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.DateUpdate, new { @class = "form-control", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.DateUpdate)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">User Check Sheet</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered well">
+                    <tr class="active">
+                        <th>
+                            @Html.DisplayName("Item")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Brand")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Model")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Serial No")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Remark")
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("PC Board")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.PCBoardBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "PCBBrand" })
+                            @Html.ValidationMessageFor(model => model.PCBoardBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.PCBoardModel, new { @class = "form-control", @placeholder = "Model - Required", id = "PCBModel" })
+                            @Html.ValidationMessageFor(model => model.PCBoardModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.PCBoardSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "PCBSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.PCBoardSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.PCBoardRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PCBoardRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Processor")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.ProcessorBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "PCBBrand" })
+                            @Html.ValidationMessageFor(model => model.ProcessorBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.ProcessorModel, new { @class = "form-control", @placeholder = "Model - Required", id = "PCBModel" })
+                            @Html.ValidationMessageFor(model => model.ProcessorModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.ProcessorSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "PCBSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.ProcessorSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.ProcessorRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ProcessorRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Memory")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MemoryBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "MemoryBrand" })
+                            @Html.ValidationMessageFor(model => model.MemoryBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MemoryModel, new { @class = "form-control", @placeholder = "Model - Required", id = "MemoryModel" })
+                            @Html.ValidationMessageFor(model => model.MemoryModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MemorySerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "PCBSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.MemorySerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.MemoryRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MemoryRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Video Card")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.VideoCardBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "VDOCardBrand" })
+                            @Html.ValidationMessageFor(model => model.VideoCardBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.VideoCardModel, new { @class = "form-control", @placeholder = "Model - Required", id = "VDOCardModel" })
+                            @Html.ValidationMessageFor(model => model.VideoCardModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.VideoCardSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "VDOCardSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.VideoCardSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.VideoCardRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.VideoCardRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("LAN Card")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.LANCardBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "LANCardBrand" })
+                            @Html.ValidationMessageFor(model => model.LANCardBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.LANCardModel, new { @class = "form-control", @placeholder = "Model - Required", id = "LANCardModel" })
+                            @Html.ValidationMessageFor(model => model.LANCardModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.LANCardSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "LANCardSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.LANCardSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.LANCardRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LANCardRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Mouse")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MouseBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "MouseBrand" })
+                            @Html.ValidationMessageFor(model => model.MouseBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MouseModel, new { @class = "form-control", @placeholder = "Model - Required", id = "MouseModel" })
+                            @Html.ValidationMessageFor(model => model.MouseModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MouseSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "MouseSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.MouseSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.MouseRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MouseRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Monitor")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MonitorBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "MonitorBrand" })
+                            @Html.ValidationMessageFor(model => model.MonitorBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MonitorModel, new { @class = "form-control", @placeholder = "Model - Required", id = "MonitorModel" })
+                            @Html.ValidationMessageFor(model => model.MonitorModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MonitorSerial, new { @class = "form-control", @placeholder = "Brand - Required", id = "MonitorSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.MonitorSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.MonitorRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MonitorRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Monitor 2")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.Monitor2Brand, new { @class = "form-control", @placeholder = "Brand - Required", id = "Monitor2Brand" })
+                            @Html.ValidationMessageFor(model => model.Monitor2Brand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.Monitor2Model, new { @class = "form-control", @placeholder = "Model - Required", id = "Monitor2Model" })
+                            @Html.ValidationMessageFor(model => model.Monitor2Model)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.Monitor2Serial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "Monitor2SerialNumber" })
+                            @Html.ValidationMessageFor(model => model.Monitor2Serial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.Monitor2Remark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Monitor2Remark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Keyboard")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.KeyboardBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "KeyboardBrand" })
+                            @Html.ValidationMessageFor(model => model.KeyboardBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.KeyboardModel, new { @class = "form-control", @placeholder = "Model - Required", id = "KeyboardModel" })
+                            @Html.ValidationMessageFor(model => model.KeyboardModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.KeyboardSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "KeyboardSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.KeyboardSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.KeyboardRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.KeyboardRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Scanner")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.ScannerBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "ScannerBrand" })
+                            @Html.ValidationMessageFor(model => model.ScannerBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.ScannerModel, new { @class = "form-control", @placeholder = "Model - Required", id = "ScannerModel" })
+                            @Html.ValidationMessageFor(model => model.ScannerModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.ScannerSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "ScannerSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.ScannerSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.ScannerRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ScannerRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("DVD Rom/CD Rom")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.DVDBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "DVDBrand" })
+                            @Html.ValidationMessageFor(model => model.DVDBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.DVDModel, new { @class = "form-control", @placeholder = "Model - Required", id = "DVDModel" })
+                            @Html.ValidationMessageFor(model => model.DVDModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.DVDSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "DVDSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.DVDSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.DVDRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DVDRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("HDD 1")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.HDD1Brand, new { @class = "form-control", @placeholder = "Brand - Required", id = "HDD1Brand" })
+                            @Html.ValidationMessageFor(model => model.HDD1Brand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.HDD1Model, new { @class = "form-control", @placeholder = "Model - Required", id = "HDD1Model" })
+                            @Html.ValidationMessageFor(model => model.HDD1Model)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.HDD1Serial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "HDD1SerialNumber" })
+                            @Html.ValidationMessageFor(model => model.HDD1Serial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.HDD1Remark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HDD1Remark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("HDD 2")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.HDD2Brand, new { @class = "form-control", @placeholder = "Brand - Required", id = "HDD2Brand" })
+                            @Html.ValidationMessageFor(model => model.HDD2Brand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.HDD2Model, new { @class = "form-control", @placeholder = "Model - Required", id = "HDD2Model" })
+                            @Html.ValidationMessageFor(model => model.HDD2Model)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.HDD2Serial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "HDD2SerialNumber" })
+                            @Html.ValidationMessageFor(model => model.HDD2Serial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.HDD2Remark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HDD2Remark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Printer")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.PrinterBrand, new { @class = "form-control", @placeholder = "Model - Required", id = "PrinterBrand" })
+                            @Html.ValidationMessageFor(model => model.PrinterBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.PrinterModel, new { @class = "form-control", @placeholder = "Model - Required", id = "PrinterModel" })
+                            @Html.ValidationMessageFor(model => model.PrinterModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.PrinterSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "PrinterSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.PrinterSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.PrinterRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PrinterRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("UPS")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.UPSBrand, new { @class = "form-control", @placeholder = "Brand - Required", id = "UPSBrand" })
+                            @Html.ValidationMessageFor(model => model.UPSBrand)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.UPSModel, new { @class = "form-control", @placeholder = "Model - Required", id = "UPSModel" })
+                            @Html.ValidationMessageFor(model => model.UPSModel)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.UPSSerial, new { @class = "form-control", @placeholder = "SerialNumber - Required", id = "UPSSerialNumber" })
+                            @Html.ValidationMessageFor(model => model.UPSSerial)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.UPSRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.UPSRemark)
+                        </th>
+                    </tr>
+                </table>
+
+                <table class="table table-bordered well">
+                    <tr class="active">
+                        <th>
+                            @Html.DisplayName("Programs")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Version")
+                        </th>
+                        <th>
+                            @Html.DisplayName("Remark")
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("7Zip")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.Zip7Ver, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Zip7Ver)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.Zip7Remark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Zip7Remark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Acrobat")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.AcrobatVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AcrobatVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.AcrobatRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AcrobatRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("AutoCAD")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.AutoCADVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AutoCADVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.AutoCADRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AutoCADRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("CureGraph")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.CureGraphVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CureGraphVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.CureGraphRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CureGraphRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("CutePDF")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.CutePDFVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CutePDFVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.CutePDFRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CutePDFRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("HealthBook")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.HealthBookVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HealthBookVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.HealthBookRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HealthBookRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("HRM System")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.HRMSystemVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HRMSystemVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.HRMSystemRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.HRMSystemRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Illustrator")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.IllustratorVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IllustratorVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.IllustratorRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IllustratorRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("JP1")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.JP1Ver, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.JP1Ver)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.JP1Remark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.JP1Remark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Lexitron Dict")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.LexitronDictVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LexitronDictVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.LexitronDictRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LexitronDictRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Mini Tab")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.MiniTabVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MiniTabVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.MiniTabRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MiniTabRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Microsoft Office")
+                        </th>
+                        <th>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.MSOfficeVer, ITST.Controllers.MachineController.GetMSOfficeVersionList(), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.MSOfficeVer)
+                            </div>
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.MSOfficeRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MSOfficeRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("PhotoShop")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.PhotoShopVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PhotoShopVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.PhotoShopRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PhotoShopRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("SAP")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.SAPVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SAPVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.SAPRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SAPRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Save to PDF")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.SaveToPDFVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SaveToPDFVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.SaveToPDFRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SaveToPDFRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("SEED / Wincs")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.SeedWincsVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SeedWincsVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.SeedWincsRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SeedWincsRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Solid Edge")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.SolidEdgeVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SolidEdgeVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.SolidEdgeRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SolidEdgeRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("TrendMicro")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.TrendMicroVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TrendMicroVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.TrendMicroRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TrendMicroRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Windows")
+                        </th>
+                        <th>
+                            <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.WindowsVer, ITST.Controllers.MachineController.GetWindowsVersionList(), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.WindowsVer)
+                            </div>
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.WindowsRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.WindowsRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Zimbra")
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.ZimbraVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ZimbraVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.ZimbraRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ZimbraRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Other Program")
+                            @Html.TextBoxFor(model => model.OtherProgram, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgram)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.OtherProgramVer, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgramVer)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.OtherProgramRemark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgramRemark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Other Program 1")
+                            @Html.TextBoxFor(model => model.OtherProgram1, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgram1)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.OtherProgram1Ver, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgram1Ver)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.OtherProgram1Remark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgram1Remark)
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayName("Other Program 2")
+                            @Html.TextBoxFor(model => model.OtherProgram2, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgram2)
+                        </th>
+                        <th>
+                            @Html.TextBoxFor(model => model.OtherProgram2Ver, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgram2Ver)
+                        </th>
+                        <th>
+                            @Html.TextAreaFor(model => model.OtherProgram2Remark, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.OtherProgram2Remark)
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Sheet", null, new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#PCBBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBBrand","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+    </script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MemoryBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBBrand","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#PrinterBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPrinterBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MouseBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindMouseBrand","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MonitorBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindMonitorBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Monitor2Brand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindMonitorBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#VDOCardBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindMonitorBrand","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#KeyboardBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindKeyboardBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ScannerBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindScannerBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ScannerBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindScannerBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#UPSBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindScannerBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DVDBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindScannerBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#HDD1Brand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindScannerBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#HDD2Brand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindScannerBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DVDBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindScannerBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#LANCardBrand").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindScannerBrand", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#PCBModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+    </script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MemoryModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#VDOCardModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#PrinterModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#LANCardModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MouseModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MonitorModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Monitor2Model").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#KeyboardModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ScannerModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DVDModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#HDD1Model").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#HDD2Model").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#UPSModel").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindPCBModel","Machine")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MemorySerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindMemorySerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#VDOCardSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindVDOCardSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MouseSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindMouseSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#MonitorSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindMonitorSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#Monitor2SerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindMonitorSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#KeyboardSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindKeyboardSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#LANCardSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindLANCardSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ScannerSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindScannerSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#DVDSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindDVDSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#HDDSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindHDDSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#HDDSerialNumber1").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindHDDSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#UPSSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindUPSSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#PCBSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindPCBSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#PrinterSerialNumber").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                var dvid = parseInt(@ViewBag.DeviceID);
+                var pid = parseInt(@ViewBag.PlantID);
+                var did = parseInt(@ViewBag.DepartmentID);
+                var lid = parseInt(@ViewBag.LocationID);
+                $.ajax({
+                    url: '@Url.Action("FindPrinterSerialNumber", "Machine")',
+                    data: "{ 'prefixText': '" + request.term + "', 'dvid':'" + dvid + "', 'pid':'" + pid + "', 'did':'" + did + "', 'lid':'" + lid + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                //value: item.id,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+}

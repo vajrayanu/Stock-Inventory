@@ -1,0 +1,67 @@
+﻿@model ITST.Models.LimitDeviceQuantity
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LimitDeviceQuantity</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Plant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Machine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Machine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxQuantity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

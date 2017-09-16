@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "RequistionPrint";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12 alert-link well">
+            <h2>RequisitionPrint</h2>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <a href='@Url.Action("RequisitionPrintByBrand", "PrintLog")'>
+                <div class="col-md-4 alert-link well" style="height: 200px; width: 250px;">
+                    <h4>ยี่ห้อ</h4>
+                    <span style="font-size:7em;" class="glyphicon glyphicon-print"></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a href='@Url.Action("RequisitionPrintByModel", "PrintLog")'>
+                <div class="col-md-4 alert-link well" style="height: 200px; width: 250px; ">
+                    <h4>โมเดล</h4>
+                    <span style="font-size:7em;" class="glyphicon glyphicon-print"></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a href='@Url.Action("RequisitionPrintByDate", "PrintLog")'>
+                <div class="col-md-4 alert-link well" style="height: 200px; width: 250px; ">
+                    <h4>วันที่</h4>
+                    <span style="font-size:7em;" class="glyphicon glyphicon-print"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <a href='@Url.Action("InUsePrintByLocation", "PrintLog")'>
+                <div class="col-md-4 alert-link well" style="height: 200px; width: 250px;">
+                    <h4>สถานที่</h4>
+                    <span style="font-size:7em;" class="glyphicon glyphicon-print"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

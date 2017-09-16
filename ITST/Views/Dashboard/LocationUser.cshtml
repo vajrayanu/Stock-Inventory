@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ITST.Models.User>
+
+@{
+    ViewBag.Title = "LocationUser";
+}
+
+<h2>User</h2>
+
+<h4>@ViewBag.Department Department</h4>
+<hr />
+
+<table class="table table-bordered" id="LUser">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeviceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserLogOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IPAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhaseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department.DepartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant.PlantName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("User", "Dashboard", new { id = item.UserID })">@Html.DisplayFor(modelItem => item.FullName)</a>
+                    @{
+            var db = new ITST.Models.ITStockEntities1();
+            var TotalDevicePerUser = db.Devices.Where(d => d.UserID == item.UserID).Count();
+                    }
+                    <span class="badge badge-info">@TotalDevicePerUser</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserLogOn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "User", new { id = item.UserID }, null) |
+                    @Html.ActionLink("Details", "Details", "User", new { id = item.UserID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "User", new { id = item.UserID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#LUser").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

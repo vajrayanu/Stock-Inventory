@@ -1,0 +1,92 @@
+﻿@model ITST.Models.Device
+
+@{
+    ViewBag.Title = "setReturnDevice";
+}
+
+<h2>ซ่อมเสร็จส่งคืน</h2>
+<h4>อุปกรณ์สแกนเนอร์</h4>
+<hr />
+
+@if(Model.StatusName != "In Repair")
+{
+        <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <strong>สแกนเนอร์หมายเลขซีเรียลนี้อยู่ในสถานะที่ไม่สามารถ Return ได้ <br />
+        </strong>
+    </div>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.DeviceID)
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">ซ่อมเสร็จส่งคืน</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">ข้อมูลของอุปกรณ์</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Type, "Type", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.Type, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.Type)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SerialNumber, "SerialNumber", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.SerialNumber)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StatusName, "Status", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.StatusName, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.StatusName)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.UserName4, "UpdateBy", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.UserName4, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.UserName4)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UpdateBy, "UpdateBy", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.UpdateBy, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.UpdateBy)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model.StatusName == "In Repair")
+                    {
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="submit" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

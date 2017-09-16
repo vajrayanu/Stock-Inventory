@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "ListSearchDevice";
+}
+
+<h2>ListSearchDevice</h2>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceType.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model.ModelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationStockName)
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("ListItemSearchDevice", "Dashboard", new { sid = item.StatusID, lid = item.LocationStockID,tid = item.DeviceTypeID, mid = item.ModelID})">@Html.DisplayFor(modelItem => item.BrandName)</a>
+            @{
+    var db = new ITST.Models.ITStockEntities1();
+    var DevicePerType = db.Devices.Where(d => d.DeviceTypeID == item.DeviceTypeID && d.StatusID == item.StatusID && d.LocationStockID == item.LocationStockID && d.ModelID == item.ModelID).Count();
+            }
+            <span class="badge badge-info">@DevicePerType</span>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModelName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationStockName)
+        </td>
+    </tr>
+}
+
+</table>

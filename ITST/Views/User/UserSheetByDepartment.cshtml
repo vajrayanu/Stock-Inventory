@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ITST.Models.User>
+
+@{
+    ViewBag.Title = "UserSheetByDepartment";
+}
+
+<h2>User Sheet</h2>
+<h4>Department</h4>
+<hr />
+
+
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.Department.DepartmentName)
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("CreateUserSheet", "User", new { id = item.PlantID, did = item.DepartmentID })">@Html.DisplayFor(modelItem => item.Department.DepartmentName)</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#list").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

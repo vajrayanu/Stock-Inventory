@@ -1,0 +1,161 @@
+﻿@model PagedList.IPagedList<ITST.Models.Device>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "InSale";
+}
+
+<h2>InSale</h2>
+
+<h4>Device</h4>
+<hr />
+
+@using (Html.BeginForm("Sale", "Device", FormMethod.Get))
+{
+    <p>
+        Find by SerialNumber: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+
+@using (Html.BeginForm("WaitSentSaleSelected", "Device", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+<table class="table table-bordered">
+    <tr class="active">
+        <th></th>
+        <th>
+            @Html.DisplayName("DateUpdate")
+        </th>
+        <th>
+            @Html.DisplayName("UpdateBy")
+        </th>
+        <th>
+            @Html.DisplayName("SerialNumber")
+        </th>
+        <th>
+            @Html.DisplayName("Type")
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayName("Machine")
+        </th>
+        <th>
+            @Html.DisplayName("User")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceName")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <input type="checkbox" name="ids" value=@item.DeviceID />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant.PlantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhaseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine.MachineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Status1)
+            </td>
+            <td>
+                @*@Html.ActionLink("Add Receipt List", "Edit", new { id = item.DeviceID }) |*@
+                @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DeviceID }) 
+            </td>
+        </tr>
+    }
+
+</table>
+    
+        <table class="table table-bordered">
+        <tr class="active">
+            <th>
+                @Html.DisplayName("Set to BillReceiptNo")
+            </th>
+        </tr>
+        @foreach (var item in Model.Take(1))
+        {
+            <tr>
+                <td>
+                    @Html.DropDownList("BillReceiptID", null, String.Empty, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(modelItem => item.BillReceiptID)
+                </td>
+            </tr>
+        }
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Sale",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

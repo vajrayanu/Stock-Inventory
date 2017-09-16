@@ -1,0 +1,135 @@
+﻿@model IEnumerable<ITST.Models.RecordDevice>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Edit Device Log";
+}
+
+<h2>EditLog</h2>
+
+<h4>Device</h4>
+<hr />
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+@Html.Grid(Model).Columns(columns =>
+                    {
+                        columns.Add(c => c.Description).Titled("Description").Filterable(true);
+                        columns.Add(c => c.EditBy).Titled("Edit By").Filterable(true);
+                        columns.Add(c => c.EditDate).Titled("Date Edit");
+                        columns.Add(c => c.Type).Titled("DeviceType").Filterable(true);
+                        columns.Add(c => c.Model).Titled("Model").Filterable(true);
+                        columns.Add(c => c.Brand).Titled("Brand").Filterable(true);
+                        columns.Add(c => c.SerialNumber).Titled("SerialNumber").Filterable(true);
+                        columns.Add(c => c.Plant).Titled("Plant").Filterable(true);
+                        columns.Add(c => c.Department).Titled("Department").Filterable(true);
+                        columns.Add(c => c.Location).Titled("Location").Filterable(true);
+                        columns.Add(c => c.Phase).Titled("Phase").Filterable(true);
+                        columns.Add(c => c.Machine).Titled("Machine").Filterable(true);
+                        columns.Add(c => c.UserName).Titled("User").Filterable(true);
+                        columns.Add(c => c.Status).Titled("Status").Filterable(true);
+                        columns.Add(c => c.LocationStock).Titled("LocationStock").Filterable(true);
+                    }).WithPaging(20).Sortable(true)
+
+@*<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EditDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Machine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LocationStock)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EditBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EditDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specification)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plant)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Machine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationStock)
+        </td>
+    </tr>
+}
+
+</table>*@

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ITST.Models.RecordRequisition>
+
+@{
+    ViewBag.Title = "RequisitionPrintByModel";
+}
+
+<h2>RequisitionPrintByModel</h2>
+
+
+<table class="table table-bordered">
+    <tr class="active">
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("ListRequisitionPrintByModel", "PrintLog", new { id = item.Model })">@Html.DisplayFor(modelItem => item.Model)</a>
+            @{
+                var db = new ITST.Models.ITStockEntities1();
+                var DevicePerModel = db.RecordRequisitions.Where(d => d.Model == item.Model && d.Status == "Use").Count();
+            }
+            <span class="badge badge-info">@DevicePerModel</span>
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+
+        <td>
+            @Html.ActionLink("Print", "PrintListRequisitionPrintByModel", new { id = item.Model }) 
+        </td>
+    </tr>
+}
+
+</table>

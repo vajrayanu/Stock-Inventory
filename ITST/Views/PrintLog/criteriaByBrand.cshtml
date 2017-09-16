@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "CriteriaByBrand";
+}
+
+<h2>Report Generator</h2>
+<h4>By Brand</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("listDataByCriteriaBrand", "PrintLog", new { id = item.BrandID, sid = @ViewBag.StatusID })">@Html.DisplayFor(modelItem => item.BrandName)</a>
+            @{
+                int st = @ViewBag.StatusID;
+                var db = new ITST.Models.ITStockEntities1();
+                var DevicePerBrand = db.Devices.Where(d => d.BrandID == item.BrandID && d.StatusID == st).Count();
+            }
+            <span class="badge badge-info">@DevicePerBrand</span>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusName)
+        </td>
+        <td>
+            @Html.ActionLink("Print", "printListDataByCriteriaBrand", new { id = item.BrandID, sid = @ViewBag.StatusID }) 
+        </td>
+    </tr>
+}
+
+</table>

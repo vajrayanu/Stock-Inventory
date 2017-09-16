@@ -1,0 +1,105 @@
+﻿@*@model IEnumerable<ITST.Models.AspNetUser>*@
+
+@{
+    ViewBag.Title = "TotalStaff";
+}
+
+<h2>TotalStaff</h2>
+<hr />
+
+@*<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            <a href="#">Role</a> |
+            <a href="#">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>*@
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>Action</th>
+            <th>EmployeeID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $.fn.dataTable.moment('HH:mm MMM D, YY');
+            $.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+            $.fn.dataTable.moment('DD.MM.YYYY');
+            var table = $('#myTable').DataTable({
+            responsive: {
+                details: {
+                    renderer: function (api, rowIdx, columns) {
+                        var data = $.map(columns, function (col, i) {
+                            return col.hidden ?
+                                '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                    '<td>' + col.title + ':' + '</td> ' +
+                                    '<td>' + col.data + '</td>' +
+                                '</tr>' :
+                                '';
+                        }).join('');
+
+                        return data ?
+                            $('<table/>').append(data) :
+                            false;
+                    }
+                }
+            },
+            "ajax": {
+                "url": '@Url.Action("getTotalUserAdmin")',
+                "type": "GET",
+                "datatype": "json"
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            "columns": [
+                                    {
+                                        "data": "Id",
+                                        "render": function (data, type, full, meta) {
+                                            return '<a href="@Url.Action("Edit/")' + data + '">Edit</a>' + '&nbsp;' + '|' + '&nbsp;' + '<a href="@Url.Action("Delete/")' + data + '">Delete</a>' ;
+                                        },
+                                        "autoWidth": true
+                                    },
+                    { "data": "EmployeeID", "autoWidth": true },
+                    { "data": "FirstName", "autoWidth": true },
+                    { "data": "LastName", "autoWidth": true },
+                    {
+                        "data": "Role",
+                        "render": function (data, type, row) {
+                            if (data == "8f9d0280-0bda-4837-b82e-8dde837844a1") return 'User';
+                            if (data == "99fcea69-241a-4ef7-8bd4-e9e3d2504130") return "SuperUser";
+                            if (data == "e80ef19f-60f6-4f10-bb69-c31862e844d0") return "PowerUser";
+                            if (data == "f728e3b9-8c0e-4c04-8e5a-8474f28faaad") return "Guest";
+                        },
+                        "autoWidth": true
+                    },
+            ]
+        });
+    });
+    </script>
+}
+

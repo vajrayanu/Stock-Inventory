@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "setDevice";
+}
+
+<h2>Set Device</h2>
+<h4></h4>
+<hr />
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Set Device</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Device Infomation</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            @Html.Label("Type", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("Type", (string)ViewBag.Type, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Model", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("Model", (string)ViewBag.Model, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Brand", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("Model", (string)ViewBag.Brand, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("SerialNumber", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("SerialNumber", (string)ViewBag.SerialNumber, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Status", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBox("Status", (string)ViewBag.Status, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Specification", new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextArea("Specification", (string)ViewBag.Specification, new { @class = "form-control", @readonly = "readonly", rows = 10, columns = 10 })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Action</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <div class="row well-lg">
+                                    <div class="list-group">
+                                        <a href="@Url.Action("SetRequistion", "Device", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-share-alt"></span> เบิกอุปกรณ์</a>
+                                        <a href="@Url.Action("SetRepair", "Device", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-wrench"></span> แจ้งซ่อม</a>
+                                        <a href="@Url.Action("SetSell", "Device", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-usd"></span> แจ้งขาย</a>
+                                        <a href="@Url.Action("SetSpare", "Device", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-folder-open"></span> เก็บสำรอง</a>
+                                        <a href="@Url.Action("SetInstockAfterRepair", "Device", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-refresh"></span> ซ่อมเสร็จนำเข้า</a>
+                                        <a href="@Url.Action("SetLocationStock", "Dashboard", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-move"></span> ย้ายสถานที่เก็บ</a>
+                                    </div>
+                                </div>
+                                <div class="row well-lg">
+                                    <div class="list-group">
+                                        <a href="@Url.Action("setUnknownStatus", "Device", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-warning-sign"></span> ระบุไม่ได้</a>
+                                        <a href="@Url.Action("MoveDevice", "Device", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-random"></span> ย้ายอุปกรณ์</a>
+                                        <a href="@Url.Action("setToInstock", "Device", new { id = @ViewBag.DeviceID, uri = @ViewBag.PreviousUrl })" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-retweet"></span> ใช้อยู่นำเข้าสต๊อก</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-primary" })
+</div>

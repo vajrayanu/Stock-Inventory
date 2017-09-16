@@ -1,0 +1,307 @@
+﻿@model ITST.Models.Device
+
+@{
+    ViewBag.Title = "SetWaitSentSell";
+}
+
+<h2>SetWaitSentSale</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Device</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.DeviceID)
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Wait Sent Sale</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Device Information</div>
+                            <div class="panel-body">
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.DeviceName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.DeviceName, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.DeviceName)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.ModelID, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("ModelID", null, String.Empty, new { id = "ModelID", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ModelID)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ModelName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.ModelName, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.ModelName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SerialNumber, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.SerialNumber)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.StatusID, "StatusID", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("StatusID", null, String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.StatusID)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LocationStockName, "LocationStockName", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.LocationStockName, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.LocationStockName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.StatusName, "StatusName", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.StatusName, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.StatusName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Specification, "Specification", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Specification, new { @class = "form-control", rows = 10, columns = 10, disabled = "disabled" })
+                                        @Html.ValidationMessageFor(model => model.Specification)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Device Information</div>
+                            <div class="panel-body">
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.Plant.PlantName, "PlantName", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.Plant.PlantName, new { @class = "form-control", @readonly = "readonly" })
+                                            @Html.ValidationMessageFor(model => model.MachineName)
+                                        </div>
+                                    </div>*@
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.CauseRequistion, "CauseRequistion", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.CauseRequistion, new { @class = "form-control", @placeholder = "CauseSell - Required", rows = 10, columns = 30 })
+                                        @Html.ValidationMessageFor(model => model.CauseRequistion)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.PlantID, "PlantID", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("PlantID", null, String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PlantID)
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.Department.DepartmentName, "DepartmentName", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.Department.DepartmentName, new { @class = "form-control", @readonly = "readonly" })
+                                            @Html.ValidationMessageFor(model => model.MachineName)
+                                        </div>
+                                    </div>*@
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.DepartmentID, "DepartmentID", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("DepartmentID", null, String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.DepartmentID)
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.Location.LocationName, "LocationName", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.Location.LocationName, new { @class = "form-control", @readonly = "readonly" })
+                                            @Html.ValidationMessageFor(model => model.MachineName)
+                                        </div>
+                                    </div>*@
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.LocationID, "LocationID", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("LocationID", null, String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.LocationID)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.PhaseName, "PhaseName", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.PhaseName, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.MachineName)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.LocationStockID, "LocationStockID", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.LocationStockID, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.LocationStockID)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.PhaseID, "PhaseID", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("PhaseID", null, String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PhaseID)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.FixAccess, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.FixAccess, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.FixAccess)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.PRNumber, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.PRNumber, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PRNumber)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.InstockDate, "InstockDate", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.InstockDate, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.InstockDate)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.MachineID, "MachineID", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("MachineID", null, String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.MachineID)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.Specification, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Specification, new { @class = "form-control", @cols = 80, @rows = 5 })
+                            @Html.ValidationMessageFor(model => model.Specification)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.LocationStockName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.LocationStockName, new { @class = "form-control", @cols = 80, @rows = 5 })
+                            @Html.ValidationMessageFor(model => model.LocationStockName)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.LocationStockID, "LocationStockID", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.LocationStockID, ViewBag.LocationStockID as IEnumerable<SelectListItem>, " ", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LocationStockID)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.BrandID, "BrandID", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("BrandID", null, String.Empty, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BrandID)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.DeviceTypeID, "DeviceTypeID", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DeviceTypeID", null, String.Empty, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DeviceTypeID)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.DateCreate, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.DateCreate, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.DateCreate)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.DateUpdate, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.DateUpdate, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.DateUpdate)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.CreateBy, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.CreateBy, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.CreateBy)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.UpdateBy, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.UpdateBy, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.UpdateBy)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="submit" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+    @Html.ActionLink("Back to list", "Sale", "Device", null, new { @class = "btn btn-primary" })
+</div>*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+}

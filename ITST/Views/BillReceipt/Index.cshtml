@@ -1,0 +1,122 @@
+﻿@model IEnumerable<ITST.Models.BillReceipt>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>BillReceipt</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success " })
+</p>
+
+<table class="table table-bordered" id="bill">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillReceiptNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPrint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateUpdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillReceiptNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @if (item.IsPrint == 1)
+                    {
+                        @Html.DisplayName("Yes")
+                    }
+                    else if (item.IsPrint == 0)
+                    {
+                        @Html.DisplayName("No")
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUpdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateBy)
+                </td>
+                <td>
+                    @if (item.Type == "Repair")
+                    {
+                        <div>
+                            @Html.ActionLink("ViewList", "ViewList", new { id = item.BillReceiptNo }) |
+                            @Html.ActionLink("PrintList", "PrintList", new { id = item.BillReceiptNo, lid = item.BillReceiptID }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.BillReceiptID }) |
+                            @Html.ActionLink("SetPrice", "SetPrice", new { id = item.BillReceiptNo })
+                        </div>
+                    }
+                    else if (item.Type == "Sale")
+                    {
+                        <div>
+                            @Html.ActionLink("Add Scarp Item", "AddItem", new { id = item.BillReceiptID }) |
+                            @Html.ActionLink("ViewList", "ViewListSale", new { id = item.BillReceiptNo }) |
+                            @Html.ActionLink("SetPrice", "SetPriceSale", new { id = item.BillReceiptNo }) |
+                            @Html.ActionLink("PrintList", "ExportListSale", new { id = item.BillReceiptNo, lid = item.BillReceiptID }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.BillReceiptID })
+                        </div>
+                    }
+                    else 
+                    {
+                        <div>
+                            @Html.ActionLink("ViewList", "ViewListSale", new { id = item.BillReceiptNo }) |
+                            @Html.ActionLink("SetPrice", "SetPriceSale", new { id = item.BillReceiptNo }) |
+                            @Html.ActionLink("PrintList", "ExportListSale", new { id = item.BillReceiptNo, lid = item.BillReceiptID }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.BillReceiptID })
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#bill").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

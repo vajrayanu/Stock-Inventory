@@ -1,0 +1,107 @@
+﻿@model ITST.ViewModels.LogViewModels
+
+@{
+    ViewBag.Title = "Report By Date";
+}
+
+<h2>Report Generator</h2>
+<h4>By Date</h4>
+<hr />
+
+
+<div class="container well-lg">
+    <div class="row">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">Report Generator</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Select Date</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StatusID, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-12">
+                                            @Html.DropDownListFor(model => model.StatusID, ViewBag.StatusID as IEnumerable<SelectListItem>, " ", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.StatusID)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DeviceTypeID, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-12">
+                                            @Html.DropDownListFor(model => model.DeviceTypeID, ViewBag.DeviceTypeID as IEnumerable<SelectListItem>, " ", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.DeviceTypeID)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.StartDate)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EndDate, new { @class = "control-label col-md-2" })
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.EndDate)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Format Type", new { @class = "control-label col-md-2" })
+                                        <div class="col-md-12">
+                                            @Html.DropDownListFor(model => model.Format, ITST.Controllers.PrintLogController.GetFileType(), new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Format)
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" value="Submit" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to Report Generator", "Index", "PrintLog", null, new { @class = "btn btn-primary" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#StartDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#EndDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}

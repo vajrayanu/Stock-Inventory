@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "MainMenu";
+}
+
+@if (Request.IsAuthenticated)
+{
+    <div class="col-sm-12">
+        <div class="container well-lg">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="@Url.Action("Create", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-plus-sign"></span> เพิ่มอุปกรณ์</a>
+                        <a href="@Url.Action("BulkData", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-plus-sign"></span> เพิ่มอุปกรณ์มากกว่า 1 อุปกรณ์</a>
+                        <a href="@Url.Action("CreateAndRequisition", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-plus-sign"></span> เพิ่มและเบิก</a>
+                    </div>
+
+                    <div class="list-group">
+                        @*<a href="@Url.Action("InRepair", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-arrow-left"></span> ส่งไปซ่อม</a>
+                            <a href="@Url.Action("Sale", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-shopping-cart"></span> ส่งไปขาย</a>*@
+                    </div>
+
+                    <div class="list-group">
+                        <a href="@Url.Action("Sheet", "Machine")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-check"></span> เช็คชีทอุปกรณ์เครื่องจักร</a>
+                        <a href="@Url.Action("Sheet", "User")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-check"></span> เช็คชีทอุปกรณ์ผู้ใช้งาน</a>
+                        <a href="@Url.Action("Index", "MachineSheet")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-list-alt"></span> รายการเช็คชีทอุปกรณ์เครื่องจักร</a>
+                        <a href="@Url.Action("Index", "UserSheet")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-list-alt"></span> รายการเช็คชีทอุปกรณ์ผู้ใช้งาน</a>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="@Url.Action("ListIPScanner", "Dashboard")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-list-alt"></span> รายการไอพีของสแกนเนอร์</a>
+                    </div>
+
+                    <div class="list-group">
+                        <a href="@Url.Action("Index", "BillReceipt")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-list-alt"></span> รายการบิลส่งซ่อมและขาย</a>
+                    </div>
+
+                    <div class="list-group">
+                        @*<a href="@Url.Action("ViewAllDevice", "Dashboard")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-list-alt"></span> รายการอุปกรณ์ตามสถานที่</a>*@
+                        @*<a href="@Url.Action("listAllDevice", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-search"></span> ค้นหารายการอุปกรณ์ทั้งหมด</a>*@
+                        <a href="@Url.Action("TotalDevice", "Dashboard")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-search"></span> ค้นหารายการอุปกรณ์ตามประเภท</a>
+                        <a href="@Url.Action("SearchDevice", "Dashboard")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-search"></span> ค้นหาอุปกรณ์ในห้องเก็บของ</a>
+                        <a href="@Url.Action("FHistoryDevice", "Dashboard")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-search"></span> ค้นประวัติข้อมูลของอุปกรณ์</a>
+                    </div>
+
+                    <div class="list-group">
+                        <a href="@Url.Action("CartridgePrinter", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-print"></span> ตลับหมึกเทียบเท่า</a>
+                    </div>
+                    <div class="list-group">
+                        <a href="@Url.Action("ExtensionPhoneList", "User")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-phone-alt"></span> เบอร์โทรศัพท์</a>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="@Url.Action("Index", "DeviceType")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-certificate"></span> ชนิดอุปกรณ์</a>
+                        <a href="@Url.Action("Index", "Model")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-certificate"></span> โมเดลอุปกรณ์</a>
+                        <a href="@Url.Action("Index", "Brand")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-certificate"></span> ยี่ห้ออุปกรณ์</a>
+                    </div>
+
+                    <div class="list-group">
+                        <a href="@Url.Action("Index", "Plant")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-tree-conifer"></span> แพลนท์</a>
+                        <a href="@Url.Action("Index", "Department")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-tree-deciduous"></span> แผนก</a>
+                        <a href="@Url.Action("Index", "Location")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-th-large"></span> สถานที่</a>
+                        <a href="@Url.Action("Index", "Phase")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-th"></span> เฟส</a>
+                    </div>
+
+                    <div class="list-group">
+
+                        <a href="@Url.Action("Index", "LocationStock")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-map-marker"></span> สถานที่เก็บอุปกรณ์</a>
+                    </div>
+
+                    <div class="list-group">
+                        <a href="@Url.Action("UserByPlant", "User")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-user"></span> ผู้ใช้งาน <span class="badge">@ViewBag.TotalUser</span></a>
+                        <a href="@Url.Action("Machine", "Setting")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-cog"></span> เครื่องจักร <span class="badge">@ViewBag.TotalMachine</span></a>
+                        <a href="@Url.Action("Index", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-phone"></span> อุปกรณ์ <span class="badge">@ViewBag.TotalDevice</span></a>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="list-group">
+                        <a href="@Url.Action("Index", "PrintLog")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-file"></span> รายงาน</a>
+                        <a href="@Url.Action("AssetRequisitionReport", "PrintLog")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-file"></span> รายงานสินทรัพย์</a>
+                    </div>
+                    <a href="@Url.Action("InStock", "Dashboard")" class="btn btn-default" style="margin:2px">In-Stock <span class="badge">@ViewBag.InStock</span></a>
+                    <a href="@Url.Action("InUse", "Dashboard")" class="btn btn-default" style="margin:2px">In-Use <span class="badge">@ViewBag.Use</span></a>
+                    <a href="@Url.Action("InRepaired", "Device")" class="btn btn-default" style="margin:2px">In-Repair <span class="badge">@ViewBag.InRepair</span></a>
+                    <a href="@Url.Action("InSale", "Device")" class="btn btn-default" style="margin:2px">In-Sale <span class="badge">@ViewBag.InSale</span></a>
+                    <a href="@Url.Action("SparePart", "Device")" class="btn btn-default" style="margin:2px">Spare Part <span class="badge">@ViewBag.Spare</span></a>
+                    <a href="@Url.Action("AccessoriesParts", "Device")" class="btn btn-default" style="margin:2px">Accessories Parts <span class="badge">@ViewBag.Access</span></a>
+                    <a href="@Url.Action("WaitSentRepair", "Dashboard")" class="btn btn-default" style="margin:2px">Wait for sent repair <span class="badge">@ViewBag.WSentRepair</span></a>
+                    <a href="@Url.Action("WaitSentSale", "Dashboard")" class="btn btn-default" style="margin:2px">Wait for sent sale <span class="badge">@ViewBag.WSentSale</span></a>
+                    <a href="@Url.Action("SendRepair", "Device")" class="btn btn-default" style="margin:2px">Sent Repair <span class="badge">@ViewBag.SentRepair</span></a>
+                    <a href="@Url.Action("SentSale", "Device")" class="btn btn-default" style="margin:2px">Sent Sale <span class="badge">@ViewBag.SentSale</span></a>
+                    <a href="@Url.Action("Destroyed", "Device")" class="btn btn-default" style="margin:2px">Destroyed <span class="badge">@ViewBag.Destroyed</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (!Request.IsAuthenticated)
+{
+
+    <div class="container well-lg">
+        <div class="row">
+            <div class="col-md-4 col-sm-3 col-xs-6">
+
+            </div>
+            <div class="col-md-4 col-sm-3 col-xs-6">
+                <div class="alert alert-danger text-center">
+                    <h4> CAUTION </h4>
+                    <hr>
+                    <i class="glyphicon glyphicon-warning-sign" style="font-size:5em"></i>
+                    <p>
+                        Please login.
+                    </p>
+                    <hr>
+                    @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-3 col-xs-6">
+
+            </div>
+        </div>
+    </div>
+}
+
+

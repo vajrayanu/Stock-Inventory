@@ -1,0 +1,216 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "FindBySerialNumber";
+}
+
+<h2>FindBySerialNumber</h2>
+<h4>Device</h4>
+<hr />
+
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.DateUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </th>
+        <th>
+            @Html.DisplayName("LocationStock")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IPAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specification)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceType.Type)
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Machine.MachineName)
+        </th>
+        <th>
+            @Html.DisplayName("User")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("Cause")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        
+    var db = new ITST.Models.ITStockEntities1();
+    var totalcause = db.RecordInRepairs.Where(r => r.SerialNumber == item.SerialNumber).Count();
+    var cause = db.RecordInRepairs.Where(r => r.SerialNumber == item.SerialNumber).OrderBy(r => r.DateRequest).Skip(totalcause - (totalcause - 1)).Select(r => r.Cause).DefaultIfEmpty().First();
+    var cause1 = db.RecordInRepairs.Where(r => r.SerialNumber == item.SerialNumber).Select(r => r.Cause).DefaultIfEmpty().FirstOrDefault();
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStockName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IPAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant.PlantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine.MachineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Status1)
+            </td>
+            <td>
+                @if (@cause == null)
+                {
+                    @cause1
+                }else
+                {
+                    @cause
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Device", new { id = item.DeviceID }, null) |
+                @if (item.StatusID == 2 || item.StatusID == 6 || item.StatusID == 4 || item.StatusID == 1 || item.StatusID == 7)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Requistion", "SetRequistion", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Requistion", "SetRequistion", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                @if (item.StatusID == 2 || item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 6 || item.StatusID == 7)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Repair", "SetRepair", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Repair", "SetRepair", "Device", new { id = item.DeviceID }, null) |
+
+                    </div>
+                }
+                @if (item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 1 || item.StatusID == 6 || item.StatusID == 7)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Sale", "SetSell", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Sale", "SetSell", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                @if (item.StatusID == 1 || item.StatusID == 2 || item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 6 || item.StatusID == 7)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Spare", "SetSpare", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Spare", "SetSpare", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                @if (item.StatusID == 1 || item.StatusID == 3 || item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 7)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Reinstock", "SetInstockAfterRepair", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Reinstock", "SetInstockAfterRepair", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+
+                @if (item.StatusID == 1 || item.StatusID == 3 || item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 6 || item.StatusID == 7)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("SentRepair", "SetSentRepair", "Device", new { id = item.DeviceID }, null) |
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("SentRepair", "SetSentRepair", "Device", new { id = item.DeviceID }, null)
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

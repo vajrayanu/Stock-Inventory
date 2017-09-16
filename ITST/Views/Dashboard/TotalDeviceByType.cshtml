@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "TotalDeviceByType";
+}
+
+<h2>TotalDeviceByType</h2>
+<h4>@ViewBag.Type</h4>
+<hr />
+
+<table class="table table-bordered" id="totalByType">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.Model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand.BrandName)
+            </th>
+            <th>
+                @Html.DisplayName("Quantity")
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var db = new ITST.Models.ITStockEntities1();
+            <tr>
+                <td>
+                    <a href="@Url.Action("TotalDeviceByModel", "Dashboard", new { id = item.DeviceTypeID, mid = item.ModelID })">@Html.DisplayFor(modelItem => item.ModelName)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @{
+            var total = db.Devices.Where(d => d.ModelID == item.ModelID).Count();
+                    }
+                    <span class="badge badge-info">@total</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#totalByType").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

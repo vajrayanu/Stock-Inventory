@@ -1,0 +1,266 @@
+﻿@model ITST.ViewModels.DeviceRatioViewModels
+
+@{
+    ViewBag.Title = "TotalDevice";
+}
+
+<h2>TotalDevice</h2>
+
+<hr />
+
+<div class="row well-lg">
+    <div class="btn-group btn-group-justified">
+        <a href="@Url.Action("TotalDevice", "Dashboard", new { id = "Type" })" class="btn btn-primary col-sm-3">
+            Type
+            <br><span class="badge badge-info"></span>
+        </a>
+        <a href="@Url.Action("TotalDevice", "Dashboard", new { id = "Status" })" class="btn btn-primary col-sm-3">
+            Status
+            <br><span class="badge badge-info"></span>
+        </a>
+        <a href="@Url.Action("TotalDevice", "Dashboard", new { id = "Department" })" class="btn btn-primary col-sm-3">
+            Department
+            <br><span class="badge badge-info"></span>
+        </a>
+        <a href="@Url.Action("TotalDevice", "Dashboard", new { id = "Spare" })" class="btn btn-primary col-sm-3">
+            Spare
+            <br><span class="badge badge-info"></span>
+        </a>
+        <a href="@Url.Action("TotalDevice", "Dashboard", new { id = "LStock" })" class="btn btn-primary col-sm-3">
+            Location InStock
+            <br><span class="badge badge-info"></span>
+        </a>
+    </div>
+</div>
+
+@if (Model.Devicend != null)
+{
+    <table class="table table-bordered" id="Devicend">
+        <thead>
+            <tr class="active">
+                <th>
+                    @Html.DisplayName("Type")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Devicend)
+            {
+                var db = new ITST.Models.ITStockEntities1();
+                <tr>
+                    <td>
+                        <a href="@Url.Action("TotalDeviceByType", "Dashboard", new { id = item.DeviceTypeID })">@Html.DisplayFor(modelItem => item.DeviceType.Type)</a>
+                    </td>
+                    <td>
+                        @{
+                var total = db.Devices.Where(d => d.Type == item.Type).Count();
+                        }
+                        <span class="badge badge-info">@total</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Devicest != null)
+{
+    <table class="table table-bordered" id="Devicest">
+        <thead>
+            <tr class="active">
+                <th>
+                    @Html.DisplayName("Status")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Devicest)
+            {
+                var db = new ITST.Models.ITStockEntities1();
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StatusName)
+                    </td>
+                    <td>
+                        @{
+                var total = db.Devices.Where(d => d.Status.StatusID == item.StatusID).Count();
+                        }
+                        <span class="badge badge-info">@total</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Devicerd != null)
+{
+    <table class="table table-bordered" id="Devicerd">
+        <thead>
+            <tr class="active">
+                <th>
+                    @Html.DisplayName("Department")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Devicerd)
+            {
+                var db = new ITST.Models.ITStockEntities1();
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                    </td>
+                    <td>
+                        @{
+                var total = db.Devices.Where(d => d.Department.DepartmentID == item.DepartmentID).Count();
+                        }
+                        <span class="badge badge-info">@total</span>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Center", "AddItem", new { id = item.DepartmentID, pid = 3 }) |
+                        @Html.ActionLink("PCLT", "AddItem", new { id = item.DepartmentID, pid = 2 }) |
+                        @Html.ActionLink("TBS", "AddItem", new { id = item.DepartmentID, pid = 1 })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Deviceth != null)
+{
+    <table class="table table-bordered" id="Deviceth">
+        <thead>
+            <tr class="active">
+                <th>
+                    @Html.DisplayName("Location")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Deviceth)
+            {
+                var db = new ITST.Models.ITStockEntities1();
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocationStockName)
+                    </td>
+                    <td>
+                        @{
+                var total = db.Devices.Where(d => d.LocationStockName == item.LocationStockName && d.StatusID != 1 && d.StatusID != 4 && d.StatusID != 6 && d.StatusID != 7 && d.StatusID != 8 && d.StatusID != 9).Count();
+                        }
+                        <span class="badge badge-info">@total</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.Devicespr != null)
+{
+    <table class="table table-bordered" id="Devicespr">
+        <thead>
+            <tr class="active">
+                <th>
+                    @Html.DisplayName("Plant")
+                </th>
+                <th>
+                    @Html.DisplayName("Department")
+                </th>
+                <th>
+                    @Html.DisplayName("Model")
+                </th>
+                <th>
+                    @Html.DisplayName("Brand")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantity")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Devicespr)
+            {
+                var db = new ITST.Models.ITStockEntities1();
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModelName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrandName)
+                    </td>
+                    <td>
+                        @{
+                var total = db.Devices.Where(d => d.DepartmentID == item.DepartmentID && d.ModelID == item.ModelID && d.StatusID == 5).Count();
+                        }
+                        <span class="badge badge-info">@total</span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#Devicest").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+
+<script>
+    $(function () {
+        $("table#Devicend").dataTable({
+            "sPaginationType": "full_numbers"
+        });
+    })
+</script>
+
+<script>
+    $(function () {
+        $("table#Devicerd").dataTable({
+            "sPaginationType": "full_numbers"
+        });
+    })
+</script>
+
+<script>
+    $(function () {
+        $("table#Deviceth").dataTable({
+            "sPaginationType": "full_numbers"
+        });
+    })
+</script>
+
+<script>
+    $(function () {
+        $("table#Devicespr").dataTable({
+            "sPaginationType": "full_numbers"
+        });
+    })
+</script>
+
+}

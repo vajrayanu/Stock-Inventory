@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "TotalDeviceByDepartment";
+}
+
+<h2>TotalDeviceByDepartment</h2>
+
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (String.IsNullOrEmpty(item.DepartmentID.ToString()))
+            {
+                 @Html.DisplayName("Unknown")
+            }
+            else
+            {
+                 @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+            }
+        </td>
+    </tr>
+}
+
+</table>

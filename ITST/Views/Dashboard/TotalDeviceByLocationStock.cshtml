@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "TotalDeviceByLocationStock";
+}
+
+<h2>TotalDeviceByLocationStock</h2>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.LocationStockName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationStockName)
+        </td>
+    </tr>
+}
+
+</table>

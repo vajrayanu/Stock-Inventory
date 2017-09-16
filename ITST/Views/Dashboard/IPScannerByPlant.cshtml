@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "IPQRCodeScanner";
+}
+
+<h2>IP QRCode Scanner</h2>
+
+<h4>Plant</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.Plant.PlantName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("IPScannerByDepartment", "Dashboard", new { id = item.PlantID })">@Html.DisplayFor(modelItem => item.Plant.PlantName)</a>
+            @{
+    var db = new ITST.Models.ITStockEntities1();
+    var TotalDevicePerType = db.Devices.Where(d => d.PlantID == item.PlantID && d.StatusID == 1 && d.IPAddress != null).Count();
+            }
+            <span class="badge badge-info">@TotalDevicePerType</span>
+        </td>
+    </tr>
+}
+
+</table>

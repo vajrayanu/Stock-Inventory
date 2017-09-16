@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "CriteriaByModel";
+}
+
+<h2>Report Generator</h2>
+<h4>By Model</h4>
+<hr />
+
+
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("listDataByCriteriaModel", "PrintLog", new { id = item.ModelID, sid = @ViewBag.StatusID })">@Html.DisplayFor(modelItem => item.ModelName)</a>
+                    @{
+            int st = @ViewBag.StatusID;
+            var db = new ITST.Models.ITStockEntities1();
+            var DevicePerModel = db.Devices.Where(d => d.ModelID == item.ModelID && d.StatusID == st).Count();
+                    }
+                    <span class="badge badge-info">@DevicePerModel</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                <td>
+                    @Html.ActionLink("Print", "printListDataByCriteriaModel", new { id = item.ModelID, sid = @ViewBag.StatusID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#list").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

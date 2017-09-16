@@ -1,0 +1,139 @@
+﻿@model ITST.Models.BillReceiptList
+
+@{
+    ViewBag.Title = "RemoveRepairList";
+}
+
+@if (@ViewBag.Isprint == 1 || @ViewBag.Status != 8)
+{
+    <h3>Cannot Remove</h3>
+    
+    <div>
+        <h4>BillReceiptList</h4>
+        <hr />
+        <div class="alert alert-danger">
+            <strong>Cannot Remove Item</strong> Because this billreceipt already sent.
+        </div>
+        <div class="form-actions no-color">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+}
+else
+{
+    <h2>RemoveRepairList</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>BillReceiptList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerialNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MachineName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MachineName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeviceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeviceName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InRepairDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InRepairDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Remove" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>
+}
+

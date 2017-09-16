@@ -1,0 +1,40 @@
+﻿@model ITST.ViewModels.FindDeviceViewModels
+
+@{
+    ViewBag.Title = "FindDeviceInLocationStock";
+}
+
+<h2>Find Device In LocationStock</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Find Device</div>
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.StatusID, "Status", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.StatusID, ITST.Controllers.DashboardController.GetListDeviceByStockLocation(), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StatusID)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LocationStockID, "LocationStock", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("LocationStockID", null, String.Empty, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LocationStockID)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="submit" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

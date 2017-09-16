@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ITST.Models.Machine>
+
+@{
+    ViewBag.Title = "MachineList";
+}
+
+<h2>MachineList</h2>
+<h4>Machine</h4>
+<hr />
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Machine", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table table-bordered" id="LstMachine">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.MachineName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IPAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PLCAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MACAddress)
+            </th>
+            <th>
+                @Html.DisplayName("Plant")
+            </th>
+            <th>
+                @Html.DisplayName("Department")
+            </th>
+            <th>
+                @Html.DisplayName("Location")
+            </th>
+            <th>
+                @Html.DisplayName("Phase")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateUpdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PLCAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MACAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phase.PhaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUpdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateBy)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Machine", new { id = item.MachineID }, null) |
+                    @Html.ActionLink("Details", "Details", "Machine", new { id = item.MachineID }, null) |
+                    @Html.ActionLink("Delete", "Delete", "Machine", new { id = item.MachineID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#LstMachine").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

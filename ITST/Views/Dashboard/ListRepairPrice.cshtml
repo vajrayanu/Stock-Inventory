@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ITST.Models.RecordPriceSentRepair>
+
+@{
+    ViewBag.Title = "ListRepairPrice";
+}
+
+<h2>ListRepairPrice</h2>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.RecordBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecordDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FixAccess)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePerItem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PriceTotal)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecordBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecordDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FixAccess)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePerItem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PriceTotal)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>*@
+    </tr>
+}
+
+</table>

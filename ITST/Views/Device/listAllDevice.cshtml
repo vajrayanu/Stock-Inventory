@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Total Device";
+}
+
+<h2>Total Device</h2>
+<h4>Device</h4>
+<hr />
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>Action</th>
+            <th>DateCreate</th>
+            <th>CreateBy</th>
+            <th>LocationStock</th>
+            <th>IPAddress</th>
+            <th>SerialNumber</th>
+            <th>Type</th>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>Status</th>
+            <th>Plant</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Phase</th>
+            <th>Machine</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </tfoot>
+
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            // Setup - add a text input to each footer cell
+            $('#myTable tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" style="width: 100px;"/>');
+            });
+
+            var table = $('#myTable').DataTable({
+                "ajax": {
+                "url": '@Url.Action("getAllITDevice")',
+                "type": "GET",
+                "datatype": "json"
+            },
+                dom: 'Bfrtip',
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    ['10 rows', '25 rows', '50 rows', 'Show all']
+                ],
+                buttons: [
+                    'pageLength'
+                ],
+                extend: 'collection',
+                text: 'Export',
+                buttons: [
+					'pageLength',
+                    'copy',
+                    'excel',
+                    'csv'
+                ],
+                "columns": [
+                                        {
+                                            "data": "DeviceID",
+                                            "render": function (data, type, full, meta) {
+                                                return '<a href="@Url.Action("setDevice/")' + data + '">Set</a>' + '&nbsp;' + '|' + '&nbsp;' + '<a href="@Url.Action("Edit/")' + data + '">Edit</a>';
+                                            },
+                                            "autoWidth": true
+                                        },
+                    {
+                        "data": "DateCreate",
+                        "render": function (value) {
+                            if (value === null) return "";
+
+                            var pattern = /Date\(([^)]+)\)/;
+                            var results = pattern.exec(value);
+                            var dt = new Date(parseFloat(results[1]));
+
+                            return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+                        },
+                        "autoWidth": true
+                    },
+                    { "data": "CreateBy", "autoWidth": true },
+                    { "data": "LocationStockName", "autoWidth": true },
+                    { "data": "IPAddress", "autoWidth": true },
+                    { "data": "SerialNumber", "autoWidth": true },
+                    { "data": "Type", "autoWidth": true },
+                    { "data": "ModelName", "autoWidth": true },
+                    { "data": "BrandName", "autoWidth": true },
+                    { "data": "StatusName", "autoWidth": true },
+                    { "data": "PlantName", "autoWidth": true },
+                    { "data": "DepartmentName", "autoWidth": true },
+                    { "data": "LocationName", "autoWidth": true },
+                    { "data": "PhaseName", "autoWidth": true },
+                    { "data": "MachineName", "autoWidth": true },
+                    { "data": "UserName", "autoWidth": true },
+            ],
+            });
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+    });
+    </script>
+}

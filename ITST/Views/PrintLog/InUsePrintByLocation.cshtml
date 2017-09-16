@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ITST.Models.Plant>
+
+@{
+    ViewBag.Title = "InUsePrintByLocation";
+}
+
+<h2>InUsePrintByLocation</h2>
+
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.PlantName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("ListInstockPrintByPlant", "PrintLog", new { id = item.PlantID })">@Html.DisplayFor(modelItem => item.PlantName)</a>
+                @{
+        var db = new ITST.Models.ITStockEntities1();
+        var DevicePerPlant = db.Devices.Where(d => d.PlantID == item.PlantID && d.StatusID == 1).Count();
+                }
+                <span class="badge badge-info">@DevicePerPlant</span>
+            </td>
+            <td>
+                @Html.ActionLink("Print", "PrintInUse", new { pid = item.PlantID })
+            </td>
+        </tr>
+    }
+
+</table>
+

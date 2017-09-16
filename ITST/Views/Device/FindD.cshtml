@@ -1,0 +1,189 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "Find Device";
+}
+
+<h2>Find Device</h2>
+
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("LocationStock")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeviceType.Type)
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Specification)
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayName("Machine")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStockName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant.PlantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhaseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine.MachineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Status1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateUpdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateBy)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |
+                @if(item.StatusID == 2 || item.StatusID == 6 || item.StatusID == 4 || item.StatusID == 1)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Requistion", "SetRequistion", new { id = item.DeviceID }) |
+                    </div>
+                }else
+                {
+                    <div>
+                        @Html.ActionLink("Requistion", "SetRequistion", new { id = item.DeviceID }) |
+                    </div>
+                }
+                @if (item.StatusID == 2 || item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 6)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Repair", "SetRepair", new { id = item.DeviceID }) |
+                    </div>
+                }else
+                {
+                    <div>
+                        @Html.ActionLink("Repair", "SetRepair", new { id = item.DeviceID }) |
+                        
+                    </div>
+                }
+                @if (item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 1 || item.StatusID == 6)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Sale", "SetSell", new { id = item.DeviceID }) |
+                    </div>
+                }else
+                {
+                    <div>
+                        @Html.ActionLink("Sale", "SetSell", new { id = item.DeviceID }) |
+                    </div>
+                }
+                @if (item.StatusID == 1 || item.StatusID == 2 || item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 6)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Spare", "SetSpare", new { id = item.DeviceID }) |
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("Spare", "SetSpare", new { id = item.DeviceID }) |
+                    </div>
+                }
+                @if (item.StatusID == 1 || item.StatusID == 3 || item.StatusID == 4 || item.StatusID == 5)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("Reinstock", "SetInstockAfterRepair", new { id = item.DeviceID }) |
+                    </div>
+                }
+                else
+                {
+                    @Html.ActionLink("Reinstock", "SetInstockAfterRepair", new { id = item.DeviceID })
+                }
+
+                @if (item.StatusID == 1 || item.StatusID == 3 || item.StatusID == 4 || item.StatusID == 5 || item.StatusID == 6)
+                {
+                    <div class="hidden">
+                        @Html.ActionLink("SentRepair", "SetSentRepair", new { id = item.DeviceID }) |
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink("SentRepair", "SetSentRepair", new { id = item.DeviceID }) |
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+
+</table>

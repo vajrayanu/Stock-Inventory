@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Internal and Emergency";
+}
+
+<h2><i class="glyphicon glyphicon-phone-alt"></i> Internal and Emergency Phone List</h2>
+
+<div class="row" style="margin:2px; padding:2px">
+    <a class="btn btn-primary pull-right btn-sm RbtnMargin" href="@Url.Action("ExtensionPhoneList", "User")">YTMT Ext.Phone List</a>
+    <a class="btn btn-primary pull-right btn-sm RbtnMargin" style="margin-right:2px" rel="nofollow" href="http://intra.ytmt.co.th/" target="_blank">YTMT Main Page</a>
+</div>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success btn-sm" })
+</p>
+
+<hr />
+
+<h4>Internal Phone List</h4>
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+</table>
+
+<hr />
+
+<h4>Emergency Phone List</h4>
+
+<table class="table table-bordered" id="myTable2">
+    <thead>
+        <tr class="active">
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                responsive: {
+                    details: {
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return col.hidden ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                        '<td>' + col.title + ':' + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+                "ajax": {
+                    "url": '@Url.Action("getInternalPhonelist")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ],
+                "columns": [
+                        { "data": "LocationName", "autoWidth": true },
+                        { "data": "PhoneNumber", "autoWidth": true },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, full, meta) {
+                                return '<a href="@Url.Action("Edit/")' + data + '">Edit</a>' + '&nbsp;';
+                            },
+                            "autoWidth": true
+                        },
+                ]
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable2').DataTable({
+                responsive: {
+                    details: {
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return col.hidden ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                        '<td>' + col.title + ':' + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+                "ajax": {
+                    "url": '@Url.Action("getEmergencyPhonelist")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ],
+                "columns": [
+                        { "data": "LocationName", "autoWidth": true },
+                        { "data": "PhoneNumber", "autoWidth": true },
+                        {
+                            "data": "Id",
+                            "render": function (data, type, full, meta) {
+                                return '<a href="@Url.Action("Edit/")' + data + '">Edit</a>' + '&nbsp;';
+                            },
+                            "autoWidth": true
+                        },
+                ]
+            });
+        });
+    </script>
+}

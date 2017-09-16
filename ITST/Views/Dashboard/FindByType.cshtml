@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "FindByType";
+}
+
+<h2>FindByType</h2>
+
+<table class="table table-bordered" id="find">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("filterByModel", "PrintLog", new { sid = item.StatusID, lid = item.LocationStockID,tid = item.DeviceTypeID })">@Html.DisplayFor(modelItem => item.DeviceType.Type)</a>
+                    @{
+            var db = new ITST.Models.ITStockEntities1();
+            var DevicePerType = db.Devices.Where(d => d.DeviceTypeID == item.DeviceTypeID && d.StatusID == item.StatusID && d.LocationStockID == item.LocationStockID).Count();
+                    }
+                    <span class="badge badge-info">@DevicePerType</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href='@Url.Action("ExportPDF", "Dashboard", new { sid=ViewBag.sid, lid = ViewBag.lid})'>
+    <div class="btn btn-primary" style="margin:2px;">
+        Excel
+    </div>
+</a>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#find").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

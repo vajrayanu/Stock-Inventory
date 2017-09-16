@@ -1,0 +1,300 @@
+﻿
+@{
+    ViewBag.Title = "inventoryChart";
+}
+
+<div class="container">
+    <div class="col-lg-6 well-lg">
+        <h4>In Repair</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="active">
+                    <th>Type</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>QR Code Scanner</td>
+                    <td>@ViewBag.ScannerRepairQty</td>
+                </tr>
+                <tr>
+                    <td>Panel PC</td>
+                    <td>@ViewBag.PanelPCRepairQty</td>
+                </tr>
+                <tr>
+                    <td>Preset PC</td>
+                    <td>@ViewBag.PresetPCRepairQty</td>
+                </tr>
+                <tr>
+                    <td>Printer</td>
+                    <td>@ViewBag.PrinterRepairQty</td>
+                </tr>
+            </tbody>
+         </table>
+    </div>
+    <div class="col-lg-6 well-lg">
+        <h4>QR Code Scanner</h4>
+        <canvas id="myChartSC"></canvas>
+    </div>
+    <div class="col-lg-6 well-lg">
+        <h4>Panel PC</h4>
+        <canvas id="myChartPN"></canvas>
+    </div>
+    <div class="col-lg-6 well-lg">
+        <h4>Printer</h4>
+        <canvas id="myChartPT"></canvas>
+    </div>
+
+    <div class="well-lg">
+        <h4>Preset PC</h4>
+        <canvas id="myChartPS"></canvas>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'http://localhost:53515/Dashboard/getChartPresetPCData',
+            method: "GET",
+            success: function (data) {
+                console.log(data);
+                var Model = [];
+                var InStock = [];
+                var Minimum = [];
+
+                for (var i in data) {
+                    Model.push(data[i].Model);
+                    InStock.push(data[i].InStock);
+                    Minimum.push(data[i].Minimum);
+                }
+
+                var chartdata = {
+                    labels: Model,
+                    datasets: [
+                        {
+                            label: 'Minimum Stock',
+                            type: 'line',
+                            fill: false,
+                            lineTension: 0,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            data: Minimum
+                        },
+                        {
+                            label: 'In Stock',
+                            type: 'bar',
+                            backgroundColor: 'rgba(255,99,132,0.2)',
+                            borderColor: 'rgba(255,99,132,1)',
+                            hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                            hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                            data: InStock
+                        }
+                    ]
+                };
+                var tid = "#myChartPS";
+                var ctx = $(tid);
+                var barGraph = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartdata
+                })
+                $('#myChartPS').click(function (e) {
+                    var activeBars = barGraph.getElementsAtEvent(e)
+                    var firstPoint = activeBars[0];
+                    alert(chartdata.datasets[firstPoint._datasetIndex].data[firstPoint._index])
+                    var department = chartdata.labels[firstPoint._index];
+                    window.location.href = 'getDevice/' + '?param1=' + department
+                });
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
+</script>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'http://localhost:53515/Dashboard/getChartScannerData',
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    var Model = [];
+                    var InStock = [];
+                    var Minimum = [];
+
+                    for (var i in data) {
+                        Model.push(data[i].Model);
+                        InStock.push(data[i].InStock);
+                        Minimum.push(data[i].Minimum);
+                    }
+
+                    var chartdata = {
+                        labels: Model,
+                        datasets: [
+                            {
+                                label: 'Minimum Stock',
+                                type: 'line',
+                                fill: false,
+                                lineTension: 0,
+                                backgroundColor: "rgba(75,192,192,0.4)",
+                                borderColor: "rgba(75,192,192,1)",
+                                data: Minimum
+                            },
+                            {
+                                label: 'In Stock',
+                                type: 'bar',
+                                backgroundColor: 'rgba(255,99,132,0.2)',
+                                borderColor: 'rgba(255,99,132,1)',
+                                hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                                hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                                data: InStock
+                            }
+                        ]
+                    };
+                    var tid = "#myChartSC";
+                    var ctx = $(tid);
+                    var barGraph = new Chart(ctx, {
+                        type: 'bar',
+                        data: chartdata
+                    })
+                    $('#myChartSC').click(function (e) {
+                        var activeBars = barGraph.getElementsAtEvent(e)
+                        var firstPoint = activeBars[0];
+                        alert(chartdata.datasets[firstPoint._datasetIndex].data[firstPoint._index])
+                        var department = chartdata.labels[firstPoint._index];
+                        window.location.href = 'getDevice/' + '?param1=' + department
+                    });
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    </script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'http://localhost:53515/Dashboard/getChartPanelPCData',
+            method: "GET",
+            success: function (data) {
+                console.log(data);
+                var Model = [];
+                var InStock = [];
+                var Minimum = [];
+
+                for (var i in data) {
+                    Model.push(data[i].Model);
+                    InStock.push(data[i].InStock);
+                    Minimum.push(data[i].Minimum);
+                }
+
+                var chartdata = {
+                    labels: Model,
+                    datasets: [
+                        {
+                            label: 'Minimum Stock',
+                            type: 'line',
+                            fill: false,
+                            lineTension: 0,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            data: Minimum
+                        },
+                        {
+                            label: 'In Stock',
+                            type: 'bar',
+                            backgroundColor: 'rgba(255,99,132,0.2)',
+                            borderColor: 'rgba(255,99,132,1)',
+                            hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                            hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                            data: InStock
+                        }
+                    ]
+                };
+                var tid = "#myChartPN";
+                var ctx = $(tid);
+                var barGraph = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartdata
+                })
+                $('#myChartPN').click(function (e) {
+                    var activeBars = barGraph.getElementsAtEvent(e)
+                    var firstPoint = activeBars[0];
+                    alert(chartdata.datasets[firstPoint._datasetIndex].data[firstPoint._index])
+                    var department = chartdata.labels[firstPoint._index];
+                    window.location.href = 'getDevice/' + '?param1=' + department
+                });
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: 'http://localhost:53515/Dashboard/getChartPrinterData',
+            method: "GET",
+            success: function (data) {
+                console.log(data);
+                var Model = [];
+                var InStock = [];
+                var Minimum = [];
+
+                for (var i in data) {
+                    Model.push(data[i].Model);
+                    InStock.push(data[i].InStock);
+                    Minimum.push(data[i].Minimum);
+                }
+
+                var chartdata = {
+                    labels: Model,
+                    datasets: [
+                        {
+                            label: 'Minimum Stock',
+                            type: 'line',
+                            fill: false,
+                            lineTension: 0,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            data: Minimum
+                        },
+                        {
+                            label: 'In Stock',
+                            type: 'bar',
+                            backgroundColor: 'rgba(255,99,132,0.2)',
+                            borderColor: 'rgba(255,99,132,1)',
+                            hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+                            hoverBorderColor: 'rgba(200, 200, 200, 1)',
+                            data: InStock
+                        }
+                    ]
+                };
+                var tid = "#myChartPT";
+                var ctx = $(tid);
+                var barGraph = new Chart(ctx, {
+                    type: 'bar',
+                    data: chartdata
+                })
+                $('#myChartPT').click(function (e) {
+                    var activeBars = barGraph.getElementsAtEvent(e)
+                    var firstPoint = activeBars[0];
+                    alert(chartdata.datasets[firstPoint._datasetIndex].data[firstPoint._index])
+                    var department = chartdata.labels[firstPoint._index];
+                    window.location.href = 'getDevice/' + '?param1=' + department
+                });
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
+</script>
+}

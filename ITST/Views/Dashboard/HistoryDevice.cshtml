@@ -1,0 +1,623 @@
+﻿@model ITST.ViewModels.CombineViewModels
+
+@{
+    ViewBag.Title = "DeviceHistory";
+}
+
+<h2>Device History</h2>
+
+<h4>Device</h4>
+<hr />
+
+<h4>ประวัติการนำเข้าอุปกรณ์</h4>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("InStockBy")
+        </th>
+        <th>
+            @Html.DisplayName("DateInStock")
+        </th>
+        <th>
+            @Html.DisplayName("SerialNumber")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceType")
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("LocationStock")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RecordInstock)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstockBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateInstock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStock)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h4>ประวัติการเบิกอุปกรณ์</h4>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("RequestBy")
+        </th>
+        <th>
+            @Html.DisplayName("DateRequisition")
+        </th>
+        <th>
+            @Html.DisplayName("SerialNumber")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceType")
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Cause")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayName("Machine")
+        </th>
+        <th>
+            @Html.DisplayName("User")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceName")
+        </th>
+        <th>
+            @Html.DisplayName("LocationStock")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RecordRequisition)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRequisition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cause)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStock)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h4>ประวัติการแจ้งซ่อมอุปกรณ์</h4>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("RequestBy")
+        </th>
+        <th>
+            @Html.DisplayName("DateRequisition")
+        </th>
+        <th>
+            @Html.DisplayName("SerialNumber")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceType")
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Cause")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayName("Machine")
+        </th>
+        <th>
+            @Html.DisplayName("UserName")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceName")
+        </th>
+        <th>
+            @Html.DisplayName("LocationStock")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RecordInRepair)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRequest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cause)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStock)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h4>ประวัติการขายอุปกรณ์</h4>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("RequestBy")
+        </th>
+        <th>
+            @Html.DisplayName("DateRequisition")
+        </th>
+        <th>
+            @Html.DisplayName("SerialNumber")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceType")
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Cause")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayName("Machine")
+        </th>
+        <th>
+            @Html.DisplayName("User")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceName")
+        </th>
+        <th>
+            @Html.DisplayName("LocationStock")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RecordSale)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRequest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cause)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStock)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h4>ประวัติการสำรองอุปกรณ์</h4>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("RequestBy")
+        </th>
+        <th>
+            @Html.DisplayName("DateRequisition")
+        </th>
+        <th>
+            @Html.DisplayName("SerialNumber")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceType")
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Cause")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayName("Machine")
+        </th>
+        <th>
+            @Html.DisplayName("User")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceName")
+        </th>
+        <th>
+            @Html.DisplayName("LocationStock")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RecordSpare)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRequest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cause)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStock)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<h4>ประวัติการซ่อมเสร็จนำเข้าอุปกรณ์</h4>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("RequestBy")
+        </th>
+        <th>
+            @Html.DisplayName("DateRequisition")
+        </th>
+        <th>
+            @Html.DisplayName("SerialNumber")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceType")
+        </th>
+        <th>
+            @Html.DisplayName("Model")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Cause")
+        </th>
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Location")
+        </th>
+        <th>
+            @Html.DisplayName("Phase")
+        </th>
+        <th>
+            @Html.DisplayName("Machine")
+        </th>
+        <th>
+            @Html.DisplayName("User")
+        </th>
+        <th>
+            @Html.DisplayName("DeviceName")
+        </th>
+        <th>
+            @Html.DisplayName("LocationStock")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RecordReinstock)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRequest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cause)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Machine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeviceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationStock)
+            </td>
+        </tr>
+    }
+
+</table>
+

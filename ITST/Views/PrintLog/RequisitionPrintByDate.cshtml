@@ -1,0 +1,99 @@
+﻿@model ITST.ViewModels.LogViewModels
+
+@{
+    ViewBag.Title = "RequisitionPrintByDate";
+}
+
+<h2>RequisitionPrintByDate</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Print Log Instock</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Select Date</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StartDate)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EndDate, new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EndDate)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Format Type", new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @{
+    List<SelectListItem> TypelistItems = new List<SelectListItem>();
+    TypelistItems.Add(new SelectListItem
+ {
+     Text = "Pdf",
+     Value = "Pdf"
+ });
+    TypelistItems.Add(new SelectListItem
+         {
+             Text = "Excel",
+             Value = "Excel"
+         });
+    TypelistItems.Add(new SelectListItem
+         {
+             Text = "Word",
+             Value = "Word"
+         });
+                                    }
+                                    @Html.DropDownListFor(model => model.Format, TypelistItems, "-- Select Format --", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Format)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="submit" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#StartDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#EndDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}

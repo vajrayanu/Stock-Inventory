@@ -1,0 +1,1029 @@
+﻿@model ITST.Models.UserSheet
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>UserSheet</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PCBoardBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PCBoardBrand)
+                @Html.ValidationMessageFor(model => model.PCBoardBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PCBoardModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PCBoardModel)
+                @Html.ValidationMessageFor(model => model.PCBoardModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PCBoardSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PCBoardSerial)
+                @Html.ValidationMessageFor(model => model.PCBoardSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PCBoardRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PCBoardRemark)
+                @Html.ValidationMessageFor(model => model.PCBoardRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProcessorBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProcessorBrand)
+                @Html.ValidationMessageFor(model => model.ProcessorBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProcessorModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProcessorModel)
+                @Html.ValidationMessageFor(model => model.ProcessorModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProcessorSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProcessorSerial)
+                @Html.ValidationMessageFor(model => model.ProcessorSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProcessorRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProcessorRemark)
+                @Html.ValidationMessageFor(model => model.ProcessorRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemoryBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MemoryBrand)
+                @Html.ValidationMessageFor(model => model.MemoryBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemoryModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MemoryModel)
+                @Html.ValidationMessageFor(model => model.MemoryModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemorySerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MemorySerial)
+                @Html.ValidationMessageFor(model => model.MemorySerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MemoryRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MemoryRemark)
+                @Html.ValidationMessageFor(model => model.MemoryRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VideoCardBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VideoCardBrand)
+                @Html.ValidationMessageFor(model => model.VideoCardBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VideoCardModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VideoCardModel)
+                @Html.ValidationMessageFor(model => model.VideoCardModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VideoCardSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VideoCardSerial)
+                @Html.ValidationMessageFor(model => model.VideoCardSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VideoCardRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VideoCardRemark)
+                @Html.ValidationMessageFor(model => model.VideoCardRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LANCardBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LANCardBrand)
+                @Html.ValidationMessageFor(model => model.LANCardBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LANCardModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LANCardModel)
+                @Html.ValidationMessageFor(model => model.LANCardModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LANCardSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LANCardSerial)
+                @Html.ValidationMessageFor(model => model.LANCardSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LANCardRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LANCardRemark)
+                @Html.ValidationMessageFor(model => model.LANCardRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MouseBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MouseBrand)
+                @Html.ValidationMessageFor(model => model.MouseBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MouseModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MouseModel)
+                @Html.ValidationMessageFor(model => model.MouseModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MouseSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MouseSerial)
+                @Html.ValidationMessageFor(model => model.MouseSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MouseRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MouseRemark)
+                @Html.ValidationMessageFor(model => model.MouseRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MonitorBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MonitorBrand)
+                @Html.ValidationMessageFor(model => model.MonitorBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MonitorModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MonitorModel)
+                @Html.ValidationMessageFor(model => model.MonitorModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MonitorSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MonitorSerial)
+                @Html.ValidationMessageFor(model => model.MonitorSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MonitorRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MonitorRemark)
+                @Html.ValidationMessageFor(model => model.MonitorRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monitor2Brand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Monitor2Brand)
+                @Html.ValidationMessageFor(model => model.Monitor2Brand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monitor2Model, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Monitor2Model)
+                @Html.ValidationMessageFor(model => model.Monitor2Model)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monitor2Serial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Monitor2Serial)
+                @Html.ValidationMessageFor(model => model.Monitor2Serial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monitor2Remark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Monitor2Remark)
+                @Html.ValidationMessageFor(model => model.Monitor2Remark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KeyboardBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KeyboardBrand)
+                @Html.ValidationMessageFor(model => model.KeyboardBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KeyboardModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KeyboardModel)
+                @Html.ValidationMessageFor(model => model.KeyboardModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KeyboardSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KeyboardSerial)
+                @Html.ValidationMessageFor(model => model.KeyboardSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KeyboardRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KeyboardRemark)
+                @Html.ValidationMessageFor(model => model.KeyboardRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScannerBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ScannerBrand)
+                @Html.ValidationMessageFor(model => model.ScannerBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScannerModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ScannerModel)
+                @Html.ValidationMessageFor(model => model.ScannerModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScannerSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ScannerSerial)
+                @Html.ValidationMessageFor(model => model.ScannerSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScannerRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ScannerRemark)
+                @Html.ValidationMessageFor(model => model.ScannerRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DVDBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DVDBrand)
+                @Html.ValidationMessageFor(model => model.DVDBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DVDModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DVDModel)
+                @Html.ValidationMessageFor(model => model.DVDModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DVDSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DVDSerial)
+                @Html.ValidationMessageFor(model => model.DVDSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DVDRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DVDRemark)
+                @Html.ValidationMessageFor(model => model.DVDRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HDD1Brand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HDD1Brand)
+                @Html.ValidationMessageFor(model => model.HDD1Brand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HDD1Model, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HDD1Model)
+                @Html.ValidationMessageFor(model => model.HDD1Model)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HDD1Serial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HDD1Serial)
+                @Html.ValidationMessageFor(model => model.HDD1Serial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HDD1Remark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HDD1Remark)
+                @Html.ValidationMessageFor(model => model.HDD1Remark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HDD2Brand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HDD2Brand)
+                @Html.ValidationMessageFor(model => model.HDD2Brand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HDD2Model, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HDD2Model)
+                @Html.ValidationMessageFor(model => model.HDD2Model)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HDD2Serial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HDD2Serial)
+                @Html.ValidationMessageFor(model => model.HDD2Serial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HDD2Remark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HDD2Remark)
+                @Html.ValidationMessageFor(model => model.HDD2Remark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrinterBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PrinterBrand)
+                @Html.ValidationMessageFor(model => model.PrinterBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrinterModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PrinterModel)
+                @Html.ValidationMessageFor(model => model.PrinterModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrinterSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PrinterSerial)
+                @Html.ValidationMessageFor(model => model.PrinterSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrinterRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PrinterRemark)
+                @Html.ValidationMessageFor(model => model.PrinterRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UPSBrand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UPSBrand)
+                @Html.ValidationMessageFor(model => model.UPSBrand)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UPSModel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UPSModel)
+                @Html.ValidationMessageFor(model => model.UPSModel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UPSSerial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UPSSerial)
+                @Html.ValidationMessageFor(model => model.UPSSerial)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UPSRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UPSRemark)
+                @Html.ValidationMessageFor(model => model.UPSRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Zip7Ver, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Zip7Ver)
+                @Html.ValidationMessageFor(model => model.Zip7Ver)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Zip7Remark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Zip7Remark)
+                @Html.ValidationMessageFor(model => model.Zip7Remark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AcrobatVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AcrobatVer)
+                @Html.ValidationMessageFor(model => model.AcrobatVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AcrobatRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AcrobatRemark)
+                @Html.ValidationMessageFor(model => model.AcrobatRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AutoCADVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AutoCADVer)
+                @Html.ValidationMessageFor(model => model.AutoCADVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AutoCADRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AutoCADRemark)
+                @Html.ValidationMessageFor(model => model.AutoCADRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CureGraphVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CureGraphVer)
+                @Html.ValidationMessageFor(model => model.CureGraphVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CureGraphRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CureGraphRemark)
+                @Html.ValidationMessageFor(model => model.CureGraphRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CutePDFVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CutePDFVer)
+                @Html.ValidationMessageFor(model => model.CutePDFVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CutePDFRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CutePDFRemark)
+                @Html.ValidationMessageFor(model => model.CutePDFRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HealthBookVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HealthBookVer)
+                @Html.ValidationMessageFor(model => model.HealthBookVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HealthBookRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HealthBookRemark)
+                @Html.ValidationMessageFor(model => model.HealthBookRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HRMSystemVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HRMSystemVer)
+                @Html.ValidationMessageFor(model => model.HRMSystemVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HRMSystemRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HRMSystemRemark)
+                @Html.ValidationMessageFor(model => model.HRMSystemRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IllustratorVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IllustratorVer)
+                @Html.ValidationMessageFor(model => model.IllustratorVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IllustratorRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IllustratorRemark)
+                @Html.ValidationMessageFor(model => model.IllustratorRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.JP1Ver, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.JP1Ver)
+                @Html.ValidationMessageFor(model => model.JP1Ver)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.JP1Remark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.JP1Remark)
+                @Html.ValidationMessageFor(model => model.JP1Remark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LexitronDictVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LexitronDictVer)
+                @Html.ValidationMessageFor(model => model.LexitronDictVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LexitronDictRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LexitronDictRemark)
+                @Html.ValidationMessageFor(model => model.LexitronDictRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MiniTabVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MiniTabVer)
+                @Html.ValidationMessageFor(model => model.MiniTabVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MiniTabRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MiniTabRemark)
+                @Html.ValidationMessageFor(model => model.MiniTabRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MSOfficeVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MSOfficeVer)
+                @Html.ValidationMessageFor(model => model.MSOfficeVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MSOfficeRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MSOfficeRemark)
+                @Html.ValidationMessageFor(model => model.MSOfficeRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhotoShopVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhotoShopVer)
+                @Html.ValidationMessageFor(model => model.PhotoShopVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhotoShopRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhotoShopRemark)
+                @Html.ValidationMessageFor(model => model.PhotoShopRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SAPVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SAPVer)
+                @Html.ValidationMessageFor(model => model.SAPVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SAPRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SAPRemark)
+                @Html.ValidationMessageFor(model => model.SAPRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SaveToPDFVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SaveToPDFVer)
+                @Html.ValidationMessageFor(model => model.SaveToPDFVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SaveToPDFRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SaveToPDFRemark)
+                @Html.ValidationMessageFor(model => model.SaveToPDFRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SeedWincsVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SeedWincsVer)
+                @Html.ValidationMessageFor(model => model.SeedWincsVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SeedWincsRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SeedWincsRemark)
+                @Html.ValidationMessageFor(model => model.SeedWincsRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SolidEdgeVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SolidEdgeVer)
+                @Html.ValidationMessageFor(model => model.SolidEdgeVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SolidEdgeRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SolidEdgeRemark)
+                @Html.ValidationMessageFor(model => model.SolidEdgeRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TrendMicroVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrendMicroVer)
+                @Html.ValidationMessageFor(model => model.TrendMicroVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TrendMicroRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrendMicroRemark)
+                @Html.ValidationMessageFor(model => model.TrendMicroRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WindowsVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WindowsVer)
+                @Html.ValidationMessageFor(model => model.WindowsVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WindowsRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WindowsRemark)
+                @Html.ValidationMessageFor(model => model.WindowsRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZimbraVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ZimbraVer)
+                @Html.ValidationMessageFor(model => model.ZimbraVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZimbraRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ZimbraRemark)
+                @Html.ValidationMessageFor(model => model.ZimbraRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgram, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgram)
+                @Html.ValidationMessageFor(model => model.OtherProgram)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgramVer, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgramVer)
+                @Html.ValidationMessageFor(model => model.OtherProgramVer)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgramRemark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgramRemark)
+                @Html.ValidationMessageFor(model => model.OtherProgramRemark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgram1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgram1)
+                @Html.ValidationMessageFor(model => model.OtherProgram1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgram1Ver, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgram1Ver)
+                @Html.ValidationMessageFor(model => model.OtherProgram1Ver)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgram1Remark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgram1Remark)
+                @Html.ValidationMessageFor(model => model.OtherProgram1Remark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgram2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgram2)
+                @Html.ValidationMessageFor(model => model.OtherProgram2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgram2Ver, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgram2Ver)
+                @Html.ValidationMessageFor(model => model.OtherProgram2Ver)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OtherProgram2Remark, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OtherProgram2Remark)
+                @Html.ValidationMessageFor(model => model.OtherProgram2Remark)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserID)
+                @Html.ValidationMessageFor(model => model.UserID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserName)
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PlantID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PlantID)
+                @Html.ValidationMessageFor(model => model.PlantID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepartmentID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DepartmentID)
+                @Html.ValidationMessageFor(model => model.DepartmentID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LocationID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LocationID)
+                @Html.ValidationMessageFor(model => model.LocationID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhaseID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhaseID)
+                @Html.ValidationMessageFor(model => model.PhaseID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Plant, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Plant)
+                @Html.ValidationMessageFor(model => model.Plant)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Department, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Department)
+                @Html.ValidationMessageFor(model => model.Department)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Location)
+                @Html.ValidationMessageFor(model => model.Location)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phase, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Phase)
+                @Html.ValidationMessageFor(model => model.Phase)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FixAccess, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FixAccess)
+                @Html.ValidationMessageFor(model => model.FixAccess)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreateBy, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreateBy)
+                @Html.ValidationMessageFor(model => model.CreateBy)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpdateBy, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UpdateBy)
+                @Html.ValidationMessageFor(model => model.UpdateBy)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateCreate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateCreate)
+                @Html.ValidationMessageFor(model => model.DateCreate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateUpdate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateUpdate)
+                @Html.ValidationMessageFor(model => model.DateUpdate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeviceName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeviceName)
+                @Html.ValidationMessageFor(model => model.DeviceName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

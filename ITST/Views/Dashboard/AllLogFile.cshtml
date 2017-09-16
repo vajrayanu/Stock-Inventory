@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "AllLogFile";
+}
+
+<h2>LogFile</h2>
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>Status</th>
+            <th>ActionBy</th>
+            <th>ActionDate</th>
+            <th>DeviceType</th>
+            <th>Model</th>
+            <th>Brand</th>
+            <th>SerialNumber</th>
+            <th>Cause</th>
+            <th>Plant</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Phase</th>
+            <th>LocationStock</th>
+            <th>Machine</th>
+            <th>UserName</th>
+            <th>DeviceName</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $.fn.dataTable.moment('HH:mm MMM D, YY');
+            $.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+            $.fn.dataTable.moment('DD/MM/YYYY, h:mm:ss a');
+        $('#myTable').DataTable({
+            responsive: {
+                details: {
+                    renderer: function (api, rowIdx, columns) {
+                        var data = $.map(columns, function (col, i) {
+                            return col.hidden ?
+                                '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                    '<td>' + col.title + ':' + '</td> ' +
+                                    '<td>' + col.data + '</td>' +
+                                '</tr>' :
+                                '';
+                        }).join('');
+
+                        return data ?
+                            $('<table/>').append(data) :
+                            false;
+                    }
+                }
+            },
+            "ajax": {
+                "url": '@Url.Action("getAllLogFile")',
+                "type": "GET",
+                "datatype": "json"
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            "columns": [
+                    { "data": "Status", "autoWidth": true },
+                    { "data": "ActionBy", "autoWidth": true },
+                    {
+                        "data": "ActionDate",
+                        "render": function (data, type, row) {
+                            var rowvalueallday = row.DateCreate;
+                            if (rowvalueallday == '0000-00-00') {
+                                var gdat = '1900-01-01';
+                                return (moment(gdat).format("DD/MM/YYYY, h:mm:ss a"));
+                            } else {
+                                return (moment(data).format("DD/MM/YYYY, h:mm:ss a"));
+                            }
+                        },
+                        "autoWidth": true
+                    },
+                    { "data": "DeviceType", "autoWidth": true },
+                    { "data": "Model", "autoWidth": true },
+                    { "data": "Brand", "autoWidth": true },
+                    { "data": "SerialNumber", "autoWidth": true },
+                    { "data": "Cause", "autoWidth": true },
+                    { "data": "Plant", "autoWidth": true },
+                    { "data": "Department", "autoWidth": true },
+                    { "data": "Location", "autoWidth": true },
+                    { "data": "Phase", "autoWidth": true },
+                    { "data": "LocationStock", "autoWidth": true },
+                    { "data": "Machine", "autoWidth": true },
+                    { "data": "UserName", "autoWidth": true },
+                    { "data": "DeviceName", "autoWidth": true },
+            ],
+            //order: [[2, "asc"]]
+        });
+    });
+    </script>
+}

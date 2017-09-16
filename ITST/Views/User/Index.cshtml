@@ -1,0 +1,123 @@
+﻿@model IEnumerable<ITST.Models.User>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Total User</h2>
+<hr />
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class="btn btn-success"})
+</p>
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>Action</th>
+            <th>User</th>
+            <th>EmployeeID No</th>
+            <th>DeviceName</th>
+            <th>IPAddress</th>
+            <th>Phone</th>
+            <th>UserLogOn</th>
+            <th>Plant</th>
+            <th>Department</th>
+            <th>Location</th>
+            <th>Phase</th>
+            <th>CreateBy</th>
+            <th>UpdateBy</th>
+            <th>DateCreate</th>
+            <th>DateUpdate</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $.fn.dataTable.moment('HH:mm MMM D, YY');
+            $.fn.dataTable.moment('dddd, MMMM Do, YYYY');
+            $('#myTable').DataTable({
+                responsive: {
+                    details: {
+                        renderer: function (api, rowIdx, columns) {
+                            var data = $.map(columns, function (col, i) {
+                                return col.hidden ?
+                                    '<tr data-dt-row="' + col.rowIndex + '" data-dt-column="' + col.columnIndex + '">' +
+                                        '<td>' + col.title + ':' + '</td> ' +
+                                        '<td>' + col.data + '</td>' +
+                                    '</tr>' :
+                                    '';
+                            }).join('');
+
+                            return data ?
+                                $('<table/>').append(data) :
+                                false;
+                        }
+                    }
+                },
+                "ajax": {
+                    "url": '@Url.Action("getAllUser")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ],
+                "columns": [
+                                        {
+                                            "data": "UserID",
+                                            "render": function (data, type, full, meta) {
+                                                return '<a href="@Url.Action("Edit/")' + data + '">Edit</a>' + '&nbsp;' + '|' + '&nbsp;' + '<a href="@Url.Action("Delete/")' + data + '">Delete</a>' ;
+                                            },
+                                            "autoWidth": true
+                                        },
+                        { "data": "FullName", "autoWidth": true },
+                        { "data": "EmployeeID", "autoWidth": true },
+                        { "data": "DeviceName", "autoWidth": true },
+                        { "data": "IPAddress", "autoWidth": true },
+                        { "data": "Phone", "autoWidth": true },
+                        { "data": "UserLogOn", "autoWidth": true },
+                        { "data": "PlantName", "autoWidth": true },
+                        { "data": "DepartmentName", "autoWidth": true },
+                        { "data": "LocationName", "autoWidth": true },
+                        { "data": "PhaseName", "autoWidth": true },
+                        { "data": "CreateBy", "autoWidth": true },
+                        { "data": "UpdateBy", "autoWidth": true },
+                        {
+                            "data": "DateCreate",
+                            "render": function (data, type, row) {
+                                var rowvalueallday = row.DateCreate;
+
+                                if (rowvalueallday == '0000-00-00') {
+                                    var gdat = '1900-01-01';
+                                    return (moment(gdat).format("DD/MM/YYYY"));
+                                } else {
+                                    return (moment(data).format("DD/MM/YYYY"));
+                                }
+
+                            },
+                            "autoWidth": true
+                        },
+                        {
+                            "data": "DateUpdate",
+                            "render": function (value) {
+                                if (value === null) return "";
+
+                                var pattern = /Date\(([^)]+)\)/;
+                                var results = pattern.exec(value);
+                                var dt = new Date(parseFloat(results[1]));
+
+                                return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+                            },
+                            "autoWidth": true
+                        },
+                ]
+            });
+        });
+    </script>
+}
+

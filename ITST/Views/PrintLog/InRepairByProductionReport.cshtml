@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "InRepairByProductionReport";
+}
+
+<h2>InRepairByProductionReport</h2>
+
+<h2>Report</h2>
+<h4>CartridgeRequisition</h4>
+<hr />
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr class="active">
+            <th>DateRequisition</th>
+            <th>RequestBy</th>
+            <th>Model</th>
+            <th>Plant</th>
+            <th>Location</th>
+            <th>Phase</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                "ajax": {
+                    "url": '@Url.Action("loadDataScannerInrepair")',
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ],
+                "columns": [
+                        {
+                            "data": "DateRequisition",
+                            "render": function (value) {
+                                if (value === null) return "";
+                                var pattern = /Date\(([^)]+)\)/;
+                                var results = pattern.exec(value);
+                                var dt = new Date(parseFloat(results[1]));
+                                return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear();
+                            },
+                            "autoWidth": true
+                        },
+                        { "data": "RequestBy", "autoWidth": true },
+                        { "data": "Model", "autoWidth": true },
+                        { "data": "Plant", "autoWidth": true },
+                        { "data": "Location", "autoWidth": true },
+                        { "data": "Phase", "autoWidth": true }
+                ]
+            });
+        });
+    </script>
+}

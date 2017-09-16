@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ITST.Models.Plant>
+
+@{
+    ViewBag.Title = "SparePartByPlant";
+}
+
+<h2>SparePart</h2>
+<h4>Plant</h4>
+<hr />
+
+<table class="table table-bordered" id="inuse">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayName("Plant")
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("SparePartByDepartment", "Device", new { id = item.PlantID })">@Html.DisplayFor(modelItem => item.PlantName)</a>
+                    @{
+            var db = new ITST.Models.ITStockEntities1();
+            var TotalDevicePerType = db.Devices.Where(d => d.PlantID == item.PlantID && d.StatusID == 5).GroupBy(d=>d.DepartmentID).Count();
+                    }
+                    <span class="badge badge-info">@TotalDevicePerType</span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#inuse").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container well-lg">
+    <div class="row">
+        <div class="col-md-3">
+            <a href='@Url.Action("byCriteria", "PrintLog")'>
+                <div class="col-md-4 alert-link well" style="height: 200px; width: 250px;">
+                    <h4>รายงาน</h4>
+                    <span style="font-size:7em;" class="glyphicon glyphicon-search"></span>
+                </div>
+            </a>
+        </div>
+
+        @*<div class="col-md-3">
+            <a href='@Url.Action("byDate", "PrintLog")'>
+                <div class="col-md-4 alert-link well" style="height: 200px; width: 250px; ">
+                    <h4>วันที่</h4>
+                    <span style="font-size:7em;" class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </a>
+        </div>*@
+
+        @*<div class="col-md-3">
+            <a href='@Url.Action("byLocationStock", "PrintLog")'>
+                <div class="col-md-4 alert-link well" style="height: 200px; width: 250px; ">
+                    <h4>สถานที่เก็บ</h4>
+                    <span style="font-size:7em;" class="glyphicon glyphicon-map-marker"></span>
+                </div>
+            </a>
+        </div>*@
+
+        @*<div class="col-md-3">
+            <a href='@Url.Action("requisitionAssetReport", "PrintLog")'>
+                <div class="col-md-4 alert-link well" style="height: 200px; width: 250px; ">
+                    <h4>การเบิกอุปกรณ์สินทรัพย์</h4>
+                    <span style="font-size:7em;" class="glyphicon glyphicon-download-alt"></span>
+                </div>
+            </a>
+        </div>*@
+    </div>
+</div>
+
+@Html.ActionLink("Back to Home Page", "Index", "Home", null, new { @class = "btn btn-primary" })
+
+

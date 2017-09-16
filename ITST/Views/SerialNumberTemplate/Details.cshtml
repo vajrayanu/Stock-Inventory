@@ -1,0 +1,67 @@
+﻿@model ITST.Models.SerialNumberTemplate
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SerialNumberTemplate</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TemplateName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TemplateName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeviceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeviceType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateUpdate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TemplateID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

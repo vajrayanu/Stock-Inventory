@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "WarningRequistion";
+}
+
+<h2><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> WarningRequistion</h2>
+
+@if (@ViewBag.MachineName != null)
+{
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <strong>@ViewBag.MachineName Already have used @ViewBag.Mqty @ViewBag.Type </strong>
+    </div>
+}
+else if (@ViewBag.UserName != null)
+{
+    <div class="alert alert-warning">
+        <strong>@ViewBag.UserName Already have used @ViewBag.Uqty @ViewBag.Type </strong>
+    </div>
+}
+
+
+
+<h4>Device</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrandName)
+            </td>
+            <td>
+                @Html.ActionLink("Requistition", "SetOverRequistion", new { id = item.DeviceID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="form-actions no-color">
+    @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-primary" })
+</div>

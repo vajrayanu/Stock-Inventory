@@ -1,0 +1,172 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "filterByItem";
+}
+
+<br />
+
+@if (@ViewBag.Required != null)
+{
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <strong>New LocationStock, Reason is Required </strong>
+    </div>
+}
+
+<h2>Report Generator</h2>
+<h4>By Item</h4>
+<hr />
+
+@using (Html.BeginForm("setNewLocationStock", "Device", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationStockName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FixAccess)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant.PlantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department.DepartmentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhaseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Machine.MachineName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FullName)
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" name="ids" value=@item.DeviceID />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationStockName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FixAccess)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant.PlantName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.LocationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhaseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Machine.MachineName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("Set to New LocationStock")
+        </th>
+    </tr>
+    @foreach (var item in Model.Take(1))
+    {
+        <tr>
+            <td>
+                @Html.DropDownList("LocationStockID", null, String.Empty, new { @class = "form-control" })
+                @Html.ValidationMessageFor(modelItem => item.LocationStockID)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextAreaFor(model => model.FirstOrDefault().CauseRequistion, new { @class = "form-control", @placeholder = "Cause - Required", rows = 5, columns = 5 })
+                @Html.ValidationMessageFor(modelItem => item.CauseRequistion)
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="hidden" name="sid" value="@ViewBag.Sid" />
+        <input type="hidden" name="lid" value="@ViewBag.Lid" />
+        <input type="hidden" name="tid" value="@ViewBag.Tid" />
+        <input type="hidden" name="mid" value="@ViewBag.Mid" />
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    </div>
+</div>
+    
+}
+
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#list").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

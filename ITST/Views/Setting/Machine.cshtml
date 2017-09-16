@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ITST.Models.Machine>
+
+@{
+    ViewBag.Title = "Machine";
+}
+
+<h2>Machine</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", "Machine", null, new { @class = "btn btn-success" })
+</p>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayName("Plant")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("MachineByDepartment", "Setting", new { id = item.PlantID })">@Html.DisplayFor(modelItem => item.Plant.PlantName)</a>
+                @{
+        var db = new ITST.Models.ITStockEntities1();
+        var TotalDevicePerType = db.Machines.Where(d => d.PlantID == item.PlantID ).Count();
+                }
+                <span class="badge badge-info">@TotalDevicePerType</span>
+            </td>
+        </tr>
+    }
+
+</table>

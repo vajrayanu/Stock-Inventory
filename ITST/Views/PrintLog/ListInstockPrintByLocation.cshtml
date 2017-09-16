@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "ListInstockPrintByLocation";
+}
+
+<h2>ListInstockPrintByLocation</h2>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.PhaseName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("ListInstockPrintByPhase", "PrintLog", new { did = item.DepartmentID, pid = item.PlantID, lid = item.LocationID, phid = item.PhaseID })">@Html.DisplayFor(modelItem => item.PhaseName)</a>
+                @{
+        var db = new ITST.Models.ITStockEntities1();
+        var DevicePerPhs = db.Devices.Where(d => d.DepartmentID == item.DepartmentID && d.PlantID == item.PlantID && d.LocationID == item.LocationID && d.PhaseID == item.PhaseID && d.StatusID == 1).Count();
+                }
+                <span class="badge badge-info">@DevicePerPhs</span>
+            </td>
+            <td>
+                @Html.ActionLink("Print", "PrintInUse", new { pid = item.PlantID, did = item.DepartmentID, lid = item.LocationID, phid = item.PhaseID })
+            </td>
+        </tr>
+    }
+
+</table>

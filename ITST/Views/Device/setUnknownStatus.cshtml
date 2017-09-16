@@ -1,0 +1,255 @@
+﻿@model ITST.Models.Device
+
+@{
+    ViewBag.Title = "setUnknown";
+}
+
+<h2>Set Unknown Status</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Device</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.DeviceID)
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Set Unknown Status</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Device Infomation</div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DeviceName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.DeviceName, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.DeviceName)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.ModelID, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("ModelID", null, String.Empty, new { id = "ModelID", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ModelID)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ModelName, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.ModelName, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.ModelName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SerialNumber, new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.SerialNumber, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.SerialNumber)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.StatusID, "StatusID", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("StatusID", null, String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.StatusID)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.Description, "Description", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Description)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.LocationStockName, "LocationStockName", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.LocationStockName, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.LocationStockName)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MacAddress, "MacAddress", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.MacAddress, new { @class = "form-control", @readonly = "readonly" })
+                                        @Html.ValidationMessageFor(model => model.MacAddress)
+                                    </div>
+                                </div>
+
+                                <div class="hidden">
+                                    @Html.LabelFor(model => model.IPAddress, "IPAddress", new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextBoxFor(model => model.IPAddress, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.IPAddress)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.Specification, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.Specification, new { @class = "form-control", @cols = 80, @rows = 5 })
+                            @Html.ValidationMessageFor(model => model.Specification)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.LocationStockName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.LocationStockName, new { @class = "form-control", @cols = 80, @rows = 5 })
+                            @Html.ValidationMessageFor(model => model.LocationStockName)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.FixAccess, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.FixAccess, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FixAccess)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.PRNumber, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.PRNumber, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PRNumber)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Type, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Type)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.BrandName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.BrandName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BrandName)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.StatusName, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.StatusName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.StatusName)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.InstockDate, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.InstockDate, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.InstockDate)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Type, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Type)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.LocationStockID, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.LocationStockID, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LocationStockID)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.BrandID, "BrandID", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("BrandID", null, String.Empty, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BrandID)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.DeviceTypeID, "DeviceTypeID", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("DeviceTypeID", null, String.Empty, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.DeviceTypeID)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.DateCreate, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.DateCreate, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.DateCreate)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.DateUpdate, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.DateUpdate, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.DateUpdate)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.CreateBy, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.CreateBy, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.CreateBy)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.UpdateBy, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.UpdateBy, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.UpdateBy)
+                        </div>
+                    </div>
+
+                    <div class="hidden">
+                        @Html.LabelFor(model => model.Uri, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.Uri, new { @class = "form-control", @readonly = "readonly" })
+                            @Html.ValidationMessageFor(model => model.Uri)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="hidden" name="uri" value="@ViewBag.URI" />
+                            <input type="submit" value="submit" class="btn btn-primary" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+
+}

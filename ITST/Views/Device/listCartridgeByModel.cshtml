@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "List Cartridge";
+}
+
+
+<h2>Cartridge</h2>
+<h4>Item</h4>
+
+<a href="@Url.Action("CartridgePrinter", "Device")" class="btn btn-default" style="margin:2px"><span class="glyphicon glyphicon-home"></span> Cartridge</a>
+
+
+<div class="row well-lg">
+    <a href="@Url.Action("ReportCartridgePrinter", "PrintLog")" class="btn btn-default pull-right btn-sm RbtnMargin" style="margin:2px"><span class="glyphicon glyphicon-file"></span> Report</a>
+    <a href="@Url.Action("listCartridgePrinter", "Machine")" class="btn btn-default pull-right btn-sm RbtnMargin" style="margin:2px"><span class="glyphicon glyphicon-cog"></span> Printer Machine</a>
+    <a href="@Url.Action("CreateCartridge", "Device")" class="btn btn-default pull-right btn-sm RbtnMargin" style="margin:2px"><span class="glyphicon glyphicon-plus-sign"></span> Create Cartridge</a>
+</div>
+
+<hr />
+
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.Specification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateUpdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateBy)
+            </th>
+            <th>
+                @Html.DisplayName("LocationStock")
+            </th>
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayName("Brand")
+            </th>
+            <th>
+                @Html.DisplayName("Status")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateUpdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdateBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LocationStockName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModelName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusName)
+                </td>
+                <td>
+                    @Html.ActionLink("Requisition", "setCartridegeRequisition", new { id = item.DeviceID }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.DeviceID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.DeviceID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", null, null, null, new { href = Request.UrlReferrer, @class = "btn btn-primary" })
+</div>
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            $("table#list").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

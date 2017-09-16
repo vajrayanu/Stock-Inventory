@@ -1,0 +1,135 @@
+﻿@model IEnumerable<ITST.Models.BillReceiptList>
+
+@{
+    ViewBag.Title = "BillReceiptNo";
+}
+
+<h2>BillReceiptNo. @ViewBag.ReceiptNo </h2>
+
+<h4>Device</h4>
+<hr />
+
+<table class="table table-bordered" id="list">
+    <thead>
+        <tr class="active">
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cause)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phase)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cause)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plant)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phase)
+                </td>
+
+                @if (item.BillReceiptNo.Substring(0,1) == "D")
+                {
+                <td>
+                    <div class="hidden">
+                        @Html.ActionLink("Remove", "RemoveRepairList", new { id = item.ListID, did = item.DeviceID })
+                    </div>
+                </td>
+                }
+                else
+                {
+                <td>
+                    @Html.ActionLink("Remove", "RemoveSaleList", new { id = item.ListID, did = item.DeviceID })
+                </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    string vb = @ViewBag.ReceiptNo;
+    var db = new ITST.Models.ITStockEntities1();
+    var total = db.BillReceiptLists.Where(d => d.BillReceiptNo == vb).Select(d => d.Price).DefaultIfEmpty().First();
+    var type = db.BillReceiptLists.Where(d => d.BillReceiptNo == vb).Select(d => d.BillReceiptNo).DefaultIfEmpty().First();
+    var billtype = type.Substring(0, 1);
+    double x;
+    x = Convert.ToDouble(total);
+    var units = "Baht";
+}
+
+@if(billtype != "D")
+{
+    <div class="row">
+    <div class="col-md-2">
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-primary col-sm-3">
+                Total Price
+                <br><span class="badge badge-info">@x.ToString("#,##0.00#") @units</span>
+            </a>
+        </div>
+    </div>
+</div>
+}
+
+
+<div class="well-lg">
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</div>
+
+@section scripts {
+    <script>
+        $(function () {
+            $("table#list").dataTable({
+                "sPaginationType": "full_numbers"
+            });
+        })
+    </script>
+}

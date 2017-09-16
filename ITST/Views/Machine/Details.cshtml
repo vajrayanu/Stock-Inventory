@@ -1,0 +1,114 @@
+﻿@model ITST.Models.Machine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Machine</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MachineName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MachineName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IPAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IPAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PLCAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLCAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MACAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MACAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plant.PlantName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plant.PlantName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.DepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.LocationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.LocationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phase.PhaseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phase.PhaseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdateBy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MachineID },new { @class = "btn-sm btn-warning" }) |
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "btn-sm btn-primary" })
+</p>

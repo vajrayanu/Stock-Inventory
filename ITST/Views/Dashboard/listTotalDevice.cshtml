@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "TotalDevice";
+}
+
+<h2>Total Device</h2>
+<h4>Device</h4>
+<hr />
+
+<div class="hidden">
+    <label>Cargo</label>
+    <select id="ddlProfissao">
+        <option value="TODOS">Todos</option>
+        <option value="Web Designer">Web Designer</option>
+        <option value="Adm. Redes">Adm. Redes</option>
+        <option value="Estagiário">Estagiário</option>
+        <option value="DBA">DBA</option>
+        <option value="DPT">DPT</option>
+        <option value="Engenheiro de Software">Engenheiro de Software</option>
+    </select>
+    <button type="button" class="btn btn-primary busca">Buscar</button>
+</div>
+
+
+<table class="table table-bordered" id="tdevice">
+    <thead>
+        <tr class="active">
+            <td>
+                SerialNumber
+            </td>
+            <td>
+                IPAddress
+            </td>
+            <td>
+                Type
+            </td>
+            <td>
+                ModelName
+            </td>
+            <td>
+                BrandName
+            </td>
+            <td>
+                CreateBy
+            </td>
+            <td>
+                UpdateBy
+            </td>
+            <td>
+                LocationStockName
+            </td>
+            <td>
+                PlantName
+            </td>
+            <td>
+                DepartmentName
+            </td>
+            <td>
+                LocationName
+            </td>
+            <td>
+                PhaseName
+            </td>
+            <td>
+                MachineName
+            </td>
+            <td>
+                UserName
+            </td>
+            <td>
+                StatusName
+            </td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts {
+
+    <script>
+        $(function () {
+            var dataTable = $("table#tdevice").dataTable({
+                "sPaginationType": "full_numbers",
+                "aoColumns": [
+                    { "mDataProp": "SerialNumber" },
+                    { "mDataProp": "IPAddress" },
+                    { "mDataProp": "Type" },
+                    { "mDataProp": "ModelName" },
+                    { "mDataProp": "BrandName" },
+                    { "mDataProp": "CreateBy" },
+                    { "mDataProp": "UpdateBy" },
+                    { "mDataProp": "LocationStockName" },
+                    { "mDataProp": "PlantName" },
+                    { "mDataProp": "DepartmentName" },
+                    { "mDataProp": "LocationName" },
+                    { "mDataProp": "PhaseName" },
+                    { "mDataProp": "MachineName" },
+                    { "mDataProp": "UserName" },
+                    { "mDataProp": "StatusName" }
+                ]
+            });
+
+            $("button.busca").click(function () {
+
+                $.post("@Url.Content("/Dashboard/GetDevice")", { profissao: $("#ddlProfissao").val() }, function (json) {
+
+                    dataTable.fnClearTable();
+                    dataTable.fnAddData(json);
+                }, 'json');
+
+            });
+
+            //busca inicial
+            $("button.busca").click();
+
+        });
+    </script>
+}

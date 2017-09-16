@@ -1,0 +1,245 @@
+﻿@model List<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "Create Multiple";
+}
+
+<h2>Create Multiple</h2>
+<h4>Device</h4>
+<hr />
+
+    @using (Html.BeginForm("BulkData", "Device", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        if (ViewBag.Message != null)
+        {
+        <div class="alert alert-success" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewBag.Message
+        </div>
+        }
+        
+if (ViewBag.DupMessage != null)
+        {
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewBag.DupMessage
+        </div>
+        }
+        if (ViewBag.IPAddress != null)
+        {
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewBag.IPAddress @ViewBag.WIPAddress
+        </div>
+        }
+
+        if (ViewBag.SerialNumber != null)
+        {
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewBag.SerialNumber @ViewBag.WSerialNumber
+        </div>
+        }
+        
+        if (ViewBag.DeviceName != null)
+        {
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewBag.DeviceName 
+        </div>
+        }
+        
+        if (ViewBag.DeviceNameDup != null)
+        {
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            @ViewBag.WSerialNumber @ViewBag.DeviceNameDup
+        </div>
+        }
+        <p>
+            <a href="#" class="btn btn-success" id="addNew">Add New</a>
+        </p>
+        
+        <table id="dataTable" class="table table-bordered">
+            <tbody>
+                <tr class="active">
+                    <th>IsAsset</th>
+                    <th>IsNotPR</th>
+                    <th>DeviceName</th>
+                    <th>Model</th>
+                    <th>SerialNumber</th>
+                    <th>IPAddress</th>
+                    <th>FixAccess</th>
+                    <th>PRNumber</th>
+                    <th>LocationStock</th>
+                    <th></th>
+                </tr>
+                @if (Model != null && Model.Count > 0)
+{
+    int j = 0;
+    foreach (var i in Model)
+    {
+        <tr id="tr1" style="border:1px solid black">
+            <td>@Html.CheckBoxFor(a => a[j].IsAsset)</td>
+            <td>@Html.CheckBoxFor(a => a[j].IsNotPR)</td>
+            <td>@Html.TextBoxFor(a => a[j].DeviceName, new { @class = "form-control" })</td>
+            <td>@Html.TextBoxFor(a => a[j].ModelName, new { id = "SearchString", @class = "form-control", @placeholder = "Model - Required" })</td>
+            <td>@Html.TextBoxFor(a => a[j].SerialNumber, new { @class = "form-control", @placeholder = "SerialNumber - Required" })</td>
+            <td>@Html.TextBoxFor(a => a[j].IPAddress, new { @class = "form-control" })</td>
+            <td>@Html.TextBoxFor(a => a[j].FixAccess, new { @class = "form-control" })</td>
+            <td>@Html.TextBoxFor(a => a[j].PRNumber, new { @class = "form-control" })</td>
+            <td>@Html.TextBoxFor(a => a[j].LocationStockName, new { id = "LStock", @class = "form-control", @placeholder = "LocationStock - Required" })</td>
+
+            <td id="td1">
+                @if (j > 0)
+                {
+                    <a href="#" class="remove">Remove</a>
+                }
+            </td>
+        </tr>
+                j++;
+    }
+}
+            </tbody>
+        </table>
+        <input type="submit" class="btn btn-primary" value="Save" />
+    }
+
+@* Here I will add Jquery Code for validation / dynamically add new rows / Remove rows etc *@
+
+@section Scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script language="javascript">
+    $(document).ready(function () {
+
+        //1. Add new row
+        $("#addNew").click(function (e) {
+            e.preventDefault();
+            var $tableBody = $("#dataTable");
+            var $trLast = $tableBody.find("tr:last");
+            var $trNew = $trLast.clone();
+
+            var suffix = $trNew.find(':input:first').attr('name').match(/\d+/);
+            $trNew.find("td:last").html('<a href="#" class="remove">Remove</a>');
+            $.each($trNew.find(':input'), function (i, val) {
+                // Replaced Name
+                var oldN = $(this).attr('name');
+                var newN = oldN.replace('[' + suffix + ']', '[' + (parseInt(suffix) + 1) + ']');
+                $(this).attr('name', newN);
+                //Replaced value
+                var type = $(this).attr('type');
+                if (type.toLowerCase() == "text") {
+                    $(this).attr('value', '');
+                }
+
+                // If you have another Type then replace with default value
+                $(this).removeClass("input-validation-error");
+
+            });
+            $trLast.after($trNew);
+
+            // Re-assign Validation
+            var form = $("form")
+                .removeData("validator")
+                .removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(form);
+        });
+
+        // 2. Remove
+        $('a.remove').live("click", function (e) {
+            e.preventDefault();
+            $(this).parent().parent().remove();
+        });
+
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#SearchString").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindModelName")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#LStock").autocomplete({
+            autoFocus: true,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("FindLocationStock")',
+                    data: "{ 'prefixText': '" + request.term + "' }",
+                    dataType: "json",
+                    dataFilter: function (data) { return data; },
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.value,
+                                value: item.name,
+                            }
+                        }))
+                    },
+                    messages: {
+                        noResults: "", results: ""
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            minLength: 1,
+        });
+    });
+</script>
+}
+

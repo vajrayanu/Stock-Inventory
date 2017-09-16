@@ -1,0 +1,178 @@
+﻿@{
+    ViewBag.Title = "Setting";
+}
+
+@*<h2>Setting</h2>*@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3">
+            <!-- Left column -->
+            <a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Tools</strong></a>
+
+            <hr>
+
+            <ul class="nav nav-stacked">
+                <li class="nav-header">
+                    <a href="#" data-toggle="collapse" data-target="#userMenu">Settings <i class="glyphicon glyphicon-chevron-down"></i></a>
+                    <ul class="nav nav-stacked collapse in" id="userMenu">
+                    </ul>
+                </li>
+            </ul>
+
+            <hr>
+
+            <a href="#"><strong><i class="glyphicon glyphicon-list"></i> More Links</strong></a>
+
+            <hr>
+
+            <ul class="nav nav-stacked">
+                <li class="active"><a rel="nofollow" href="http://intra.ytmt.co.th/" target="ext">YTMT Main page</a></li>
+                <li><a rel="nofollow" href="http://portal.ytmt.co.th/fphonelist/" target="_blank">YTMT Extension Phone List</a></li>
+            </ul>
+        </div>
+
+
+        <div class="col-lg-9">
+            <a href="#"><strong><i class="glyphicon glyphicon-dashboard"></i> Setting</strong></a>
+
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Home")'>
+                        <div class="col-md-4 alert-link well" style="height:200px; width:180px;">
+                            <h4>Home</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-home"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Dashboard")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Dashboard</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-dashboard"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Status")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Status</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-info-sign"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "MachineSheet")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Machine Sheet</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-check"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "DeviceType")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Device Type</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-qrcode"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Model")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Model</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-tags"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Brand")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Brand</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-barcode"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "UserSheet")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>User Sheet</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-check"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Device")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Device</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-phone"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("UserByPlant", "User")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>User</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-user"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Machine", "Setting")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Machine</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-cog"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "LocationStock")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Location Stock</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-th-large"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Plant")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Plant</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-tree-conifer"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Department")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Department</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-tree-deciduous"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Location")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Location</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-th-large"></span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href='@Url.Action("Index", "Phase")'>
+                        <div class="col-md-4 alert-link well" style="height: 200px; width: 180px;">
+                            <h4>Phase</h4>
+                            <span style="font-size:7em;" class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

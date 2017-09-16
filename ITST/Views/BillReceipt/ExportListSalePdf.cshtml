@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ITST.Models.BillReceiptList>
+
+@{
+    ViewBag.Title = "ExportListSalePdf";
+    Layout = "~/Views/Shared/_LayoutR.cshtml";
+}
+
+<div class="col-lg-7 col-lg-offset-4 well-lg">
+    <img src="@Url.Content("~/Images/logo.jpg")" alt="logo" width="300" height="100" />
+</div>
+
+<div class="col-lg-7 col-lg-offset-5">
+    <h4 class="text-danger">Damage Equipment</h4>
+    @if (@ViewBag.Type == "D")
+    {
+        <h4 class="text-danger">Date Destroyed : @DateTime.Now</h4>
+    }
+    else if (@ViewBag.Type == "S")
+    {
+        <h4 class="text-danger">Date Saled : @DateTime.Now</h4>
+    }
+</div>
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayName("Quantity")
+        </th>
+        <th>
+            @Html.DisplayName("Unit")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @{
+        var db = new ITST.Models.ITStockEntities1();
+        //var TotalType = db.BillReceiptLists.Where(d => d.Type == item.Type && d.BillReceiptNo == item.BillReceiptNo).Count();
+        var TotalType = db.BillReceiptLists.Where(d => d.Type == item.Type && d.BillReceiptNo == item.BillReceiptNo).Sum(t => t.Unit);
+        var TotalItem = db.BillReceiptLists.Where(d => d.BillReceiptNo == item.BillReceiptNo).Sum(t => t.Unit);
+                }
+                @TotalType
+            </td>
+            <td>
+                @Html.DisplayName("อัน")
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="btn-group btn-group-justified">
+            <a href="#" class="btn btn-primary col-sm-3">
+                Total Item
+                <br><span class="badge badge-info">@ViewBag.TotalItem</span>
+            </a>
+        </div>
+    </div>
+</div>
+

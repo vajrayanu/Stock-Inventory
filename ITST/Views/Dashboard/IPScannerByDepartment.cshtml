@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ITST.Models.Device>
+
+@{
+    ViewBag.Title = "IPScannerByDepartment";
+}
+
+<h2>IP QR Code Scanner</h2>
+
+<h4>Department</h4>
+<hr />
+
+<table class="table table-bordered">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+        <th>
+            Length IP 
+        </th>
+        <th>
+            Total IP Address
+        </th>
+        <th>
+            Use IP Address
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="@Url.Action("ListIPScanner", "Dashboard", new { id = item.PlantID , did = item.DepartmentID})">@Html.DisplayFor(modelItem => item.Department.DepartmentName)</a>
+            @{
+    var db = new ITST.Models.ITStockEntities1();
+    var TotalDevicePerType = db.Devices.Where(d => d.PlantID == item.PlantID && d.StatusID == 1 && d.IPAddress != null && d.DepartmentID == item.DepartmentID).Count();
+            }
+        </td>
+        <td>
+            @if(item.PlantID == 2 && item.DepartmentID == 9)
+            {
+                <span class="badge badge-info">10.102.190.50 - 190.90</span>
+            }
+            else if (item.PlantID == 2 && item.DepartmentID == 10)
+            {
+                <span class="badge badge-info">10.102.190.100 - 190.120</span>
+            }
+            else if (item.PlantID == 2 && item.DepartmentID == 11)
+            {
+                <span class="badge badge-info">Racking 10.102.190.130 - 190.150</span>
+                <span class="badge badge-info">Shipping 10.102.190.50 - 190.100</span>
+            }
+            else if (item.PlantID == 2 && item.DepartmentID == 23)
+            {
+                <span class="badge badge-info">10.102.190.160 - 190.170</span>
+            }
+            
+            @if (item.PlantID == 1 && item.DepartmentID == 9)
+            {
+                <span class="badge badge-info">10.102.201.50 - 190.70</span>
+            }
+            else if (item.PlantID == 1 && item.DepartmentID == 10)
+            {
+                <span class="badge badge-info">10.102.201.50 - 190.70</span>
+            }
+            else if (item.PlantID == 1 && item.DepartmentID == 11)
+            {
+                <span class="badge badge-info">Racking 10.102.201.80 - 201.90</span>
+                <span class="badge badge-info">Shipping 10.102.192.121 - 192.130</span>
+            }
+            else if (item.PlantID == 1 && item.DepartmentID == 13)
+            {
+                <span class="badge badge-info">Racking 10.102.201.80 - 201.90</span>
+                <span class="badge badge-info">Shipping 10.102.192.121 - 192.130</span>
+            }
+        </td>
+        <td>
+            @if (item.PlantID == 2 && item.DepartmentID == 9)
+            {
+                <span class="badge badge-info">41 IP Address</span>
+            }
+            else if (item.PlantID == 2 && item.DepartmentID == 10)
+            {
+                <span class="badge badge-info">21 IP Address</span>
+            }
+            else if (item.PlantID == 2 && item.DepartmentID == 11)
+            {
+                <span class="badge badge-info">71 IP Address</span>
+            }
+            else if (item.PlantID == 2 && item.DepartmentID == 23)
+            {
+                <span class="badge badge-info">11 IP Address</span>
+            }
+            
+            @if (item.PlantID == 1 && item.DepartmentID == 9)
+            {
+                <span class="badge badge-info">21 IP Address</span>
+            }
+            else if (item.PlantID == 1 && item.DepartmentID == 10)
+            {
+                <span class="badge badge-info">21 IP Address</span>
+            }
+            else if (item.PlantID == 1 && item.DepartmentID == 11)
+            {
+                <span class="badge badge-info">11 IP Address</span>
+            }
+            else if (item.PlantID == 1 && item.DepartmentID == 13)
+            {
+                <span class="badge badge-info">10 IP Address</span>
+            }
+        </td>
+        <td>
+            <span class="badge badge-info">@TotalDevicePerType IP Address</span>
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ITST.Models.Machine>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "TotalMachine";
+}
+
+<h2>TotalMachine</h2>
+
+<h4>Machine</h4>
+<hr />
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+@Html.Grid(Model).Columns(columns =>
+                    {
+                        columns.Add(c => c.MachineName).Titled("MachineName").Filterable(true);
+                        columns.Add(c => c.IPAddress).Titled("IPAddress").Filterable(true);
+                        columns.Add(c => c.PLCAddress).Titled("PLCAddress").Filterable(true);
+                        columns.Add(c => c.MACAddress).Titled("MACAddress").Filterable(true);
+                        columns.Add(c => c.Plant.PlantName).Titled("Plant").Filterable(true);
+                        columns.Add(c => c.Department.DepartmentName).Titled("Department").Filterable(true);
+                        columns.Add(c => c.Location.LocationName).Titled("Location").Filterable(true);
+                        columns.Add(c => c.Phase.PhaseName).Titled("Phase").Filterable(true);
+                        columns.Add(c => c.CreateBy).Titled("CreateBy");
+                        columns.Add(c => c.UpdateBy).Titled("UpdateBy");
+                        columns.Add(c => c.DateCreate).Format("{0:dd/MM/yyyy hh:mm:ss tt}").Titled("DateCreate");
+                        columns.Add(c => c.DateUpdate).Format("{0:dd/MM/yyyy hh:mm:ss tt}").Titled("DateUpdate");
+                    }).WithPaging(20).Sortable(true)
